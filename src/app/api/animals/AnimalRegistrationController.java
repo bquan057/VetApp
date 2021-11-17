@@ -1,9 +1,11 @@
 package app.api.animals;
 
-import java.io.InputStream;
+import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +15,9 @@ import com.sun.net.httpserver.Headers;
 import app.api.Constants;
 import app.api.ResponseEntity;
 import app.api.StatusCode;
-import app.api.animals.AnimalRegistrationRequest;
-import app.api.animals.AnimalRegistrationResponse;
 import data.InMemoryAnimalRepository;
 import domain.animals.NewAnimal;
+import domain.animals.Animal;
 import domain.animals.AnimalRepository;
 import domain.animals.AnimalService;
 
@@ -33,7 +34,8 @@ public class AnimalRegistrationController {
     }
 	
 	@GetMapping("/api/animals")
-	public ResponseEntity<AnimalListResponse> doGet(@RequestParam String animalId, @RequestParam String animalName, @RequestParam String animalSpecies) {
+	public ResponseEntity<AnimalListResponse> doGet(@RequestParam String animalId, @RequestParam String animalName,
+			@RequestParam String animalSpecies) {
 		
 		AnimalListResponse AnimalListResponse=new AnimalListResponse(animalService.getAnimals());
         
@@ -52,27 +54,27 @@ public class AnimalRegistrationController {
 	}
 	
 	@PostMapping("/api/animals")
-	private ResponseEntity<AnimalRegistrationResponse> doPost(@RequestBody String registerRequest) {
+	private ResponseEntity<AnimalRegistrationResponse> doPost(@RequestBody Map<String,String> body) {
 
-//        NewAnimal animal = NewAnimal.builder()
-//        		.name(registerRequest.getName())
-//        		.weight(registerRequest.getWeight())
-//        		.tattoo(registerRequest.getTattoo())
-//                .cityTattoo(registerRequest.getCityTattoo())
-//                .age(registerRequest.getAge())
-//                .birthDay(registerRequest.getBirthDay())
-//                .birthMonth(registerRequest.getBirthMonth())
-//                .birthYear(registerRequest.getBirthYear())
-//                .breed(registerRequest.getBreed())
-//                .sex(registerRequest.getSex())
-//                .coatColour(registerRequest.getCoatColour())
-//                .specialInstructions(registerRequest.getSpecialInstructions())
-//        		.diet(registerRequest.getDiet())
-//                .isActive(registerRequest.getIsActive())
-//                .rdifID(registerRequest.getRdifID())
-//                .hasMicrochip(registerRequest.getHasMicrochip())
-//        		.species(registerRequest.getSpecies())
-//                .build();
+        NewAnimal animal = NewAnimal.builder()
+        		.name(body.get("name"))
+        		.status(body.get("status"))
+        		.tattoo(body.get("tattoo"))
+                .cityTattoo(body.get("cityTattoo"))
+                .age(body.get("age"))
+                .birthDay(body.get("birthDay"))
+                .birthMonth(body.get("birthMonth"))
+                .birthYear(body.get("birthYear"))
+                .breed(body.get("breed"))
+                .sex(body.get("sex"))
+                .coatColour(body.get("coatColour"))
+                .specialInstructions(body.get("specialInstructions"))
+        		.diet(body.get("diet"))
+                .isActive(body.get("isActive"))
+                .rdifID(body.get("rdifID"))
+                .hasMicrochip(body.get("hasMicrochip"))
+        		.species(body.get("species"))
+                .build();
 
         String animalId = animalService.create(animal);
 
@@ -80,5 +82,43 @@ public class AnimalRegistrationController {
 
         return new ResponseEntity<>(response,
                 getHeaders(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON), StatusCode.OK);
+    }
+	
+	@PutMapping("/api/animals")
+	private ResponseEntity<Animal> doPut(@RequestParam String animalId, @RequestBody Map<String,String> body) {
+		
+		Animal animalForUpdate = Animal.builder().animalId(animalId)
+				.name(body.get("name"))
+        		.status(body.get("status"))
+        		.tattoo(body.get("tattoo"))
+                .cityTattoo(body.get("cityTattoo"))
+                .age(body.get("age"))
+                .birthDay(body.get("birthDay"))
+                .birthMonth(body.get("birthMonth"))
+                .birthYear(body.get("birthYear"))
+                .breed(body.get("breed"))
+                .sex(body.get("sex"))
+                .coatColour(body.get("coatColour"))
+                .specialInstructions(body.get("specialInstructions"))
+        		.diet(body.get("diet"))
+                .isActive(body.get("isActive"))
+                .rdifID(body.get("rdifID"))
+                .hasMicrochip(body.get("hasMicrochip"))
+        		.species(body.get("species"))
+                .build();
+		
+        Animal animalAfterUpdate= animalService.updateAnimal(animalForUpdate);
+        
+        return new ResponseEntity<>(animalAfterUpdate,
+                getHeaders(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON), StatusCode.OK);
+	}
+	
+	@DeleteMapping("/api/animals")
+	private ResponseEntity<String> doDelete(@RequestParam String animalId) {
+
+       animalService.deleteAnimal(animalId);
+       
+       return new ResponseEntity<>("Animal successfully deleted",
+                getHeaders(Constants.CONTENT_TYPE, Constants.PLAIN_TXT), StatusCode.OK);
     }
 }

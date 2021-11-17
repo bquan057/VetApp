@@ -9,7 +9,7 @@ import lombok.Value;
 @Builder
 public class Animal {
 
-	String id;
+	String animalId;
     String name;
     String status;
     String tattoo;

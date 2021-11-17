@@ -27,9 +27,9 @@ public class AnimalService {
         Objects.requireNonNull(id,"Animal id is required");
         animalRepository.deleteAnimal(id);
     }
-    public Animal updateAnimal(Animal user) throws AnimalNotFoundException{
-        Objects.requireNonNull(user.getId(),"Animal id is required for update");
-        return  animalRepository.updateAnimal(user);
+    public Animal updateAnimal(Animal animal) throws AnimalNotFoundException{
+        Objects.requireNonNull(animal.getAnimalId(),"Animal id is required for update");
+        return  animalRepository.updateAnimal(animal);
 
     }
 }

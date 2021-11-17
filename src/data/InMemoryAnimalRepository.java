@@ -20,7 +20,7 @@ public class InMemoryAnimalRepository implements AnimalRepository {
 	public String create(NewAnimal newAnimal) {
 		String id = UUID.randomUUID().toString();
         Animal animal = Animal.builder()
-            .id(id)
+            .animalId(id)
             .name(newAnimal.getName())
     		.status(newAnimal.getStatus())
     		.tattoo(newAnimal.getTattoo())
@@ -83,13 +83,13 @@ public class InMemoryAnimalRepository implements AnimalRepository {
 	@Override
 	public void deleteAnimal(String id) throws AnimalNotFoundException {
 		Animal animal= Optional.of(ANIMALS_STORE.get(id)).orElseThrow(()->  new AnimalNotFoundException(404, "Animal not found."));
-        ANIMALS_STORE.remove(animal.getId(),animal);
+        ANIMALS_STORE.remove(animal.getAnimalId(),animal);
 	}
 
 	@Override
 	public Animal updateAnimal(Animal animal) throws AnimalNotFoundException {
-		Optional.of(ANIMALS_STORE.get(animal.getId())).orElseThrow(()->  new AnimalNotFoundException(404, "Animal not found."));
-        ANIMALS_STORE.replace(animal.getId(), animal);
+		Optional.of(ANIMALS_STORE.get(animal.getAnimalId())).orElseThrow(()->  new AnimalNotFoundException(404, "Animal not found."));
+        ANIMALS_STORE.replace(animal.getAnimalId(), animal);
         return  animal;
 	}
 
