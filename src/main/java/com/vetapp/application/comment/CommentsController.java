@@ -1,5 +1,6 @@
 package com.vetapp.application.comment;
 
+import org.apache.coyote.Response;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.rmi.ServerException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -43,5 +45,18 @@ public class CommentsController {
         comments.setComment(comment.getComment());
         final Comment updatedComment = repository.save(comments);
         return ResponseEntity.ok(updatedComment);
+    }
+
+    @DeleteMapping("/comment/{commentid}")
+    public ResponseEntity<Comment> deletecomment(@PathVariable long commentid){
+        try{
+            Optional<Comment> comment = repository.findById(commentid);
+            if(comment.isPresent()){
+                repository.delete(comment.get());
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
