@@ -5,20 +5,21 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Value
+
 //@Builder
-@Getter
-@Setter
+
 @Entity
 @Table(name="Comment")
 public class Comment {
-    private @Id @GeneratedValue long commentid;
+
+    @Column(name = "CommentID")
+    @Getter @Id @GeneratedValue()
+    private long commentid;
+    @Getter @Setter
     private long animalid;
+    @Getter @Setter
     private String comment;
 
 
@@ -27,4 +28,5 @@ public class Comment {
         animalid = 0;
         comment = "";
     }
+
 }

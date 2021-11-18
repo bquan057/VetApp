@@ -34,4 +34,14 @@ public class CommentsController {
         Comment comment = repository.save(newComment);
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
+
+    @PutMapping("/comment/{commentid}")
+    public ResponseEntity<Comment> updateComment(@PathVariable(value = "commentid") Long commentid,
+      @RequestBody Comment comment){
+        Comment comments = repository.findById(commentid).orElseThrow();
+        comments.setAnimalid(comment.getAnimalid());
+        comments.setComment(comment.getComment());
+        final Comment updatedComment = repository.save(comments);
+        return ResponseEntity.ok(updatedComment);
+    }
 }
