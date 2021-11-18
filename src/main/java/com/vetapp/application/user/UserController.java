@@ -5,13 +5,13 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -19,29 +19,20 @@ public class UserController {
     @Autowired
     UserRepository repository;
 
-//    public UserController(UserRepository repository) {
-//        this.repository = repository;
-//    }
-
-//    @GetMapping("/user")
-//    CollectionModel<EntityModel<User>> getAll(){
-//        List<EntityModel<User>> users = repository.findAll().stream()
-//                .map(user-> EntityModel.of(user,
-//                        linkTo(methodOn(UserController.class).getAll()).withRel("users")))
-//                .collect(Collectors.toList());
-//
-//        return CollectionModel.of(users, linkTo(methodOn(UserController.class).getAll()).withSelfRel());
-//    }
-
 
     @GetMapping("/user")
-    public List<User> all(){
+    public CollectionModel<EntityModel<User>> getAllUsers(){
 
-        return repository.findAll();
+        List<EntityModel<User>> users = repository.findAll().stream()
+                .map(user -> EntityModel.of(user)).collect(Collectors.toList());
+
+        return CollectionModel.of(users);
+
     }
 
-    @PostMapping("/users")
-    public String post(){
-        return "it worked";
+    @PostMapping("/user")
+    public User post(@RequestBody User newUser){
+
+        return repository.save(newUser);
     }
 }

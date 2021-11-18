@@ -1,12 +1,10 @@
 package com.vetapp.application.user;
 
-import lombok.Builder;
 import lombok.Value;
 import javax.persistence.*;
 
 
 @Value
-@Builder
 @Entity
 @Table(name="Users")
 public class User {
@@ -20,14 +18,15 @@ public class User {
 	}
 	
     @Column(name="UserID")
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    int userid;
+    @Id @GeneratedValue()
+    long userid;
     String username;
-//    String password;
     String usertype;
-//    String name;
     String email;
     String activationdate;
+
+//    String password;
+//    String name;
 //    String firstName;
 //    String lastName;
 //    String phoneNumber;
