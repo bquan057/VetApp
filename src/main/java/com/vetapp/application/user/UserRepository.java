@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
     Method definitions for interactions with the User Data
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
 
 }

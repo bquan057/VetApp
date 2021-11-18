@@ -23,22 +23,22 @@ public class UserController {
 //        this.repository = repository;
 //    }
 
-    @GetMapping("/user")
-    CollectionModel<EntityModel<User>> getAll(){
-        List<EntityModel<User>> users = repository.findAll().stream()
-                .map(user-> EntityModel.of(user,
-                        linkTo(methodOn(UserController.class).getAll()).withRel("users")))
-                .collect(Collectors.toList());
-
-        return CollectionModel.of(users, linkTo(methodOn(UserController.class).getAll()).withSelfRel());
-    }
-
-
 //    @GetMapping("/user")
-//    public List<User> all(){
+//    CollectionModel<EntityModel<User>> getAll(){
+//        List<EntityModel<User>> users = repository.findAll().stream()
+//                .map(user-> EntityModel.of(user,
+//                        linkTo(methodOn(UserController.class).getAll()).withRel("users")))
+//                .collect(Collectors.toList());
 //
-//        return repository.findAll();
+//        return CollectionModel.of(users, linkTo(methodOn(UserController.class).getAll()).withSelfRel());
 //    }
+
+
+    @GetMapping("/user")
+    public List<User> all(){
+
+        return repository.findAll();
+    }
 
     @PostMapping("/users")
     public String post(){
