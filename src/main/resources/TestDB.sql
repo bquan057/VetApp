@@ -46,3 +46,18 @@ VALUES
 ("123","Brandon","Human"),
 ("234","Roh","Human"),
 ("345","Emily","Human");
+
+DROP TABLE IF EXISTS COMMENT;
+CREATE TABLE COMMENT(
+	CommentID					integer	not null,
+	AnimalID					integer	not null,
+	Comment                     varchar(50),
+	primary key (CommentID)
+);
+
+INSERT INTO COMMENT(CommentID, AnimalID, Comment)
+VALUES
+(1, 1, "hello there!"),
+(2, 2, "hello there!"),
+(3, 3, "hello there!"),
+(4, 4, "hello there!");
