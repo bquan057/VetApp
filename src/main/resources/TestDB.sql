@@ -23,7 +23,6 @@ DROP TABLE IF EXISTS ANIMALS;
 CREATE TABLE ANIMALS (
 	Animal_id							integer not null,
     Name								varchar(30),
-    Animal_status						varchar(30),
     -- tattoo								varchar(30),
 --     city_tattoo							varchar(30),
 --     age									varchar(30),
@@ -42,8 +41,8 @@ CREATE TABLE ANIMALS (
     primary key (animal_id)
 );
 
-INSERT INTO ANIMALS (animal_id, name, animal_status, species)
+INSERT INTO ANIMALS (animal_id, name, species)
 VALUES
-("123","Brandon","Stressed", "Human"),
-("234","Roh","Healthy", "Human"),
-("345","Emily","Healthy", "Human");
+("123","Brandon","Human"),
+("234","Roh","Human"),
+("345","Emily","Human");
