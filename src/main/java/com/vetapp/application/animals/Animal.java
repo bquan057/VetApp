@@ -5,17 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//import lombok.Builder;
-import lombok.Value;
+import lombok.Setter;
+import lombok.Getter;
 
 @Entity
-@Value
 @Table(name="Animals")
-//@Builder
 public class Animal {
 
 	public Animal() {
-		this.animal_id = "";
+		this.animal_id = 0;
 		this.name = "";
 	    this.animal_status = "";
 //	    this.tattoo = "";
@@ -36,23 +34,23 @@ public class Animal {
 		
 	}
 	
-	@Id @GeneratedValue	String animal_id;
-    String name;
-    String animal_status;
-//    String tattoo;
-//    String city_tattoo;
-//    String age;
-//    String birth_day;
-//    String birth_month;
-//    String birth_year;
-//    String breed;
-//    String sex;
-//    String coat_colour;
-//    String special_instructions;
-//    String diet;
-//    String is_active;
-//    String rdif_id;
-//    String has_microchip;
-    String species;
+	@Id @GeneratedValue	@Getter @Setter int animal_id;
+	@Getter @Setter String name;
+	@Getter @Setter String animal_status;
+//    @Getter @Setter String tattoo;
+//    @Getter @Setter String city_tattoo;
+//    @Getter @Setter String age;
+//    @Getter @Setter String birth_day;
+//    @Getter @Setter String birth_month;
+//    @Getter @Setter String birth_year;
+//    @Getter @Setter String breed;
+//    @Getter @Setter String sex;
+//    @Getter @Setter String coat_colour;
+//    @Getter @Setter String special_instructions;
+//    @Getter @Setter String diet;
+//    @Getter @Setter String is_active;
+//    @Getter @Setter String rdif_id;
+//    @Getter @Setter String has_microchip;
+	@Getter @Setter String species;
     
 }
