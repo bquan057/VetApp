@@ -59,9 +59,14 @@ public class UserController {
      */
     @DeleteMapping("api/user/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable long id){
-        User userToDelete = repository.getById(id);
-        repository.delete(userToDelete);
 
-        return new ResponseEntity<String>("User Deleted", HttpStatus.OK);
+        if(repository.existsById(id)){
+            User userToDelete = repository.getById(id);
+            repository.delete(userToDelete);
+            return new ResponseEntity<String>("User Deleted", HttpStatus.OK);
+        }
+
+
+        return new ResponseEntity<String>("User not found", HttpStatus.OK);
     }
 }
