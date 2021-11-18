@@ -26,7 +26,7 @@ public class CommentsController {
 
     @GetMapping("/animals/{animalid}/comment")
     public ResponseEntity<List<Comment>> all(@PathVariable long animalid) {
-        return new ResponseEntity<>(repository.findByAnimalContaining(animalid), HttpStatus.OK);
+        return new ResponseEntity<>(repository.findByAnimalidContaining(animalid), HttpStatus.OK);
     }
 
 

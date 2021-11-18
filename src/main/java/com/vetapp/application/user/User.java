@@ -1,20 +1,18 @@
 package com.vetapp.application.user;
 
-<<<<<<< HEAD
+
 //import lombok.Builder;
-=======
+
 import lombok.Getter;
 import lombok.Setter;
->>>>>>> users
+
 import lombok.Value;
 import javax.persistence.*;
 
 
-<<<<<<< HEAD
-@Value
+//@Value
 //@Builder
-=======
->>>>>>> users
+
 @Entity
 @Table(name="Users")
 public class User {
