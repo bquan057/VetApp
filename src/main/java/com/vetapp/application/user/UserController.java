@@ -21,7 +21,7 @@ public class UserController {
     /*
     * Method to get all users in the DB
     */
-    @GetMapping("/user")
+    @GetMapping("api/user")
     public ResponseEntity<List<User>> getAllUsers(){
 
         List<User> users = repository.findAll();
@@ -31,7 +31,7 @@ public class UserController {
     /*
         Method to add a new user
      */
-    @PostMapping("/user")
+    @PostMapping("api/user")
     public ResponseEntity<User> addNewUser(@RequestBody User newUser){
         User user = repository.save(newUser);
 
@@ -41,7 +41,7 @@ public class UserController {
     /*
         Method to update a user
      */
-    @PutMapping ("/user")
+    @PutMapping ("api/user")
     public ResponseEntity<User> updateUser(@RequestBody User user){
         User userFromDB = repository.findById(user.getUserid()).get();
 
@@ -52,5 +52,16 @@ public class UserController {
 
         repository.save(userFromDB);
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
+    }
+
+    /*
+        Method to delete a user
+     */
+    @DeleteMapping("api/user/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable long id){
+        User userToDelete = repository.getById(id);
+        repository.delete(userToDelete);
+
+        return new ResponseEntity<String>("User Deleted", HttpStatus.OK);
     }
 }
