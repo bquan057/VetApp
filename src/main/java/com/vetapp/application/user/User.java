@@ -1,17 +1,12 @@
 package com.vetapp.application.user;
 
 
-//import lombok.Builder;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import lombok.Value;
 import javax.persistence.*;
 
-
-//@Value
-//@Builder
 
 @Entity
 @Table(name="Users")
