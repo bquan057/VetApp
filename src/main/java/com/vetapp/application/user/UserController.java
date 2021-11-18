@@ -3,15 +3,14 @@ package com.vetapp.application.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -19,29 +18,55 @@ public class UserController {
     @Autowired
     UserRepository repository;
 
-//    public UserController(UserRepository repository) {
-//        this.repository = repository;
-//    }
+    /*
+    * Method to get all users in the DB
+    */
+    @GetMapping("api/user")
+    public ResponseEntity<List<User>> getAllUsers(){
 
-    @GetMapping("/user")
-    CollectionModel<EntityModel<User>> getAll(){
-        List<EntityModel<User>> users = repository.findAll().stream()
-                .map(user-> EntityModel.of(user,
-                        linkTo(methodOn(UserController.class).getAll()).withRel("users")))
-                .collect(Collectors.toList());
-
-        return CollectionModel.of(users, linkTo(methodOn(UserController.class).getAll()).withSelfRel());
+        List<User> users = repository.findAll();
+        return new ResponseEntity<List<User>>(users, HttpStatus.ACCEPTED);
     }
 
+    /*
+        Method to add a new user
+     */
+    @PostMapping("api/user")
+    public ResponseEntity<User> addNewUser(@RequestBody User newUser){
+        User user = repository.save(newUser);
 
-//    @GetMapping("/user")
-//    public List<User> all(){
-//
-//        return repository.findAll();
-//    }
+        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+    }
 
-    @PostMapping("/users")
-    public String post(){
-        return "it worked";
+    /*
+        Method to update a user
+     */
+    @PutMapping ("api/user")
+    public ResponseEntity<User> updateUser(@RequestBody User user){
+        User userFromDB = repository.findById(user.getUserid()).get();
+
+        // set all attributes -> this is a problem when we have many attributes
+        userFromDB.setUsername(user.getUsername());
+        userFromDB.setUsertype(user.getUsertype());
+        userFromDB.setEmail(user.getEmail());
+
+        repository.save(userFromDB);
+        return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
+    }
+
+    /*
+        Method to delete a user
+     */
+    @DeleteMapping("api/user/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable long id){
+
+        if(repository.existsById(id)){
+            User userToDelete = repository.getById(id);
+            repository.delete(userToDelete);
+            return new ResponseEntity<String>("User Deleted", HttpStatus.OK);
+        }
+
+
+        return new ResponseEntity<String>("User not found", HttpStatus.OK);
     }
 }

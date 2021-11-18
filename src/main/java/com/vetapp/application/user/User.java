@@ -1,25 +1,46 @@
 package com.vetapp.application.user;
 
-import lombok.Builder;
+<<<<<<< HEAD
+//import lombok.Builder;
+=======
+import lombok.Getter;
+import lombok.Setter;
+>>>>>>> users
 import lombok.Value;
 import javax.persistence.*;
 
 
+<<<<<<< HEAD
 @Value
-@Builder
+//@Builder
+=======
+>>>>>>> users
 @Entity
 @Table(name="Users")
 public class User {
 
+	public User() {
+		this.userid = 0;
+		this.username = "";
+		this.usertype = "";
+		this.email = "";
+		this.activationdate = "";
+	}
+	
     @Column(name="UserID")
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    int userId;
-    String userName;
+    @Id @GeneratedValue()@Getter
+    private long userid;
+    @Setter@Getter
+    private String username;
+    @Setter@Getter
+    private String usertype;
+    @Setter@Getter
+    private String email;
+    @Getter@Setter
+    private String activationdate;
+
 //    String password;
-    String type;
 //    String name;
-    String email;
-    String activationDate;
 //    String firstName;
 //    String lastName;
 //    String phoneNumber;
