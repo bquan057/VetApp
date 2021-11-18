@@ -24,30 +24,30 @@ public class CommentsController {
         this.repository = repository;
     }
 
-    @GetMapping("/comment")
-    public ResponseEntity<List<Comment>> all() {
-        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
+    @GetMapping("/animals/{animalid}/comment")
+    public ResponseEntity<List<Comment>> all(@PathVariable long animalid) {
+        return new ResponseEntity<>(repository.findByAnimalContaining(animalid), HttpStatus.OK);
     }
 
 
-    @PostMapping(path = "comment", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(path = "animals/{animalid}/comment", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Comment> create(@RequestBody Comment newComment) {
         Comment comment = repository.save(newComment);
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
 
-    @PutMapping("/comment/{commentid}")
+    @PutMapping("/animals/{animalid}/comment/{commentid}")
     public ResponseEntity<Comment> updateComment(@PathVariable(value = "commentid") Long commentid,
       @RequestBody Comment comment){
         Comment comments = repository.findById(commentid).orElseThrow();
-        comments.setAnimalid(comment.getAnimalid());
+//        comments.setAnimalid(comment.getAnimalid());
         comments.setComment(comment.getComment());
         final Comment updatedComment = repository.save(comments);
         return ResponseEntity.ok(updatedComment);
     }
 
-    @DeleteMapping("/comment/{commentid}")
+    @DeleteMapping("/animals/{animalid}/comment/{commentid}")
     public ResponseEntity<Comment> deletecomment(@PathVariable long commentid){
         try{
             Optional<Comment> comment = repository.findById(commentid);
