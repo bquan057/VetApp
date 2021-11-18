@@ -2,8 +2,13 @@ package com.vetapp.application.comment;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.ServerException;
 import java.util.List;
 import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -18,12 +23,15 @@ public class CommentsController {
     }
 
     @GetMapping("/comment")
-    CollectionModel<EntityModel<Comment>> all() {
-        List<EntityModel<Comment>> comments = repository.findAll().stream()
-                .map(comment -> EntityModel.of(comment, linkTo(methodOn(CommentsController.class).all()).withRel("comments")))
-                .collect(Collectors.toList());
-        return CollectionModel.of(comments,
-                linkTo(methodOn(CommentsController.class).all()).withSelfRel());
+    public ResponseEntity<List<Comment>> all() {
+        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
+
+    @PostMapping(path = "comment", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Comment> create(@RequestBody Comment newComment) {
+        Comment comment = repository.save(newComment);
+        return new ResponseEntity<>(comment, HttpStatus.CREATED);
+    }
 }
