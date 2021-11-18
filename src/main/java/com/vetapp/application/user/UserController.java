@@ -3,6 +3,8 @@ package com.vetapp.application.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,15 +21,14 @@ public class UserController {
     @Autowired
     UserRepository repository;
 
-
+    /*
+    * Method to get all users in the DB
+    */
     @GetMapping("/user")
-    public CollectionModel<EntityModel<User>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsers(){
 
-        List<EntityModel<User>> users = repository.findAll().stream()
-                .map(user -> EntityModel.of(user)).collect(Collectors.toList());
-
-        return CollectionModel.of(users);
-
+        List<User> users = repository.findAll();
+        return new ResponseEntity<List<User>>(users, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/user")
