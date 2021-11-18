@@ -9,9 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AnimalRepository extends JpaRepository<Animal, String>{
 
 	// TODO: Add exceptions.
-//    List<Animal> getAnimalById(String animalId);
-//    List<Animal> getAnimalsByName(String animalName);
-//    List<Animal> getAnimalsBySpecies(String animalSpecies);
+    List<Animal> findByNameContaining(String name);
+    List<Animal> findBySpeciesContaining(String species);
 //    Animal updateAnimal(Animal animal);
     
     

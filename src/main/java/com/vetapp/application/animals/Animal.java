@@ -16,7 +16,7 @@ public class Animal {
 
 	public Animal() {
 		this.animal_id = "";
-		this.animal_name = "";
+		this.name = "";
 	    this.animal_status = "";
 //	    this.tattoo = "";
 //	    this.city_tattoo = "";
@@ -32,12 +32,12 @@ public class Animal {
 //	    this.is_active = "";
 //	    this.rdif_id = "";
 //	    this.has_microchip = "";
-//	    this.species = "";
+	    this.species = "";
 		
 	}
 	
 	@Id @GeneratedValue	String animal_id;
-    String animal_name;
+    String name;
     String animal_status;
 //    String tattoo;
 //    String city_tattoo;
@@ -53,6 +53,6 @@ public class Animal {
 //    String is_active;
 //    String rdif_id;
 //    String has_microchip;
-//    String species;
+    String species;
     
 }
