@@ -5,10 +5,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,9 +28,29 @@ public class UserController {
         return new ResponseEntity<List<User>>(users, HttpStatus.ACCEPTED);
     }
 
+    /*
+        Method to add a new user
+     */
     @PostMapping("/user")
-    public User post(@RequestBody User newUser){
+    public ResponseEntity<User> addNewUser(@RequestBody User newUser){
+        User user = repository.save(newUser);
 
-        return repository.save(newUser);
+        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+    }
+
+    /*
+        Method to update a user
+     */
+    @PutMapping ("/user")
+    public ResponseEntity<User> updateUser(@RequestBody User user){
+        User userFromDB = repository.findById(user.getUserid()).get();
+
+        // set all attributes -> this is a problem when we have many attributes
+        userFromDB.setUsername(user.getUsername());
+        userFromDB.setUsertype(user.getUsertype());
+        userFromDB.setEmail(user.getEmail());
+
+        repository.save(userFromDB);
+        return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
     }
 }

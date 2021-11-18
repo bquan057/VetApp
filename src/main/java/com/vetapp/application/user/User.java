@@ -1,10 +1,11 @@
 package com.vetapp.application.user;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.Value;
 import javax.persistence.*;
 
 
-@Value
 @Entity
 @Table(name="Users")
 public class User {
@@ -18,12 +19,16 @@ public class User {
 	}
 	
     @Column(name="UserID")
-    @Id @GeneratedValue()
-    long userid;
-    String username;
-    String usertype;
-    String email;
-    String activationdate;
+    @Id @GeneratedValue()@Getter
+    private long userid;
+    @Setter@Getter
+    private String username;
+    @Setter@Getter
+    private String usertype;
+    @Setter@Getter
+    private String email;
+    @Getter@Setter
+    private String activationdate;
 
 //    String password;
 //    String name;
