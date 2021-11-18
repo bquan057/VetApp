@@ -11,7 +11,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer>{
 	// TODO: Add exceptions.
     List<Animal> findByNameContaining(String name);
     List<Animal> findBySpeciesContaining(String species);
-//    Animal updateAnimal(Animal animal);
     
     
 }

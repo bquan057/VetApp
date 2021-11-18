@@ -56,7 +56,6 @@ public class AnimalRegistrationController {
 		Animal animalForCreation = new Animal();
 		animalForCreation.setAnimal_id(newAnimal.getAnimal_id());
         animalForCreation.setName(newAnimal.getName());
-        animalForCreation.setAnimal_status(newAnimal.getAnimal_status());
         animalForCreation.setSpecies(newAnimal.getSpecies());
         
         System.out.println("Made it here.");
@@ -72,7 +71,7 @@ public class AnimalRegistrationController {
         // TODO: Set all attributes.
         animalForUpdate.setAnimal_id(animal_id);
         animalForUpdate.setName(animal.getName());
-        animalForUpdate.setAnimal_status(animal.getAnimal_status());
+        
         animalForUpdate.setSpecies(animal.getSpecies());
         
         Animal animalWithUpdate = animalRepository.save(animalForUpdate);
