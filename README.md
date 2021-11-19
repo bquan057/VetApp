@@ -15,18 +15,43 @@ Get all Users:
 ```
 
 Add new User:
-You must specify a JSON object in the Request
-```
-      {
-        "username": "user1",
-        "usertype": "admin",
-        "email": "admin@ucalgary.ca",
-        "activationdate": "2021-03-04"
-      }
-```
 
 ```
   POST localhost:8080/api/user
+```
+
+**NOTE: You must specify a JSON object in the Request Body
+
+```
+  {
+    "username": "user1",
+    "usertype": "admin",
+    "email": "admin@ucalgary.ca",
+    "activationdate": "2021-03-04"
+  }
+```
+
+Update User:
+
+```
+  PUT localhost:8080/api/user
+```
+
+```
+  {
+    "userid": "123",
+    "username": "user1",
+    "usertype": "admin2",
+    "email": "admin@ucalgary.ca",
+    "activationdate": "2021-03-04"
+  }
+```
+
+Delete User:
+
+```
+  DELETE localhost:8080/api/user/{id}
+  DELETE localhost:8080/api/user/123
 ```
 
 ### Animals
