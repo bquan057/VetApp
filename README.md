@@ -11,6 +11,9 @@
   spring.datasource.username="YOUR USERNAME HERE"
   spring.datasource.password="YOUR PASSWORD HERE"
   ```
+  - Navigate to ```final-project-uofeng607-057-1\src\main\resources\TestDB.sql``` using MySQL WorkBench of choice
+  - run the database in MySQL
+  - run the ```application.java``` file
 
 ## Endpoints
 
