@@ -14,10 +14,10 @@ CREATE TABLE USERS (
 
 INSERT INTO USERS (UserID, UserName, UserType, Email, ActivationDate)
 VALUES
-(1, "user1" , "admin", "admin@ucalgary.ca", "2021-03-04"),
-(2, "user2", "animal technician", "a.technician@ucalgary.ca", "2021-03-04"),
-(3, "user3", "teacher", "teacher@ucalgary.ca",	"2021-04-05"),
-(4, "user4", "student",	"student1@ucalgary.ca",	"2021-03-19");
+(123, "user1" , "admin", "admin@ucalgary.ca", "2021-03-04"),
+(234, "user2", "animal technician", "a.technician@ucalgary.ca", "2021-03-04"),
+(345, "user3", "teacher", "teacher@ucalgary.ca",	"2021-04-05"),
+(546, "user4", "student",	"student1@ucalgary.ca",	"2021-03-19");
 
 DROP TABLE IF EXISTS ANIMALS;
 CREATE TABLE ANIMALS (
@@ -57,10 +57,10 @@ CREATE TABLE COMMENT(
 
 INSERT INTO COMMENT(CommentID, AnimalID, Comment)
 VALUES
-(1, "1", "hello there!"),
-(2, "2", "hello there!"),
-(3, "3", "hello there!"),
-(4, "4", "hello there!");
+(123, "123", "hello there!"),
+(234, "123", "hello there!"),
+(345, "234", "hello there!"),
+(456, "234", "hello there!");
 
 DROP TABLE IF EXISTS IMAGE;
 CREATE TABLE IMAGE(
@@ -72,10 +72,10 @@ CREATE TABLE IMAGE(
 
 INSERT INTO IMAGE(ImageID, AnimalID, ImageName)
 VALUES
-(1, "123", "Brandon1.jpg"),
-(2, "123", "Brandon2.jpg"),
-(3, "234", "Roh1.jpg"),
-(4, "345", "Emily1.jpg");
+(123, "123", "Brandon1.jpg"),
+(234, "123", "Brandon2.jpg"),
+(345, "234", "Roh1.jpg"),
+(789, "345", "Emily1.jpg");
 
 DROP TABLE IF EXISTS IMAGE;
 CREATE TABLE IMAGE(
@@ -87,10 +87,10 @@ CREATE TABLE IMAGE(
 
 INSERT INTO IMAGE(ImageID, AnimalID, ImageName)
 VALUES
-(1, "123", "Brandon1.jpg"),
-(2, "123", "Brandon2.jpg"),
-(3, "234", "Roh1.jpg"),
-(4, "345", "Emily1.jpg");
+(123, "123", "Brandon1.jpg"),
+(345, "123", "Brandon2.jpg"),
+(456, "234", "Roh1.jpg"),
+(789, "345", "Emily1.jpg");
 
 DROP TABLE IF EXISTS TREATMENT;
 CREATE TABLE TREATMENT(
@@ -102,10 +102,10 @@ CREATE TABLE TREATMENT(
 
 INSERT INTO TREATMENT(TreatmentID, AnimalID, TreatmentType )
 VALUES
-(1, "123", "Physical exam"),
-(2, "123", "Blood work"),
-(3, "234", "Da2pp"),
-(4, "345", "dental cleaning");
+(123, "123", "Physical exam"),
+(234, "123", "Blood work"),
+(456, "234", "Da2pp"),
+(789, "345", "dental cleaning");
 
 DROP TABLE IF EXISTS STATUS;
 CREATE TABLE STATUS(
@@ -163,10 +163,10 @@ CREATE TABLE PRESCRIPTION(
 
 INSERT INTO PRESCRIPTION(PrescriptionID, AnimalID, Prescription)
 VALUES
-(1, 1, "hello there!"),
-(2, 2, "hello there!"),
-(3, 3, "hello there!"),
-(4, 4, "hello there!");
+(123, 1, "hello there!"),
+(345, 2, "hello there!"),
+(456, 3, "hello there!"),
+(789, 4, "hello there!");
 
 DROP TABLE IF EXISTS ALERT;
 CREATE TABLE ALERT(
@@ -178,7 +178,7 @@ CREATE TABLE ALERT(
 
 INSERT INTO ALERT(AlertID, AnimalID, Alert)
 VALUES
-(1, 1, "hello there!"),
-(2, 2, "hello there!"),
-(3, 3, "hello there!"),
-(4, 4, "hello there!");
+(123, 1, "hello there!"),
+(345, 2, "hello there!"),
+(456, 3, "hello there!"),
+(789, 4, "hello there!");
