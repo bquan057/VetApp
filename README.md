@@ -162,7 +162,78 @@ Delete Animal:
 
 ### Comments
 
+Get comments for specified animal
+
+```
+  GET localhost:8080/api/animals/{animalid}/comment
+  GET localhost:8080/api/animals/123/comment
+```
+
+Add new User:
+
+```
+  POST localhost:8080/api/user
+```
+
+**NOTE: You must specify a JSON object in the Request Body **
+
+```
+  {
+    "username": "user1",
+    "usertype": "admin",
+    "email": "admin@ucalgary.ca",
+    "activationdate": "2021-03-04"
+  }
+```
+
+Update User:
+
+```
+  PUT localhost:8080/api/user
+```
+
+**NOTE: You must specify a JSON object in the Request Body **
+
+```
+  {
+    "userid": "123",
+    "username": "user1",
+    "usertype": "admin2",
+    "email": "admin@ucalgary.ca",
+    "activationdate": "2021-03-04"
+  }
+```
+
 ### Images
+
+Get images for specified animalid
+
+```
+  GET localhost:8080/api/animals/{animalid}/images
+  GET localhost:8080/api/animals/123/images
+```
+
+Add new image for a specified animalid
+
+```
+  POST localhost:8080/api/animals/{animalid}/images
+  POST localhost:8080/api/animals/123/images
+```
+
+**NOTE: You must specify a JSON object in the Request Body **
+
+```
+  {
+      "imagename": "Brandon1.jpg"
+  }
+```
+
+Delete image by imageid
+
+```
+  DELETE localhost:8080/api/animals/images/{imageid}
+  DELETE localhost:8080/api/animals/images/123
+```
 
 ### Status
 
