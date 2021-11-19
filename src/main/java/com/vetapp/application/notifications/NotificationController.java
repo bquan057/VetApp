@@ -34,7 +34,7 @@ public class NotificationController {
             if(notification.isPresent()){
             	notificationRepository.delete(notification.get());
             }
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>("Notification deleted.", HttpStatus.ACCEPTED);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
