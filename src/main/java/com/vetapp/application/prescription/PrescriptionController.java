@@ -28,4 +28,11 @@ public class PrescriptionController {
     public ResponseEntity<List<Prescription>> all(@PathVariable String animalid) {
         return new ResponseEntity<>(repository.findByAnimalidContaining(animalid), HttpStatus.OK);
     }
+
+    @PostMapping("/api/animals/{animalid}/prescription")
+    public ResponseEntity<Prescription> create(@PathVariable String animalid, @RequestBody Prescription newPrescription) {
+        newPrescription.setAnimalid(animalid);
+        Prescription prescription = repository.save(newPrescription);
+        return new ResponseEntity<>(prescription, HttpStatus.CREATED);
+    }
 }
