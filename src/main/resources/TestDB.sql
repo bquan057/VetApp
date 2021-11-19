@@ -61,3 +61,18 @@ VALUES
 (2, 2, "hello there!"),
 (3, 3, "hello there!"),
 (4, 4, "hello there!");
+
+DROP TABLE IF EXISTS PRESCRIPTION;
+CREATE TABLE PRESCRIPTION(
+	PrescriptionID					integer	not null,
+	AnimalID					    integer	not null,
+	Prescription                    varchar(50),
+	primary key (PrescriptionID)
+);
+
+INSERT INTO PRESCRIPTION(PrescriptionID, AnimalID, Prescription)
+VALUES
+(1, 1, "hello there!"),
+(2, 2, "hello there!"),
+(3, 3, "hello there!"),
+(4, 4, "hello there!");
