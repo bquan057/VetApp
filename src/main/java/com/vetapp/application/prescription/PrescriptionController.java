@@ -37,12 +37,26 @@ public class PrescriptionController {
     }
 
     @PutMapping("/api/animals/prescription/{prescriptionid}")
-    public ResponseEntity<Prescription> updateComment(@PathVariable(value = "prescriptionid") Long prescriptionid,
+    public ResponseEntity<Prescription> updatePrescription(@PathVariable(value = "prescriptionid") Long prescriptionid,
                                                  @RequestBody Prescription prescription){
         Prescription prescriptions = repository.findById(prescriptionid).orElseThrow();
         prescriptions.setPrescription(prescription.getPrescription());
         final Prescription updatedPrescription = repository.save(prescriptions);
         return ResponseEntity.ok(updatedPrescription);
     }
+
+    @DeleteMapping("/api/animals/prescription/{prescriptionid}")
+    public ResponseEntity<Prescription> deletePrescription(@PathVariable long prescriptionid){
+        try{
+            Optional<Prescription> prescription = repository.findById(prescriptionid);
+            if(prescription.isPresent()){
+                repository.delete(prescription.get());
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

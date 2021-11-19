@@ -32,14 +32,14 @@ public class CommentsController {
     }
 
 
-    @PostMapping(path = "/api/animals/{animalid}/comment", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(path = "/api/animals/comment/{commentid}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Comment> create(@RequestBody Comment newComment) {
         Comment comment = repository.save(newComment);
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
 
-    @PutMapping("/api/animals/{animalid}/comment/{commentid}")
+    @PutMapping("/api/animals/comment/{commentid}")
     public ResponseEntity<Comment> updateComment(@PathVariable(value = "commentid") Long commentid,
       @RequestBody Comment comment){
         Comment comments = repository.findById(commentid).orElseThrow();
@@ -49,7 +49,7 @@ public class CommentsController {
         return ResponseEntity.ok(updatedComment);
     }
 
-    @DeleteMapping("/api/animals/{animalid}/comment/{commentid}")
+    @DeleteMapping("/api/animals/comment/{commentid}")
     public ResponseEntity<Comment> deletecomment(@PathVariable long commentid){
         try{
             Optional<Comment> comment = repository.findById(commentid);
