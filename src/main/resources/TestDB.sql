@@ -76,3 +76,33 @@ VALUES
 (2, "123", "Brandon2.jpg"),
 (3, "234", "Roh1.jpg"),
 (4, "345", "Emily1.jpg");
+
+DROP TABLE IF EXISTS IMAGE;
+CREATE TABLE IMAGE(
+	ImageID					integer	not null,
+	AnimalID				varchar(50)	not null,
+	ImageName               varchar(50),
+	primary key (ImageID)
+);
+
+INSERT INTO IMAGE(ImageID, AnimalID, ImageName)
+VALUES
+(1, "123", "Brandon1.jpg"),
+(2, "123", "Brandon2.jpg"),
+(3, "234", "Roh1.jpg"),
+(4, "345", "Emily1.jpg");
+
+DROP TABLE IF EXISTS TREATMENT;
+CREATE TABLE TREATMENT(
+	TreatmentID				integer	not null,
+	AnimalID				varchar(50)	not null,
+	TreatmentType           varchar(50),
+	primary key (TreatmentID)
+);
+
+INSERT INTO TREATMENT(TreatmentID, AnimalID, TreatmentType )
+VALUES
+(1, "123", "Physical exam"),
+(2, "123", "Blood work"),
+(3, "234", "Da2pp"),
+(4, "345", "dental cleaning");
