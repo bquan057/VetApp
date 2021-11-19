@@ -18,5 +18,10 @@ public class StatusController {
 		return new ResponseEntity<>(statusRepository.findByAnimalidContaining(animalid), HttpStatus.ACCEPTED);
 	}
 	
-	
+	@PostMapping("/api/animals/{animalid}/status")
+	public ResponseEntity<Status> addAnimalStatus(@PathVariable String animalid, @RequestBody Status newStatus) {
+		newStatus.setAnimalid(animalid);
+		Status status = statusRepository.save(newStatus);
+		return new ResponseEntity<>(status, HttpStatus.ACCEPTED);
+	}
 }
