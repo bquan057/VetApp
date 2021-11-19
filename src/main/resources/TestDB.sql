@@ -106,3 +106,49 @@ VALUES
 (2, "123", "Blood work"),
 (3, "234", "Da2pp"),
 (4, "345", "dental cleaning");
+
+DROP TABLE IF EXISTS STATUS;
+CREATE TABLE STATUS(
+	StatusID					integer	not null,
+	AnimalID					varchar(50)	not null,
+	Date                     	varchar(50),
+    Description					varchar(50),
+    Location					varchar(50),
+    Status						varchar(50),
+	primary key (StatusID)
+);
+
+INSERT INTO STATUS(StatusID, AnimalID, Date, Description, Location, Status)
+VALUES
+(123, "123", "2021-12-12", "Got stuck in a box.", "In Campus", "Available"),
+(234, "234", "2021-11-01", "Foot is injured.", "Hospital", "Injured");
+
+DROP TABLE IF EXISTS WEIGHT;
+CREATE TABLE WEIGHT(
+	WeightID					integer	not null,
+	AnimalID					varchar(50)	not null,
+    UserID						varchar(50)	not null,
+	Date                     	varchar(50),
+    Weight						varchar(50),
+	primary key (WeightID)
+);
+
+INSERT INTO WEIGHT(WeightID, AnimalID, UserID, Date, Weight)
+VALUES
+(123, "123", "1", "2021-12-12", "4.2 kg"),
+(234, "234", "2", "2021-11-01", "6.9 kg");
+
+DROP TABLE IF EXISTS NOTIFICATION;
+CREATE TABLE NOTIFICATION(
+	NotificationID					integer	not null,
+	AnimalID						varchar(50)	not null,
+    UserID							varchar(50)	not null,
+	Date                     		varchar(50),
+    Notification					varchar(50),
+	primary key (NotificationID)
+);
+
+INSERT INTO NOTIFICATION(NotificationID, AnimalID, UserID, Date, Notification)
+VALUES
+(123, "123", "1", "2021-12-12", "You've got mail!"),
+(234, "234", "2", "2021-11-01", "Alert! The box has been opened!");
