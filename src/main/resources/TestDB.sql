@@ -152,3 +152,33 @@ INSERT INTO NOTIFICATION(NotificationID, AnimalID, UserID, Date, Notification)
 VALUES
 (123, "123", "1", "2021-12-12", "You've got mail!"),
 (234, "234", "2", "2021-11-01", "Alert! The box has been opened!");
+
+DROP TABLE IF EXISTS PRESCRIPTION;
+CREATE TABLE PRESCRIPTION(
+	PrescriptionID					integer	not null,
+	AnimalID					    integer	not null,
+	Prescription                    varchar(50),
+	primary key (PrescriptionID)
+);
+
+INSERT INTO PRESCRIPTION(PrescriptionID, AnimalID, Prescription)
+VALUES
+(1, 1, "hello there!"),
+(2, 2, "hello there!"),
+(3, 3, "hello there!"),
+(4, 4, "hello there!");
+
+DROP TABLE IF EXISTS ALERT;
+CREATE TABLE ALERT(
+	AlertID					integer	not null,
+	AnimalID				integer	not null,
+	Alert                    varchar(50),
+	primary key (AlertID)
+);
+
+INSERT INTO ALERT(AlertID, AnimalID, Alert)
+VALUES
+(1, 1, "hello there!"),
+(2, 2, "hello there!"),
+(3, 3, "hello there!"),
+(4, 4, "hello there!");
