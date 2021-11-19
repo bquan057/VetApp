@@ -33,5 +33,16 @@ public class TreatmentController {
         return new ResponseEntity<>(treatment, HttpStatus.OK);
     }
 
+    // method to update an animals treatment type
+    @PutMapping("/api/animals/treatments/{treatmentid}")
+    public ResponseEntity<Treatment> updateTreatment(@PathVariable long treatmentid,
+                                                     @RequestBody Treatment treatment){
+        Treatment treatmentToUpdate = repository.findById(treatmentid).get();
+
+        // update the treatment
+        treatmentToUpdate.setTreatmenttype(treatment.getTreatmenttype());
+
+        return new ResponseEntity<>(treatmentToUpdate, HttpStatus.OK);
+    }
 
 }
