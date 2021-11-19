@@ -70,7 +70,7 @@ CREATE TABLE IMAGE(
 	primary key (ImageID)
 );
 
-INSERT INTO Image(ImageID, AnimalID, ImageName)
+INSERT INTO IMAGE(ImageID, AnimalID, ImageName)
 VALUES
 (1, "123", "Brandon1.jpg"),
 (2, "123", "Brandon2.jpg"),
