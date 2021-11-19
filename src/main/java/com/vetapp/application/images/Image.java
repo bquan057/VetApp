@@ -21,7 +21,7 @@ public class Image {
     @GeneratedValue
     @Id
     private long imageid; // member to be primary key of the table
-    @Getter
+    @Getter@Setter
     private String animalid;
     @Getter@Setter
     private String imagename;
