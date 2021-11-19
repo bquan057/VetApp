@@ -30,5 +30,17 @@ public class AlertController {
         Alert alert = repository.save(newAlert);
         return new ResponseEntity<>(alert, HttpStatus.CREATED);
     }
-
+    
+    @DeleteMapping("/api/animals/alert/{alertid}")
+    public ResponseEntity<Alert> deleteAlert(@PathVariable long alertid){
+        try{
+            Optional<Alert> alert = repository.findById(alertid);
+            if(alert.isPresent()){
+                repository.delete(alert.get());
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
