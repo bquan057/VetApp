@@ -14,8 +14,15 @@ public class NotificationController {
 	NotificationRepository notificationRepository;
 	
 	@GetMapping("/api/animals/{userid}/notifications")
-	public ResponseEntity<List<Notification>> getAnimalNotification(@PathVariable String userid) {
+	public ResponseEntity<List<Notification>> getAnimalNotifications(@PathVariable String userid) {
 		return new ResponseEntity<>(notificationRepository.findByUseridContaining(userid), HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/api/animals/{userid}/notifications")
+	public ResponseEntity<Notification> addAnimalNotification(@PathVariable String userid, @RequestBody Notification newNotification) {
+		newNotification.setUserid(userid);
+		Notification notification = notificationRepository.save(newNotification);
+		return new ResponseEntity<>(notification, HttpStatus.ACCEPTED);
 	}
 	
 }
