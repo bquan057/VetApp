@@ -23,4 +23,12 @@ public class AlertController {
     public ResponseEntity<List<Alert>> all(@PathVariable String animalid) {
         return new ResponseEntity<>(repository.findByAnimalidContaining(animalid), HttpStatus.OK);
     }
+
+    @PostMapping("/api/animals/{animalid}/alert")
+    public ResponseEntity<Alert> create(@PathVariable String animalid, @RequestBody Alert newAlert) {
+        newAlert.setAnimalid(animalid);
+        Alert alert = repository.save(newAlert);
+        return new ResponseEntity<>(alert, HttpStatus.CREATED);
+    }
+
 }
