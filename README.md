@@ -17,7 +17,7 @@
 
 ## Endpoints
 
-### Users
+### Users (Rohinesh)
 
 Get all Users:
 
@@ -67,7 +67,7 @@ Delete User:
   DELETE localhost:8080/api/user/123
 ```
 
-### Animals
+### Animals (Brandon)
 
 Get all animals
 
@@ -160,51 +160,53 @@ Delete Animal:
   DELETE localhost:8080/api/animals/123
 ```
 
-### Comments
+### Comments (Emily)
 
-Get comments for specified animal
+Get comments for specified animalid
 
 ```
   GET localhost:8080/api/animals/{animalid}/comment
   GET localhost:8080/api/animals/123/comment
 ```
 
-Add new User:
+Add a new comment for a specified animalid
 
 ```
-  POST localhost:8080/api/user
-```
-
-**NOTE: You must specify a JSON object in the Request Body **
-
-```
-  {
-    "username": "user1",
-    "usertype": "admin",
-    "email": "admin@ucalgary.ca",
-    "activationdate": "2021-03-04"
-  }
-```
-
-Update User:
-
-```
-  PUT localhost:8080/api/user
+  POST localhost:8080/api/animals/{animalid}/comment
+  POST localhost:8080/api/animals/123/comment
 ```
 
 **NOTE: You must specify a JSON object in the Request Body **
 
 ```
   {
-    "userid": "123",
-    "username": "user1",
-    "usertype": "admin2",
-    "email": "admin@ucalgary.ca",
-    "activationdate": "2021-03-04"
+      "comment": "comment1"
   }
 ```
 
-### Images
+Updating a comment by comment id:
+
+```
+  PUT localhost:8080/api/animals/comment/{commentid}
+  PUT localhost:8080/api/animals/comment/123
+```
+
+**NOTE: You must specify a JSON object in the Request Body **
+
+```
+  {
+      "comment": "comment2”
+  }
+```
+
+Delete a comment by commentid:
+
+```
+  DELETE localhost:8080/api/animals/comment/{commentid}
+  DELETE localhost:8080/api/animals/comment/123
+```
+
+### Images (Rohinesh)
 
 Get images for specified animalid
 
@@ -235,16 +237,99 @@ Delete image by imageid
   DELETE localhost:8080/api/animals/images/123
 ```
 
-### Status
+### Status (Brandon)
 
-### Weight
+Get animal status for specified animalid
+```
+  GET localhost:8080/api/animals/{animalid}/status
+  GET localhost:8080/api/animals/123/status
+```
 
-### Notifcations
+Add new status for a specified animalid
 
-### Prescription
+```
+  POST localhost:8080/api/animals/{animalid}/status
+  POST localhost:8080/api/animals/123/status
+```
 
-### Treatment
+**NOTE: You must specify a JSON object in the Request Body **
 
-### Alert
+```
+  {
+      "status": "happy"
+  }
+```
+
+Updating a satus by animalid:
+
+```
+  PUT localhost:8080/api/animals/status/{statusid}
+  PUT localhost:8080/api/animals/status/123
+```
+
+**NOTE: You must specify a JSON object in the Request Body **
+
+```
+  {
+      "status": "sad"
+  }
+```
+
+### Weight (Brandon)
+
+Get weight history for specified animalid
+
+```
+  GET localhost:8080/api/animals/{animalid}/weight
+  GET localhost:8080/api/animals/123/weight
+```
+
+Add to weight history for a specified animalid
+
+```
+  POST localhost:8080/api/animals/{animalid}/weight
+  POST localhost:8080/api/animals/123/weight
+
+```
+
+**NOTE: You must specify a JSON object in the Request Body **
+
+```
+  {
+      "weight": "25 lb"
+  }
+```
+
+### Notifcations (Brandon)
+
+Get all notifcations for specified userid
+
+```
+  GET localhost:8080/api/users/{userid}/notifications
+  GET localhost:8080/api/users/123/notifications
+```
+
+Add a new notification for specified userid
+
+```
+  POST localhost:8080/api/users/{userid}/notifications
+  POST localhost:8080/api/users/123/notifications
+
+```
+**NOTE: You must specify a JSON object in the Request Body **
+```
+  {
+      "notification": "help Sora get her claws trimmed"
+  }
+```
+Delete a notification for a specified notification id
+
+``` DELETE localhost:8080/api/users/notifications/{notificationid} ```
+
+### Prescription (Emily)
+
+### Treatment (Rohinesh)
+
+### Alert (Emily)
 
 
