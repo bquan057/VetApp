@@ -4,6 +4,14 @@
 #Part 1: API Design
 ## Introduction
 
+  - navigate to ```final-project-uofeng607-057-1\src\main\resources\application.properties```
+  - Add your credentials:
+  ```
+  spring.datasource.url=jdbc:mysql://localhost:3306/VETDATA
+  spring.datasource.username="YOUR USERNAME HERE"
+  spring.datasource.password="YOUR PASSWORD HERE"
+  ```
+
 ## Endpoints
 
 ### Users
@@ -20,7 +28,7 @@ Add new User:
   POST localhost:8080/api/user
 ```
 
-**NOTE: You must specify a JSON object in the Request Body
+**NOTE: You must specify a JSON object in the Request Body **
 
 ```
   {
@@ -36,6 +44,8 @@ Update User:
 ```
   PUT localhost:8080/api/user
 ```
+
+**NOTE: You must specify a JSON object in the Request Body **
 
 ```
   {
