@@ -329,11 +329,13 @@ Delete a notification for a specified notification id
 ### Prescription (Emily)
 
 Get all prescriptions for specified animal id
-``` GET localhost:8080/api/animals/{animalid}/prescription```
+``` 
+  GET localhost:8080/api/animals/{animalid}/prescription
+```
 
 Add a new prescription for a specified animalid
 ```
-POST localhost:8080/api/animals/{animalid}/prescription 
+  POST localhost:8080/api/animals/{animalid}/prescription 
 ```
 
 **NOTE you must specify a JSON object in the request body**
@@ -345,7 +347,7 @@ POST localhost:8080/api/animals/{animalid}/prescription
 
 Updating prescritpion based on prescription id
 ```
-PUT localhost:8080/api/animals/prescription/{prescriptionid}
+  PUT localhost:8080/api/animals/prescription/{prescriptionid}
 ```
 **NOTE you must enter a JSON object in the request body***
 ```
@@ -362,6 +364,54 @@ DELETE localhost:8080/api/animals/prescription/{prescriptionid}
 
 ### Treatment (Rohinesh)
 
+Get all treatments for a specified animalid
+```
+  GET localhost:8080/api/animals/{animalid}/treatment
+```
+Add new treatment for specified animalid
+```
+POST localhost:8080/api/animals/{animalid}/treatment
+```
+**NOTE request body**
+```
+{
+    "treatment": "zinc capsules"
+}
+```
+Edit specicied animals treat
+```
+  PUT localhost:8080/api/animals/treatment/{treatmentid}
+```
+**NOTE request body**
+```
+{
+    "treatment": "Tri-Cyclen”
+}
+```
 ### Alert (Emily)
 
+Get alert by specified animalid
+```
+  GET localhost:8080/api/animals/{animalid}/alert
+```
+Create new alert for specified animal id
+```
+POST localhost:8080/api/animals/{animalid}/alert
+```
+**NOTE request body**
+```
+{
+    "alert": "red alert!"
+}
+```
+Update alert for specified alert id
+```
+  PUT localhost:8080/api/animals/alert/{alertid}
+```
 
+**NOTE request body**
+```
+{
+    "alert": "green alert!"
+}
+```
