@@ -35,4 +35,14 @@ public class PrescriptionController {
         Prescription prescription = repository.save(newPrescription);
         return new ResponseEntity<>(prescription, HttpStatus.CREATED);
     }
+
+    @PutMapping("/api/animals/prescription/{prescriptionid}")
+    public ResponseEntity<Prescription> updateComment(@PathVariable(value = "prescriptionid") Long prescriptionid,
+                                                 @RequestBody Prescription prescription){
+        Prescription prescriptions = repository.findById(prescriptionid).orElseThrow();
+        prescriptions.setPrescription(prescription.getPrescription());
+        final Prescription updatedPrescription = repository.save(prescriptions);
+        return ResponseEntity.ok(updatedPrescription);
+    }
+
 }
