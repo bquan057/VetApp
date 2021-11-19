@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /*
     Controller the manage interactions between the View and Model
@@ -31,5 +32,17 @@ public class ImageController {
         return new ResponseEntity<>(image, HttpStatus.OK);
     }
 
+    // Mapping to delete image
+    @DeleteMapping("/api/animals/images/{imageid}")
+    public ResponseEntity<String> deleteImage(@PathVariable long imageid){
+        Optional<Image> image = repository.findById(imageid);
 
+        // image exists
+        if(image.isPresent()){
+            repository.delete(image.get());
+            return new ResponseEntity<>("Image deleted", HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
