@@ -61,3 +61,18 @@ VALUES
 (2, "2", "hello there!"),
 (3, "3", "hello there!"),
 (4, "4", "hello there!");
+
+DROP TABLE IF EXISTS IMAGE;
+CREATE TABLE IMAGE(
+	ImageID					integer	not null,
+	AnimalID				varchar(50)	not null,
+	ImageName               varchar(50),
+	primary key (ImageID)
+);
+
+INSERT INTO Image(ImageID, AnimalID, ImageName)
+VALUES
+(1, "123", "Brandon1.jpg"),
+(2, "123", "Brandon2.jpg"),
+(3, "234", "Roh1.jpg"),
+(4, "345", "Emily1.jpg");
