@@ -1,11 +1,10 @@
 package com.vetapp.application.treatment;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.Repository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +20,18 @@ public class TreatmentController {
     // Mapping to get all treatments for an animal with the specified id
     @GetMapping("api/animals/{animalid}/treatments")
     public ResponseEntity<List<Treatment>> getTreatments(@PathVariable String animalid){
-        List<Treatment> treatments = repository.findAllByAnimalidContaining(animalid);
+        List<Treatment> treatments = repository.findByAnimalidContaining(animalid);
         return new ResponseEntity<>(treatments, HttpStatus.OK);
     }
+
+    // Mapping to add a new treatment for an animal
+    @PostMapping("/api/animals/{animalid}/treatments")
+    public ResponseEntity<Treatment> addTreatment(@PathVariable String animalid,
+                                                  @RequestBody Treatment newTreament){
+        newTreament.setAnimalid(animalid);
+        Treatment treatment = repository.save(newTreament);
+        return new ResponseEntity<>(treatment, HttpStatus.OK);
+    }
+
+
 }

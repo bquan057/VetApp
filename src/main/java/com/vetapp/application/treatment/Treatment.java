@@ -17,7 +17,7 @@ public class Treatment {
     @Id
     @GeneratedValue
     private long treatmentid;
-    @Getter
+    @Getter@Setter
     private String animalid;
     @Getter@Setter
     private String treatmenttype;
