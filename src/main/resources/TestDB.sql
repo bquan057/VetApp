@@ -76,3 +76,18 @@ VALUES
 (2, 2, "hello there!"),
 (3, 3, "hello there!"),
 (4, 4, "hello there!");
+
+DROP TABLE IF EXISTS ALERT;
+CREATE TABLE ALERT(
+	AlertID					integer	not null,
+	AnimalID				integer	not null,
+	Alert                    varchar(50),
+	primary key (AlertID)
+);
+
+INSERT INTO ALERT(AlertID, AnimalID, Alert)
+VALUES
+(1, 1, "hello there!"),
+(2, 2, "hello there!"),
+(3, 3, "hello there!"),
+(4, 4, "hello there!");
