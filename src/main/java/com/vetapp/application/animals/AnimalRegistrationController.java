@@ -58,8 +58,6 @@ public class AnimalRegistrationController {
         animalForCreation.setName(newAnimal.getName());
         animalForCreation.setSpecies(newAnimal.getSpecies());
         
-        System.out.println("Made it here.");
-        
         Animal animalCreated = animalRepository.save(animalForCreation);
         return new ResponseEntity<>(animalCreated, HttpStatus.ACCEPTED);
     }

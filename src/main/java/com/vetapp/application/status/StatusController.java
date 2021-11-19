@@ -24,4 +24,19 @@ public class StatusController {
 		Status status = statusRepository.save(newStatus);
 		return new ResponseEntity<>(status, HttpStatus.ACCEPTED);
 	}
+	
+	@PutMapping("/api/animals/status/{statusid}")
+	public ResponseEntity<Status> updateAnimalStatus(@PathVariable int statusid, @RequestBody Status status) {
+		Status statusForUpdate = statusRepository.findById(statusid).orElseThrow();
+		statusForUpdate.setStatusid(statusid);
+		statusForUpdate.setAnimalid(status.getAnimalid());
+		statusForUpdate.setDate(status.getDate());
+		statusForUpdate.setDescription(status.getDescription());
+		statusForUpdate.setLocation(status.getLocation());
+		statusForUpdate.setStatus(status.getStatus());
+		
+		Status statusWithUpdate = statusRepository.save(statusForUpdate);
+		
+		return new ResponseEntity<>(statusWithUpdate, HttpStatus.ACCEPTED);
+	}
 }
