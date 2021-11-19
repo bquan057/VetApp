@@ -14,7 +14,14 @@ public class WeightController {
 	WeightRepository weightRepository;
 	
 	@GetMapping("/api/animals/{animalid}/weight")
-	public ResponseEntity<List<Weight>> getAnimalStatus(@PathVariable String animalid) {
+	public ResponseEntity<List<Weight>> getAnimalWeight(@PathVariable String animalid) {
 		return new ResponseEntity<>(weightRepository.findByAnimalidContaining(animalid), HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/api/animals/{animalid}/weight")
+	public ResponseEntity<Weight> addAnimalWeight(@PathVariable String animalid, @RequestBody Weight newWeight) {
+		newWeight.setAnimalid(animalid);
+		Weight weight = weightRepository.save(newWeight);
+		return new ResponseEntity<>(weight, HttpStatus.ACCEPTED);
 	}
 }
