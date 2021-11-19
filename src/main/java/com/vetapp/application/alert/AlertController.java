@@ -30,7 +30,7 @@ public class AlertController {
         Alert alert = repository.save(newAlert);
         return new ResponseEntity<>(alert, HttpStatus.CREATED);
     }
-    
+
     @DeleteMapping("/api/animals/alert/{alertid}")
     public ResponseEntity<Alert> deleteAlert(@PathVariable long alertid){
         try{
