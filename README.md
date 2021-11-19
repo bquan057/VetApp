@@ -328,6 +328,38 @@ Delete a notification for a specified notification id
 
 ### Prescription (Emily)
 
+Get all prescriptions for specified animal id
+``` GET localhost:8080/api/animals/{animalid}/prescription```
+
+Add a new prescription for a specified animalid
+```
+POST localhost:8080/api/animals/{animalid}/prescription 
+```
+
+**NOTE you must specify a JSON object in the request body**
+```
+  {
+      "prescription": "melatonin"
+  }
+```
+
+Updating prescritpion based on prescription id
+```
+PUT localhost:8080/api/animals/prescription/{prescriptionid}
+```
+**NOTE you must enter a JSON object in the request body***
+```
+{
+    "prescription": "Adderall”
+}
+```
+
+Delete a prescription by specifed prescription id
+```
+DELETE localhost:8080/api/animals/prescription/{prescriptionid}
+```
+
+
 ### Treatment (Rohinesh)
 
 ### Alert (Emily)
