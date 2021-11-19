@@ -41,6 +41,7 @@ public class TreatmentController {
 
         // update the treatment
         treatmentToUpdate.setTreatmenttype(treatment.getTreatmenttype());
+        repository.save(treatmentToUpdate);
 
         return new ResponseEntity<>(treatmentToUpdate, HttpStatus.OK);
     }
