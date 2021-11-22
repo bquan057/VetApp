@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Setter;
 import lombok.Getter;
 
@@ -13,42 +15,45 @@ import lombok.Getter;
 public class Animal {
 
 	public Animal() {
-		this.animal_id = 0;
+		this.animalid = "";
 		this.name = "";
 	    this.tattoo = "";
-	    this.city_tattoo = "";
+	    this.citytattoo = "";
 	    this.age = "";
-	    this.birth_day = "";
-	    this.birth_month = "";
-	    this.birth_year = "";
+	    this.birthday = "";
+	    this.birthmonth = "";
+	    this.birthyear = "";
 	    this.breed = "";
 	    this.sex = "";
-	    this.coat_colour = "";
-	    this.special_instructions = "";
+	    this.coatcolour = "";
+	    this.specialinstructions = "";
 	    this.diet = "";
-	    this.is_active = "";
-	    this.rdif_id = "";
-	    this.has_microchip = "";
+	    this.isactive = "";
+	    this.rdifid = "";
+	    this.hasmicrochip = "";
 	    this.species = "";
 		
 	}
 	
-	@Id @GeneratedValue	@Getter @Setter int animal_id;
+	@Id @GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@Getter @Setter String animalid;
+	
 	@Getter @Setter String name;
     @Getter @Setter String tattoo;
-    @Getter @Setter String city_tattoo;
+    @Getter @Setter String citytattoo;
     @Getter @Setter String age;
-    @Getter @Setter String birth_day;
-    @Getter @Setter String birth_month;
-    @Getter @Setter String birth_year;
+    @Getter @Setter String birthday;
+    @Getter @Setter String birthmonth;
+    @Getter @Setter String birthyear;
     @Getter @Setter String breed;
     @Getter @Setter String sex;
-    @Getter @Setter String coat_colour;
-    @Getter @Setter String special_instructions;
+    @Getter @Setter String coatcolour;
+    @Getter @Setter String specialinstructions;
     @Getter @Setter String diet;
-    @Getter @Setter String is_active;
-    @Getter @Setter String rdif_id;
-    @Getter @Setter String has_microchip;
+    @Getter @Setter String isactive;
+    @Getter @Setter String rdifid;
+    @Getter @Setter String hasmicrochip;
 	@Getter @Setter String species;
     
 }

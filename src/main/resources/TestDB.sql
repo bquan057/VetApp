@@ -21,27 +21,27 @@ VALUES
 
 DROP TABLE IF EXISTS ANIMALS;
 CREATE TABLE ANIMALS (
-	Animal_id							integer not null,
+	AnimalID							varchar(100) not null,
     Name								varchar(30),
-    -- tattoo								varchar(30),
---     city_tattoo							varchar(30),
---     age									varchar(30),
---     birth_day							varchar(30),
---     birth_month							varchar(30),
---     birth_year							varchar(30),
---     breed								varchar(30),
---     sex									varchar(30),
---     coat_colour							varchar(30),
---     special_instructions				varchar(30),
---     diet								varchar(30),
---     is_active							varchar(30),
---     rdif_id								varchar(30),
---     has_microchip						varchar(30),
+    Tattoo								varchar(30),
+    CityTattoo							varchar(30),
+    Age									varchar(30),
+    BirthDay							varchar(30),
+    BirthMonth							varchar(30),
+    BirthYear							varchar(30),
+    Breed								varchar(30),
+    Sex									varchar(30),
+    CoatColour							varchar(30),
+    SpecialInstructions					varchar(30),
+    Diet								varchar(30),
+    IsActive							varchar(30),
+    RdifId								varchar(30),
+    HasMicrochip						varchar(30),
     Species								varchar(30),
-    primary key (animal_id)
+    primary key (AnimalID)
 );
 
-INSERT INTO ANIMALS (animal_id, name, species)
+INSERT INTO ANIMALS (AnimalID, Name, Species)
 VALUES
 (123,"Brandon","Human"),
 (234,"Roh","Human"),
