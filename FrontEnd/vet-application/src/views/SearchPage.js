@@ -7,7 +7,14 @@ const SearchPage= () => {
 
     return(
         <section class="hero has-background-success-light is-fullheight">
-            <SideBar/>
+            <div className="columns">
+                <SideBar/>
+                <div className="column">
+                    <h1>hello</h1>
+                </div>
+            </div>
+                
+
         </section>
     ) 
 };
