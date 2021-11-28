@@ -30,7 +30,7 @@ public class AnimalRegistrationController {
 	}
 	
 	@GetMapping("/api/animals/animal_id/{animal_id}")
-	public ResponseEntity<Optional<Animal>> getByID(@PathVariable int animal_id) {
+	public ResponseEntity<Optional<Animal>> getByID(@PathVariable String animal_id) {
 		Optional<Animal> animals = animalRepository.findById(animal_id);
 		
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
@@ -54,8 +54,22 @@ public class AnimalRegistrationController {
     public ResponseEntity<Animal> post(@RequestBody Animal newAnimal) {
 		
 		Animal animalForCreation = new Animal();
-		animalForCreation.setAnimal_id(newAnimal.getAnimal_id());
+		animalForCreation.setAnimalid(newAnimal.getAnimalid());
         animalForCreation.setName(newAnimal.getName());
+        animalForCreation.setTattoo(newAnimal.getTattoo());
+        animalForCreation.setCitytattoo(newAnimal.getCitytattoo());
+        animalForCreation.setAge(newAnimal.getAge());
+        animalForCreation.setBirthday(newAnimal.getBirthday());
+        animalForCreation.setBirthmonth(newAnimal.getBirthmonth());
+        animalForCreation.setBirthyear(newAnimal.getBirthyear());
+        animalForCreation.setBreed(newAnimal.getBreed());
+        animalForCreation.setSex(newAnimal.getSex());
+        animalForCreation.setCoatcolour(newAnimal.getCoatcolour());
+        animalForCreation.setSpecialinstructions(newAnimal.getSpecialinstructions());
+        animalForCreation.setDiet(newAnimal.getDiet());
+        animalForCreation.setIsactive(newAnimal.getIsactive());
+        animalForCreation.setRdifid(newAnimal.getRdifid());
+        animalForCreation.setHasmicrochip(newAnimal.getHasmicrochip());
         animalForCreation.setSpecies(newAnimal.getSpecies());
         
         Animal animalCreated = animalRepository.save(animalForCreation);
@@ -63,13 +77,25 @@ public class AnimalRegistrationController {
     }
 
     @PutMapping(path = "/api/animals/{animal_id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Animal> put(@PathVariable int animal_id, @RequestBody Animal animal) {
+    public ResponseEntity<Animal> put(@PathVariable String animal_id, @RequestBody Animal animal) {
         Animal animalForUpdate = animalRepository.findById(animal_id).orElseThrow();
         
-        // TODO: Set all attributes.
-        animalForUpdate.setAnimal_id(animal_id);
+        animalForUpdate.setAnimalid(animal_id);
         animalForUpdate.setName(animal.getName());
-        
+        animalForUpdate.setTattoo(animal.getTattoo());
+        animalForUpdate.setCitytattoo(animal.getCitytattoo());
+        animalForUpdate.setAge(animal.getAge());
+        animalForUpdate.setBirthday(animal.getBirthday());
+        animalForUpdate.setBirthmonth(animal.getBirthmonth());
+        animalForUpdate.setBirthyear(animal.getBirthyear());
+        animalForUpdate.setBreed(animal.getBreed());
+        animalForUpdate.setSex(animal.getSex());
+        animalForUpdate.setCoatcolour(animal.getCoatcolour());
+        animalForUpdate.setSpecialinstructions(animal.getSpecialinstructions());
+        animalForUpdate.setDiet(animal.getDiet());
+        animalForUpdate.setIsactive(animal.getIsactive());
+        animalForUpdate.setRdifid(animal.getRdifid());
+        animalForUpdate.setHasmicrochip(animal.getHasmicrochip());
         animalForUpdate.setSpecies(animal.getSpecies());
         
         Animal animalWithUpdate = animalRepository.save(animalForUpdate);
@@ -78,7 +104,7 @@ public class AnimalRegistrationController {
     }
 	
     @DeleteMapping("api/animals/{animal_id}")
-    public ResponseEntity<String> deleteUser(@PathVariable int animal_id){
+    public ResponseEntity<String> deleteUser(@PathVariable String animal_id){
 
         if(animalRepository.existsById(animal_id)){
             Animal animalToDelete = animalRepository.getById(animal_id);
