@@ -1,0 +1,17 @@
+.Title {
+    box-sizing: border-box;
+    margin: 30px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 0.5em;
+    margin-bottom: 2em;
+    background-color: #31CFB3;
+    color: #fff;
+  }
