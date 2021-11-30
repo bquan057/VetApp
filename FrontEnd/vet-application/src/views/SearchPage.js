@@ -13,9 +13,9 @@ const SearchPage= () => {
                 <SideBar/>
                 <div className="column">
                     <Header/>
-                    <div className="container">
+                    {/* <div className="container"> */}
                         <SearchBar/>    
-                    </div>         
+                    {/* </div>          */}
                 </div>
             </div>
         </section>
