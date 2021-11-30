@@ -1,5 +1,13 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 
+function MyButton() {
+    let navigate = useNavigate();
+    function handleClick() {
+      navigate('/home');
+    };
+    return <button onClick={handleClick}>Submit</button>;
+  };
 
 const SearchBar = () => {
 
