@@ -1,14 +1,18 @@
 import React from "react";
-import Header from "../components/Header";
-import SideBar from "../components/SideBar";
+import Header from "../components/Header"
+import SideBar from "../components/SideBar"
+import SearchBar from "../components/SearchBar";
+import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 
 
 const ManageUsersPage = () => {
     return(
-        <div class="columns">
+        <div className="columns">
             <SideBar/>
-            <div class="column">
+            <div className="column">
                 <Header/>
+                <SearchBar/>
+                <SearchSelectorAnimal/>    
             </div>
         </div>
     )

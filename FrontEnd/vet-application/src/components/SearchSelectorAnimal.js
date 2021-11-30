@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const  SearchSelectorAninal = () =>{
+const  SearchSelectorAnimal = () =>{
 
     return (
     <div className="columns is-centered">
@@ -22,4 +22,4 @@ const  SearchSelectorAninal = () =>{
     )
 };
 
-export default SearchSelectorAninal;
+export default SearchSelectorAnimal;
