@@ -3,6 +3,7 @@ import SideBar from "../components/SideBar"
 import Header from "../components/Header"
 import SearchBar from "../components/SearchBar";
 import "bulma/css/bulma.css";
+import SearchSelectorAninal from "../components/SearchSelectorAnimal";
 
 
 const SearchPage= () => {
@@ -13,9 +14,8 @@ const SearchPage= () => {
                 <SideBar/>
                 <div className="column">
                     <Header/>
-                    {/* <div className="container"> */}
-                        <SearchBar/>    
-                    {/* </div>          */}
+                    <SearchBar/>
+                    <SearchSelectorAninal/>    
                 </div>
             </div>
         </section>
