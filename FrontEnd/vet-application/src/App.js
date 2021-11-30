@@ -8,6 +8,9 @@ import {
   Outlet
 } from 'react-router-dom';
 import ManageAnimalsPage from "./views/ManageAnimalsPage";
+import ManageUsersPage from "./views/ManageUsersPage";
+import SideBar from "./components/SideBar";
+import Header from "./components/Header";
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
       <Routes>
         <Route path="" element={<SearchPage/>} />
         <Route path="Animals/" element={<ManageAnimalsPage/>} />
+        <Route path="Users/" element={<ManageUsersPage/>} />
       </Routes>
     </BrowserRouter>
       
