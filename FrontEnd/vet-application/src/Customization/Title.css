@@ -6,11 +6,15 @@
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
 
-    width: 90%;
+    height: 60px;
+    width: 97%;
     display: flex;
     justify-content: center;
     align-items: baseline;
     padding: 0.5em;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: 100;
     margin-bottom: 2em;
     background-color: #31CFB3;
     color: #fff;
