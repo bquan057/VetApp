@@ -1,13 +1,11 @@
-import React from "react"
-import SideBar from "../components/SideBar"
+import React from "react";
 import Header from "../components/Header"
+import SideBar from "../components/SideBar"
 import SearchBar from "../components/SearchBar";
-import "bulma/css/bulma.css";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 
 
-const SearchPage= () => {
-
+const ManageUsersPage = () => {
     return(
         <div className="columns">
             <SideBar/>
@@ -17,7 +15,7 @@ const SearchPage= () => {
                 <SearchSelectorAnimal/>    
             </div>
         </div>
-    ) 
+    )
 };
 
-export default SearchPage;
+export default ManageUsersPage;

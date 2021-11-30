@@ -1,7 +1,11 @@
 import React from "react";
 import SearchPage from "./views/SearchPage"
 import LoginPage from "./views/LoginPage"
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import ManageAnimalsPage from "./views/ManageAnimalsPage";
+import ManageUsersPage from "./views/ManageUsersPage";
+import SideBar from "./components/SideBar";
+import Header from "./components/Header";
+import {BrowserRouter, Route, Routes, Link, Outlet} from "react-router-dom"
 
 
 function App() {
@@ -11,11 +15,10 @@ function App() {
           {/* path here is the website URL */}
           <Route path="" element = {<LoginPage/>} />
           <Route path="/search" element = {<SearchPage/>} />
-          {/* <LoginPage/> */}
+        <Route path="/animals" element={<ManageAnimalsPage/>} />
+        <Route path="/users" element={<ManageUsersPage/>} />
         </Routes>
       </BrowserRouter>
-     
-  );
-}
+  )}
 
 export default App;
