@@ -1,9 +1,10 @@
 import React from "react";
 import Header from "../components/Header"
 import SideBar from "../components/SideBar"
-import SearchBar from "../components/SearchBar";
+import NewAnimalButton from "../components/NewAnimalButton";
+import SearchBarManageAnimals from "../components/SearchBarManageAnimals";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
-
+import ManageAnimalsCard from "../components/ManageAnimalsCard";
 
 const ManageAnimalsPage = () => {
     return(
@@ -11,8 +12,10 @@ const ManageAnimalsPage = () => {
             <SideBar/>
             <div className="column">
                 <Header/>
-                <SearchBar/>
-                <SearchSelectorAnimal/>    
+                <NewAnimalButton/>
+                <SearchBarManageAnimals/>
+                <SearchSelectorAnimal/>  
+                <ManageAnimalsCard/>  
             </div>
         </div>
     )
