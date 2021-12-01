@@ -6,10 +6,10 @@ const AnimalSearchCard = ({animal}) => {
     
 
     return(
-        <div class='card column is-rounded' onClick="" >
-            <div class='columns is-vcentered'>
-                    <div class="card-image column is-narrow has-text-left">
-                        <figure class="image is-96x96 ">
+        <div className='card column my-3' onClick="" >
+            <div className='columns is-vcentered'>
+                    <div className="card-image column is-narrow has-text-left">
+                        <figure className="image is-96x96 ">
                             <img src={animal.imgPath} alt={animal.name}/>
                         </figure>
                     </div>

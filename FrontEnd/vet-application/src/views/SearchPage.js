@@ -9,6 +9,7 @@ import AnimalSearchCard from "../components/AnimalSearchCard";
 
 const SearchPage= () => {
 
+    // to be deleted
     let animalData = [
         {
             id:1,
