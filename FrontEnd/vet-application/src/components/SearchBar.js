@@ -1,15 +1,8 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom'
 
-function MyButton() {
-    let navigate = useNavigate();
-    function handleClick() {
-      navigate('/home');
-    };
-    return <button onClick={handleClick}>Submit</button>;
-  };
 
-const SearchBar = () => {
+
+const SearchBar = ({addComponent}) => {
 
     return (
         <div className="columns is-centered">
@@ -19,7 +12,7 @@ const SearchBar = () => {
                     <input id="input" class="input is-info is-rounded" type="text" placeholder="Search"></input>
                 </div>
                 <div className="column has-text-centered">
-                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded">Search</button>
+                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={addComponent}>Search</button>
                 </div>
                 </div>
             </div>

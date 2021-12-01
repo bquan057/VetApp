@@ -15,8 +15,8 @@ function App() {
           {/* path here is the website URL */}
           <Route path="" element = {<LoginPage/>} />
           <Route path="/search" element = {<SearchPage/>} />
-        <Route path="/animals" element={<ManageAnimalsPage/>} />
-        <Route path="/users" element={<ManageUsersPage/>} />
+          <Route path="/animals" element={<ManageAnimalsPage/>} />
+          <Route path="/users" element={<ManageUsersPage/>} />
         </Routes>
       </BrowserRouter>
   )}
