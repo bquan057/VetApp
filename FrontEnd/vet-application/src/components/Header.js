@@ -4,7 +4,7 @@ import logo from "../res/ucvm-logo.jpeg"
 const Header = () => {
      
     return(
-        <div className="columns">
+        <div className="columns is-vcentered">
             <div className="column">
                 <img src={logo} alt="Example1" width="300" height="130"/>
             </div>

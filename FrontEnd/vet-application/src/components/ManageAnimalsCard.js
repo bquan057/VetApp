@@ -1,9 +1,9 @@
 import React from "react";
 
-const ManageAnimalsCard = () =>{
+const ManageAnimalsCard = ({animal}) =>{
 
     return (
-    <div className="columns is-centered">
+    <div className="columns is-centered mb-6">
         <div className="column is-two-thirds">
             <div class="columns card">
                 <div className="column has-text-centered">
@@ -43,7 +43,15 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Name:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.name}></input>
+                        </div>
+                    </div>
+                    <div class="columns is-vcentered">
+                        <div className="column is-one-third">
+                            <h1 class="has-text-weight-bold">Id:</h1>
+                        </div>
+                        <div className="column">
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.id}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -51,7 +59,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Weight:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.weight}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -59,7 +67,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Tattoo:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.tattoo}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -67,7 +75,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">City Tattoo:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.cityTattoo}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -75,7 +83,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Age:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.age}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -83,7 +91,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Birthdate:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.birthdate}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -91,7 +99,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Breed:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.breed}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -99,7 +107,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Sex:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.sex}></input>
                         </div>
                     </div>
                     <div class="columns is-vcentered">
@@ -107,7 +115,7 @@ const ManageAnimalsCard = () =>{
                             <h1 class="has-text-weight-bold">Coat Colour:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder="Bulma Briefs"></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.coatColour}></input>
                         </div>
                     </div>
                 </div>
