@@ -13,8 +13,8 @@ const Header = () => {
                     <div className="icon is-large ">
                         <i className="far fa-bell has-text-primary-dark fas fa-2x"></i>
                     </div>
-                    <div className="mx-3 icon is-large fas fa-2x">
-                        <i className="far fa-user-circle has-text-primary-dark"></i>
+                    <div className="mx-3 icon is-large ">
+                        <i className="far fa-user-circle has-text-primary-dark fas fa-2x"></i>
                     </div>
             </span>
             </div>
