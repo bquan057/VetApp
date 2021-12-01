@@ -17,9 +17,14 @@ const Login = () => {
                 <div class="card-content login ">
                     <h2 className = "title is-2 has-text-primary-dark ml-5">Sign In</h2>
 
-            <div className="form-group ml-5">
+            <div className="field ml-5">
+                <p class = "control has-iconsleft">
                 <label>Email address: </label>
                 <input type="email" className="form-control" placeholder="Enter email" />
+                {/* <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span> */}
+                </p>
             </div>
 
             <div className="form-group ml-5">
