@@ -69,7 +69,7 @@ const ManageUsersPage = () => {
         <div className="columns">
             <SideBar/>
             <div className="column">
-                <Header/>
+            {(!isModal && !isModal2) && <Header/>}
                 
                 {isModal && <Modal handleClose = {handlerClose}/>}
                 {isModal2 && <AddModal handleClose = {addUserhandlerClose}/>}

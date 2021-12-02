@@ -14,7 +14,7 @@ const SearchPage= () => {
             <div className="column">
                 <Header/>
                 <SearchBar/>
-                <SearchSelectorAnimal/>    
+                {/* <SearchSelectorAnimal/>     */}
             </div>
         </div>
     ) 
