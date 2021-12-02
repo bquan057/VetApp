@@ -5,6 +5,7 @@ import NewAnimalButton from "../components/NewAnimalButton";
 import SearchBarManageAnimals from "../components/SearchBarManageAnimals";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 import ManageAnimalsCard from "../components/ManageAnimalsCard";
+import AddAnimalModal from "../components/AddAnimalModal";
 
 const ManageAnimalsPage = () => {
 
@@ -48,9 +49,14 @@ const ManageAnimalsPage = () => {
     ]
 
     const[components, setComponents] = useState([]);
+    const[animalModal, setAnimalModal] = useState([]);
 
     const addComponent = () => {
         setComponents(animalData)
+    }
+
+    const addAnimalModal = () => {
+        console.log("test")
     }
 
     return(
@@ -58,7 +64,7 @@ const ManageAnimalsPage = () => {
             <SideBar/>
             <div className="column">
                 <Header/>
-                <NewAnimalButton/>
+                <NewAnimalButton addAnimalModal = {addAnimalModal}/>
                 <SearchBarManageAnimals addComponent = {addComponent}/>
                 <SearchSelectorAnimal/>  
                 <div>

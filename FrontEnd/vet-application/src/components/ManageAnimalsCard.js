@@ -40,7 +40,7 @@ const ManageAnimalsCard = ({animal}) =>{
                 <div className="column">
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Name:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Name:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.name}></input>
@@ -48,7 +48,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Id:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Id:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.id}></input>
@@ -56,7 +56,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Weight:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Weight:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.weight}></input>
@@ -64,7 +64,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Tattoo:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Tattoo:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.tattoo}></input>
@@ -72,7 +72,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">City Tattoo:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">City Tattoo:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.cityTattoo}></input>
@@ -80,7 +80,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Age:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Age:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.age}></input>
@@ -88,7 +88,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Birthdate:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Birthdate:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.birthdate}></input>
@@ -96,7 +96,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Breed:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Breed:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.breed}></input>
@@ -104,7 +104,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Sex:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Sex:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.sex}></input>
@@ -112,7 +112,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Coat Colour:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Coat Colour:</h1>
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.coatColour}></input>
