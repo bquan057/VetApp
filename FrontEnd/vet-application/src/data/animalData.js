@@ -2,12 +2,27 @@
 const animalData = [
     {
         id:1,
-        imgPath:"res/sora.jpg",
+        imgPath:"/sora.jpg",
         name: "Sora"
     },
     {
         id:2,
-        imgPath:"res/sora.jpg",
+        imgPath:"/sora.jpg",
+        name: "Sora2"
+    },
+    {
+        id:2,
+        imgPath:"/sora.jpg",
+        name: "Sora2"
+    },
+    {
+        id:2,
+        imgPath:"/sora.jpg",
+        name: "Sora2"
+    },
+    {
+        id:2,
+        imgPath:"/sora.jpg",
         name: "Sora2"
     }
 ];

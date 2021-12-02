@@ -1,4 +1,7 @@
 import React from "react";
+import animalData from "../data/animalData";
+import { useState } from "react";
+
 
 const AnimalCard = () => {
 
@@ -7,119 +10,157 @@ const AnimalCard = () => {
         <div className="column is-two-thirds">
             <div class="columns card">
                 <div className="column has-text-centered">
-                    <div class="my-5">
-                        <img src="https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/large/800/Bulma.Dragon-Ball.webp" alt="Bulma"></img>
-                    </div>
-                    <div class="my-6">
-                        <div>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
-                                <span class="icon is-small">
-                                    <i class="fas fa-edit"></i>
-                                </span>
-                                <h3 class="has-text-weight-bold">Edit Animal</h3>
-                            </button>
+                    <div className="title">Animal Information</div>
+                    <div className="columns">
+                        <div className="column is-centered">
+                            <img src="https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/large/800/Bulma.Dragon-Ball.webp" alt="Bulma"></img>
                         </div>
-                        <div>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
-                                <span class="icon is-small">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                                <h3 class="has-text-weight-bold">Delete Animal</h3>
-                            </button>
+                        <div className="column">
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
-                                <span class="icon is-small">
-                                    <i class="fas fa-bookmark"></i>
-                                </span>
-                                <h3 class="has-text-weight-bold">Request Animal</h3>
-                            </button>
+                        <div className="column">
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <h1 class="has-text-weight-bold">hi</h1>
+                                     </div>
+                                </div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                        <div class="box p-0">
+                                            hi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="column">
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Name:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Id:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Weight:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Tattoo:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">City Tattoo:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text"></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Age:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text"></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Birthdate:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text"></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Breed:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Sex:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                    <div class="columns is-vcentered">
-                        <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold">Coat Colour:</h1>
-                        </div>
-                        <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" ></input>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>

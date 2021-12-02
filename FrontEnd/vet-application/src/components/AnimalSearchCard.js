@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 const AnimalSearchCard = ({animal}) => {
-    
+    //***  TODO remove this *** //
     // let navigate = useNavigate();
     // function animalPage() {
     //     navigate('/animals:id');
@@ -14,8 +14,9 @@ const AnimalSearchCard = ({animal}) => {
         <Link
             to = {{
                 pathname:`/animals/${animal.id}`,
-                state: animal
-            }}>
+                state: {animal:animal}
+            }}
+        >
         <div className='card column my-3'  >
             <div className='columns is-vcentered' >
 
