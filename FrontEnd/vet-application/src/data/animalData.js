@@ -1,9 +1,16 @@
 
 const animalData = [
     {
-        id:1,
-        imgPath:"/sora.jpg",
-        name: "Sora"
+        name: "Shrodinger",
+        id: "1",
+        weight: "1111", 
+        tattoo: "1111",
+        cityTattoo: "1111",
+        age: "1111",
+        birthdate: "1111",
+        breed: "1111",
+        sex: "1111",
+        coatColour: "black",
     },
     {
         id:2,
