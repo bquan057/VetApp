@@ -6,6 +6,9 @@ import SearchBarManageAnimals from "../components/SearchBarManageAnimals";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 import ManageAnimalsCard from "../components/ManageAnimalsCard";
 import AddAnimalModal from "../components/AddAnimalModal";
+import EditAnimalModal from "../components/EditAnimalModal";
+import DeleteAnimalModal from "../components/DeleteAnimalModal";
+import RequestAnimalModal from "../components/RequestAnimalModal";
 
 const ManageAnimalsPage = () => {
 
@@ -49,26 +52,41 @@ const ManageAnimalsPage = () => {
     ]
 
     const[components, setComponents] = useState([]);
-    const[animalModal, setAnimalModal] = useState([]);
 
     const addComponent = () => {
         setComponents(animalData)
     }
 
     const addAnimalModal = () => {
-        console.log("test")
+        document.getElementById('AddAnimalModal').classList.add('is-active');
+    }
+
+    const editAnimalModal = () => {
+        document.getElementById('EditAnimalModal').classList.add('is-active');
+    }
+
+    const deleteAnimalModal = () => {
+        document.getElementById('DeleteAnimalModal').classList.add('is-active');
+    }
+
+    const requestAnimalModal = () => {
+        document.getElementById('RequestAnimalModal').classList.add('is-active');
     }
 
     return(
         <div className="columns">
             <SideBar/>
+            <AddAnimalModal/>
+            <EditAnimalModal/>
+            <DeleteAnimalModal/>
+            <RequestAnimalModal/>
             <div className="column">
                 <Header/>
                 <NewAnimalButton addAnimalModal = {addAnimalModal}/>
                 <SearchBarManageAnimals addComponent = {addComponent}/>
                 <SearchSelectorAnimal/>  
                 <div>
-                    {components.map(item => <ManageAnimalsCard animal={item}/>)}
+                    {components.map(item => <ManageAnimalsCard animal={item} editAnimalModal = {editAnimalModal} deleteAnimalModal = {deleteAnimalModal} requestAnimalModal = {requestAnimalModal}/>)}
                 </div>
             </div>
         </div>

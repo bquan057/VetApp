@@ -1,18 +1,18 @@
 import React from "react";
 
-const AddAnimalModal = () => {
+const RequestAnimalModal = () => {
 
     const modalClose = () => {
-        document.getElementById('AddAnimalModal').classList.remove('is-active');
+        document.getElementById('RequestAnimalModal').classList.remove('is-active');
     }
 
     return (
-        <div class="modal" id="AddAnimalModal">
+        <div class="modal" id="RequestAnimalModal">
             <div class="modal-background"></div>
             <div class="modal-content">
                 <div class="columns card">
                     <div className="column has-text-centered">
-                        <h1>THIS IS THE ADD ANIMAL MODAL</h1>
+                        <h1>THIS IS THE REQUEST ANIMAL MODAL</h1>
                         <div class="my-5">
                             <img src="https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/large/800/Bulma.Dragon-Ball.webp" alt="Bulma"></img>
                         </div>
@@ -133,4 +133,4 @@ const AddAnimalModal = () => {
     )
 }
 
-export default AddAnimalModal;
+export default RequestAnimalModal;

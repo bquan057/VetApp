@@ -1,6 +1,6 @@
 import React from "react";
 
-const ManageAnimalsCard = ({animal}) =>{
+const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestAnimalModal}) =>{
 
     return (
     <div className="columns is-centered mb-6">
@@ -12,7 +12,7 @@ const ManageAnimalsCard = ({animal}) =>{
                     </div>
                     <div class="my-6">
                         <div>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={editAnimalModal}>
                                 <span class="icon is-small">
                                     <i class="fas fa-edit"></i>
                                 </span>
@@ -20,7 +20,7 @@ const ManageAnimalsCard = ({animal}) =>{
                             </button>
                         </div>
                         <div>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2 " onClick={deleteAnimalModal}>
                                 <span class="icon is-small">
                                     <i class="fas fa-trash"></i>
                                 </span>
@@ -28,7 +28,7 @@ const ManageAnimalsCard = ({animal}) =>{
                             </button>
                         </div>
                         <div>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={requestAnimalModal}>
                                 <span class="icon is-small">
                                     <i class="fas fa-bookmark"></i>
                                 </span>
