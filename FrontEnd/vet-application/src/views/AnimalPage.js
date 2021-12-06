@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import AnimalCard from "../components/AnimalCard";
 import TreatmentCard from "../components/TreatmentCard";
 import CommentCard from "../components/CommentCard";
+import PictureCard from "../components/PictureCard";
 import { useParams } from "react-router";
 
 
@@ -19,6 +20,7 @@ const AnimalPage = () => {
                 <AnimalCard/>
                 <TreatmentCard id={id}/>
                 <CommentCard id= {id}/>
+                <PictureCard id={id}/>
             </div>
         </div>
     )
