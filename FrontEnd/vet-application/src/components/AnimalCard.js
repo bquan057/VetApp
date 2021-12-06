@@ -1,12 +1,13 @@
 import React from "react";
 import animalData from "../data/animalData";
+
 import { useState } from "react";
 
 
-const AnimalCard = () => {
+const AnimalCard = ({weightModal}) => {
 
     let animal = animalData[0]
-    
+
     function Card (att) {
         let label = att.att
         label = label.toUpperCase()
@@ -38,7 +39,7 @@ const AnimalCard = () => {
                     <div className="columns">
                         <div className="column is-centered is-one-third">
                             <img src="https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/large/800/Bulma.Dragon-Ball.webp" alt="Bulma"></img>
-                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2 " >View Weight History</button>
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={weightModal} >View Weight History</button>
                         </div>
                         <div className="column is-centered">
                             <div className="columns is-multiline ">
