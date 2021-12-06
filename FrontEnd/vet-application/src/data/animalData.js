@@ -10,7 +10,7 @@ const animalData = [
         birthdate: "1111",
         breed: "1111",
         sex: "1111",
-        coatColour: "black",
+        coatColour: "black"
     },
     {
         id:2,

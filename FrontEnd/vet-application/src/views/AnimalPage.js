@@ -7,8 +7,7 @@ import { useParams } from "react-router";
 
 const AnimalPage = () => {
     const {id} = useParams();
-    console.log(id)
-
+    // TODO MAKE API CALL HERE TO GET INFORMATION OF ANIMAL USING ID
 
     return(
         <div className="columns">
