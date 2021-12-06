@@ -3,7 +3,7 @@ import pictureData from "../data/pictureData";
 import { useState } from "react";
 
 
-const PictureCard = ({id}) => {
+const PictureCard = ({id, newPictureModal}) => {
 
     function TreatmentBox({image}){
 
@@ -16,6 +16,7 @@ const PictureCard = ({id}) => {
                             <p>{image.creation}</p>
                         </figure>
                         
+                        
                     </div>
                   </div>
             </div>
@@ -27,7 +28,7 @@ const PictureCard = ({id}) => {
             <div className="column is-three-quarters">
                 <div class="columns is-multiline card is-vcentered">
                     <div className="column is-one-quarter has-text-centered">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" >Add Picture</button>
+                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={newPictureModal} >Add Picture</button>
                     </div>
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Pictures</div>
@@ -40,7 +41,7 @@ const PictureCard = ({id}) => {
                         {pictureData.filter(image => image.animalid==id).map(filteredImage =>(<TreatmentBox image = {filteredImage}/>
                             ))}
                         </div>
-                    </div>                    
+                    </div>                   
                 </div>
             </div>
         </div>

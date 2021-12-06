@@ -8,6 +8,7 @@ import PictureCard from "../components/PictureCard";
 import WeightHistoryModal from "../components/WeightHistoryModal";
 import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import CreateCommentModal from "../components/CreateCommentModal";
+import NewPictureModal from "../components/NewPictureModal";
 import { useParams } from "react-router";
 
 
@@ -27,19 +28,23 @@ const AnimalPage = () => {
         document.getElementById("NewComment").classList.add('is-active')
     }
 
+    const newPictureModal = () => {
+        document.getElementById("NewPicture").classList.add('is-active')
+    }
+
     return(
         <div className="columns">
             <WeightHistoryModal id={id}/>
             <TreatmentHistoryModal id={id}/>
             <CreateCommentModal id= {id}/>
+            <NewPictureModal id = {id}/>
             <SideBar/>
             <div className="column">
                 <Header/>
                 <AnimalCard weightModal = {weightModal}/>
                 <TreatmentCard id={id} treatmentHistory={treatementHistory}/>
                 <CommentCard id= {id} newCommentModal={newCommentModal}/>
-                <PictureCard id={id}/>
-                
+                <PictureCard id={id} newPictureModal = {newPictureModal}/>
             </div>
         </div>
     )
