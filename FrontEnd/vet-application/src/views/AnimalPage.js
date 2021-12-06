@@ -6,6 +6,7 @@ import TreatmentCard from "../components/TreatmentCard";
 import CommentCard from "../components/CommentCard";
 import PictureCard from "../components/PictureCard";
 import WeightHistoryModal from "../components/WeightHistoryModal";
+import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import { useParams } from "react-router";
 
 
@@ -17,14 +18,19 @@ const AnimalPage = () => {
         document.getElementById("WeightModal").classList.add('is-active')
     }
 
+    const treatementHistory = () => {
+        document.getElementById("TreatmentHistory").classList.add('is-active')
+    }
+
     return(
         <div className="columns">
             <WeightHistoryModal id={id}/>
+            <TreatmentHistoryModal id={id}/>
             <SideBar/>
             <div className="column">
                 <Header/>
                 <AnimalCard weightModal = {weightModal}/>
-                <TreatmentCard id={id}/>
+                <TreatmentCard id={id} treatmentHistory={treatementHistory}/>
                 <CommentCard id= {id}/>
                 <PictureCard id={id}/>
                 

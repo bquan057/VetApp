@@ -41,8 +41,10 @@ const treatmentData = [
         attName: "Jacob Flexbox", // should be attendent id in actual
         animalid: "1",
         treatmentId: "4",
-        isComplete: "false"
-    }
+        isComplete: "true",
+        method:"Vaccinate",
+    },
+    
 ];
 
 export default treatmentData;
