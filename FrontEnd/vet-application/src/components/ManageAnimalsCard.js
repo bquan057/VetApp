@@ -8,7 +8,7 @@ const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestA
             <div class="columns card">
                 <div className="column has-text-centered">
                     <div class="my-5">
-                        <img src="https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/large/800/Bulma.Dragon-Ball.webp" alt="Bulma"></img>
+                        <img src="sora.jpg" alt="Sora"></img>
                     </div>
                     <div class="my-6">
                         <div>
@@ -116,6 +116,14 @@ const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestA
                         </div>
                         <div className="column">
                             <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.coatColour}></input>
+                        </div>
+                    </div>
+                    <div class="columns is-vcentered">
+                        <div className="column is-one-third">
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Species:</h1>
+                        </div>
+                        <div className="column">
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.species}></input>
                         </div>
                     </div>
                 </div>
