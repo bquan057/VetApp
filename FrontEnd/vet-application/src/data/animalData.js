@@ -13,22 +13,22 @@ const animalData = [
         coatColour: "black"
     },
     {
-        id:2,
+        id:"2",
         imgPath:"/sora.jpg",
         name: "Sora2"
     },
     {
-        id:2,
+        id:"3",
         imgPath:"/sora.jpg",
         name: "Sora2"
     },
     {
-        id:2,
+        id:4,
         imgPath:"/sora.jpg",
         name: "Sora2"
     },
     {
-        id:2,
+        id:5,
         imgPath:"/sora.jpg",
         name: "Sora2"
     }

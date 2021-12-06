@@ -2,6 +2,7 @@ import React from "react";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import AnimalCard from "../components/AnimalCard";
+import TreatmentCard from "../components/TreatmentCard";
 import { useParams } from "react-router";
 
 
@@ -15,6 +16,7 @@ const AnimalPage = () => {
             <div className="column">
                 <Header/>
                 <AnimalCard/>
+                <TreatmentCard id={id}/>
             </div>
         </div>
     )

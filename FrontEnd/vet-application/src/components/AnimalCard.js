@@ -16,7 +16,7 @@ const AnimalCard = () => {
                 <div className="level-left">
                     <div className="level-item">
                         <h1 class="has-text-weight-bold has-text-primary-dark">{label}</h1>
-                        </div>
+                    </div>
                 </div>
                 <div className="level-right">
                     <div className="level-item">
