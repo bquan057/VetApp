@@ -3,7 +3,7 @@ import commentData from "../data/commentData";
 import { useState } from "react";
 
 
-const CommentCard = ({id}) => {
+const CommentCard = ({id, newCommentModal}) => {
 
     function CommentBox({comment}){
 
@@ -25,7 +25,7 @@ const CommentCard = ({id}) => {
             <div className="column is-three-quarters">
                 <div class="columns card is-multiline is-vcentered py-1">
                     <div className="column is-one-quarter has-text-centered">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" >Create Comment</button>
+                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={newCommentModal}>Create Comment</button>
                     </div>
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Comments</div>

@@ -39,7 +39,7 @@ const TreatmentCard = ({id, treatmentHistory}) => {
                     </div>
                     <div className="column">
                         <div className="columns is-multiline is-centered py-3">
-                        {treatmentData.filter(treatment => treatment.animalid==id).map(filteredTreament =>(<TreatmentBox treatment = {filteredTreament}/>
+                        {treatmentData.filter(treatment => treatment.animalid==id && treatment.isComplete=="false").map(filteredTreament =>(<TreatmentBox treatment = {filteredTreament}/>
                             ))}
                         </div>
                     </div>                    
