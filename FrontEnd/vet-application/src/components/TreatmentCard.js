@@ -4,7 +4,7 @@ import treatmentData from "../data/treatmentData";
 import { useState } from "react";
 
 
-const TreatmentCard = ({id, treatmentHistory}) => {
+const TreatmentCard = ({id, treatmentHistory, newTreatment}) => {
 
     function TreatmentBox({treatment}){
 
@@ -29,7 +29,7 @@ const TreatmentCard = ({id, treatmentHistory}) => {
             <div className="column is-three-quarters">
                 <div class="columns is-multiline card is-vcentered">
                     <div className="column is-one-quarter has-text-centered">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" >Request Treatment</button>
+                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={newTreatment} >Request Treatment</button>
                     </div>
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Current Treatments</div>

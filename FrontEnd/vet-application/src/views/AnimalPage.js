@@ -9,6 +9,7 @@ import WeightHistoryModal from "../components/WeightHistoryModal";
 import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import CreateCommentModal from "../components/CreateCommentModal";
 import NewPictureModal from "../components/NewPictureModal";
+import RequestTreatmentModal from "../components/RequestTreatmentModal";
 import { useParams } from "react-router";
 
 
@@ -32,17 +33,22 @@ const AnimalPage = () => {
         document.getElementById("NewPicture").classList.add('is-active')
     }
 
+    const newTreatmentModal = () => {
+        document.getElementById("TreatmentModal").classList.add('is-active')
+    }
+
     return(
         <div className="columns">
             <WeightHistoryModal id={id}/>
             <TreatmentHistoryModal id={id}/>
             <CreateCommentModal id= {id}/>
             <NewPictureModal id = {id}/>
+            <RequestTreatmentModal id= {id}/>
             <SideBar/>
             <div className="column">
                 <Header/>
                 <AnimalCard weightModal = {weightModal}/>
-                <TreatmentCard id={id} treatmentHistory={treatementHistory}/>
+                <TreatmentCard id={id} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 <CommentCard id= {id} newCommentModal={newCommentModal}/>
                 <PictureCard id={id} newPictureModal = {newPictureModal}/>
             </div>
