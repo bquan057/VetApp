@@ -1,11 +1,12 @@
-import React from "react"
+import React, {useState} from "react"
 import SideBar from "../components/SideBar"
 import Header from "../components/Header"
 import SearchBar from "../components/SearchBar";
 import "bulma/css/bulma.css";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
-import EditModal from "../components/EditModal";
+import AnimalSearchCard from "../components/AnimalSearchCard";
 import ChangePasswordModal from "../components/ChangePasswordModal";
+import EditModal from "../components/EditModal";
 import TreatmentModal from "../components/TreatmentModal";
 
 const SearchPage= () => {
@@ -22,6 +23,42 @@ const SearchPage= () => {
         document.getElementById('EditModal').classList.add('is-active');
     }
 
+    // to be deleted
+    let animalData = [
+        {
+            id:1,
+            imgPath:"/sora.jpg",
+            name: "Sora"
+        },
+        {
+            id:2,
+            imgPath:"/sora.jpg",
+            name: "Sora2"
+        },
+        {
+            id:3,
+            imgPath:"/sora.jpg",
+            name: "Sora2"
+        },
+        {
+            id:4,
+            imgPath:"/sora.jpg",
+            name: "Sora2"
+        },
+        {
+            id:5,
+            imgPath:"/sora.jpg",
+            name: "Sora2"
+        }
+    ];
+
+    // ** api call here ** //
+    const [components, setComponents] = useState([]); 
+    
+    const addComponent = () => {
+        setComponents(animalData)
+    }
+
     return(
         <div className="columns">
             <SideBar/>
@@ -30,11 +67,16 @@ const SearchPage= () => {
             <TreatmentModal/>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
-                <SearchBar/>
-                <SearchSelectorAnimal/>    
-                <button onClick = {treatmentModal}>Treatment Modal</button>
+                <SearchBar addComponent = {addComponent}/>
+                <SearchSelectorAnimal/>
+                <div className="columns is-centered">
+                    <div className="column is-two-thirds">
+                        {
+                            components.map((item) => (<AnimalSearchCard animal={item}/>))
+                        }
+                    </div>
+                </div>    
             </div>
-        
         </div>
     ) 
 };

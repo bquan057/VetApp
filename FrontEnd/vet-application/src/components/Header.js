@@ -15,10 +15,6 @@ const Header = ({changePassword, editAccount}) => {
     return(
         <div className="columns is-vcentered">
             <div className="column">
-            {/* {isModal && <Modal handleClose = {handlerClose}/>}
-            {isModal3 && <PasswordModal handleClose = {handlePasswordClose}/>}
-
-            { (!isModal3 && !isModal) && */}
             <nav class="navbar is-primary-dark" role="navigation" aria-label="dropdown navigation">
                 <div className = "column is-four-fifths">
                 <img src={logo} alt="Example1" width="300" height="130"/>
@@ -64,11 +60,9 @@ const Header = ({changePassword, editAccount}) => {
                     <a class="navbar-item">
                         notification 3
                     </a>
-                    </div>
                 </div>
-               
+               </div>
             </nav>
-                {/* } */}
             </div>
     </div>
     )    

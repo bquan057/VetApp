@@ -1,5 +1,6 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom'
+
+
 
 const SearchBar = ({addComponent}) => {
 
@@ -11,7 +12,7 @@ const SearchBar = ({addComponent}) => {
                     <input id="input" class="input is-info is-primary is-rounded" type="text" placeholder="Search"></input>
                 </div>
                 <div className="column has-text-centered">
-                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick = {addComponent}>Search</button>
+                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={addComponent}>Search</button>
                 </div>
                 </div>
             </div>

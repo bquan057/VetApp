@@ -26,6 +26,14 @@ const ManageAnimalsPage = () => {
             breed: "1111",
             sex: "1111",
             coatColour: "1111",
+            species: "1111",
+            problems: "1111",
+            comments: "1111",
+            medication: "1111",
+            instructions: "1111",
+            isActive: "1111",
+            rdif: "1111",
+            hasMicrochip: "1111"
         },
         {
             name: "2222",
@@ -38,6 +46,14 @@ const ManageAnimalsPage = () => {
             breed: "2222",
             sex: "2222",
             coatColour: "2222",
+            species: "2222",
+            problems: "2222",
+            comments: "2222",
+            medication: "2222",
+            instructions: "2222",
+            isActive: "2222",
+            rdif: "2222",
+            hasMicrochip: "2222"
         },
         {
             name: "3333",
@@ -50,6 +66,14 @@ const ManageAnimalsPage = () => {
             breed: "3333",
             sex: "3333",
             coatColour: "3333",
+            species: "3333",
+            problems: "3333",
+            comments: "3333",
+            medication: "3333",
+            instructions: "3333",
+            isActive: "3333",
+            rdif: "3333",
+            hasMicrochip: "3333"
         },
     ]
 
@@ -86,11 +110,13 @@ const ManageAnimalsPage = () => {
         <div className="columns">
             <SideBar/>
             <AddAnimalModal/>
-            <EditAnimalModal/>
-            <DeleteAnimalModal/>
-            <RequestAnimalModal/>
             <ChangePasswordModal/>
             <EditModal/>
+            <div>
+                {components.map(item => <EditAnimalModal animal={item}/>)}
+                {components.map(item => <DeleteAnimalModal animal={item}/>)}
+                {components.map(item => <RequestAnimalModal animal={item}/>)}
+            </div>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
                 <NewAnimalButton addAnimalModal = {addAnimalModal}/>
