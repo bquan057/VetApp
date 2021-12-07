@@ -1,15 +1,19 @@
 import React from "react"
 
-const AddUserModal = ({handleClose}) => {
+const AddUserModal = () => {
+
+    const modalClose = () => {
+        document.getElementById('AddUserModal').classList.remove('is-active');
+    }
     
     return ( 
-        <div>
+        <div className = "modal" id = "AddUserModal">
         <div className="modal-background" />
         <div className="modal-card">
             <header className="modal-card-head">
             <p className="modal-card-title">Add New User</p>
             <button
-                onClick={handleClose}
+                onClick={modalClose}
                 className="delete"
                 aria-label="close"
             />
@@ -75,7 +79,7 @@ const AddUserModal = ({handleClose}) => {
             </section>
             <footer className="modal-card-foot">
             <button className="button is-success">Save changes</button>
-            <button onClick={handleClose} className="button">
+            <button onClick={modalClose} className="button">
                 Cancel
             </button>
             </footer>

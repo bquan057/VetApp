@@ -1,15 +1,19 @@
 import React from "react"
 
-const EditModal = ({handleClose}) => {
+const EditModal = () => {
+
+    const modalClose = () => {
+        document.getElementById('EditModal').classList.remove('is-active');
+    }
     
     return ( 
-        <div>
+        <div className = 'modal' id = 'EditModal'>
         <div className="modal-background" />
         <div className="modal-card">
             <header className="modal-card-head">
             <p className="modal-card-title">Edit Existing User</p>
             <button
-                onClick={handleClose}
+                onClick={modalClose}
                 className="delete"
                 aria-label="close"
             />
@@ -17,17 +21,6 @@ const EditModal = ({handleClose}) => {
             
             <section className="modal-card-body">
 
-            {/* <div className="field">
-            <div className="control">
-                <label className="label">Name</label>
-                
-                <input
-                    className="input"
-                    type="text"
-                    placeholder="e.g Alex Smith"
-                />
-                </div>
-            </div> */}
                 <div className="control">
                     <div className = "columns is-centered">
                         <div className = "column is-one-fifth">
@@ -86,8 +79,8 @@ const EditModal = ({handleClose}) => {
 
             </section>
             <footer className="modal-card-foot">
-            <button className="button is-success">Save changes</button>
-            <button onClick={handleClose} className="button">
+            <button onClick = {modalClose} className="button is-success">Save changes</button>
+            <button onClick={modalClose} className="button">
                 Cancel
             </button>
             </footer>

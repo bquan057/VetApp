@@ -2,48 +2,23 @@ import React, {useState} from "react";
 import logo from "../res/ucvm-logo.jpeg"
 import PasswordModal from "./ChangePasswordModal";
 import Modal from "./EditModal";
+import { useNavigate } from "react-router";
 
-const Header = () => {
+const Header = ({changePassword, editAccount}) => {
 
-    // const [menuIsShown, setMenuIsShown] = useState(false);
-    
+    let navigate = useNavigate();
 
-    // // const menu = useRef();
-    // const hideMenu = () => {
-    //   setMenuIsShown(false);
-    // };
-  
-    // const toggleDropDown = () =>{
-    //     setMenuIsShown(true);
-    // }
-
-    const [isModal, setismodal] = useState(false)
-
-    const handler = () => {
-        setismodal(true);
-    }
-
-    const handlerClose =() =>{
-        setismodal(false);
-    }
-
-    const [isModal3, setisModal3] = useState(false)
-
-    const handlePassword =()=>{
-        setisModal3(true);
-    }
-
-    const handlePasswordClose = () =>{
-        setisModal3(false);
-    }
+    function loginPage() {
+        navigate('/');
+    };
      
     return(
-        <div className="columns">
+        <div className="columns is-vcentered">
             <div className="column">
-            {isModal && <Modal handleClose = {handlerClose}/>}
+            {/* {isModal && <Modal handleClose = {handlerClose}/>}
             {isModal3 && <PasswordModal handleClose = {handlePasswordClose}/>}
 
-            { (!isModal3 && !isModal) &&
+            { (!isModal3 && !isModal) && */}
             <nav class="navbar is-primary-dark" role="navigation" aria-label="dropdown navigation">
                 <div className = "column is-four-fifths">
                 <img src={logo} alt="Example1" width="300" height="130"/>
@@ -57,15 +32,15 @@ const Header = () => {
                     </span>
                     </a>
                     <div class="navbar-dropdown" >
-                    <a class="navbar-item" onClick = {handler}>
+                    <a class="navbar-item" onClick = {editAccount}>
                         Edit Account
                     </a>
                     <hr class="navbar-divider"/>
-                    <a class="navbar-item"  onClick = {handlePassword}>
+                    <a class="navbar-item"  onClick = {changePassword}>
                         Change Password
                     </a>
                     <hr class="navbar-divider"/>
-                    <a class="navbar-item">
+                    <a class="navbar-item" onClick = {loginPage}>
                         Log out
                     </a>
                     </div>
@@ -93,10 +68,8 @@ const Header = () => {
                 </div>
                
             </nav>
-                }
+                {/* } */}
             </div>
-
-    
     </div>
     )    
 };

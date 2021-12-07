@@ -5,9 +5,11 @@ import SearchBar from "../components/SearchBar";
 import SearchSelectorUser from "../components/SearchSelectorUser";
 import ChangeAccess from "../components/ChangeAccess";
 import UserInformationBox from "../components/UserInformationBox";
-import Modal from "../components/EditModal";
-import AddModal from "../components/AddUserModal";
+import EditModal from "../components/EditModal";
 import ManageUsers from "../components/ManageUsersComponent"
+import ChangePasswordModal from "../components/ChangePasswordModal";
+import AddUserModal from "../components/AddUserModal";
+import DeleteModal from "../components/DeleteUserModal";
 
 const ManageUsersPage = () => {
 
@@ -39,49 +41,46 @@ const ManageUsersPage = () => {
         }
     ];
 
-    const [isModal, setismodal] = useState(false)
-    const [isModal2, setismodal2] = useState(false)
-
-    const handler = () => {
-        setismodal(true);
-    }
-
-    const handlerClose =() =>{
-        setismodal(false);
-    }
-
-    const addUserHandler = () =>{
-        setismodal2(true);
-    }
-
-    const addUserhandlerClose =() =>{
-        setismodal2(false);
-    }
 
     const [components, setComponents] = useState([]);
 
     const addComponent = () => {
         setComponents(userData)
-        // console.log(userData[0]);
+    }
+
+    const changePasswordModal = () => {
+        document.getElementById('ChangePasswordModal').classList.add('is-active');
+    }
+
+    const editAccountModal = () => {
+        document.getElementById('EditModal').classList.add('is-active');
+    }
+
+    const addUserModal = () => {
+        document.getElementById('AddUserModal').classList.add('is-active');
+    }
+    const editUserModal = () => {
+        document.getElementById('EditModal').classList.add('is-active');
+    }
+    const deleteUserModal = () => {
+        document.getElementById('DeleteModal').classList.add('is-active');
     }
 
     return(
         <div className="columns">
             <SideBar/>
+            <ChangePasswordModal/>
+            <EditModal/>
+            <AddUserModal/>
+            <DeleteModal/>
             <div className="column">
-            {(!isModal && !isModal2) && <Header/>}
-                
-                {isModal && <Modal handleClose = {handlerClose}/>}
-                {isModal2 && <AddModal handleClose = {addUserhandlerClose}/>}
-                
-
-                {(!isModal && !isModal2) && 
+            
+            <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <div>
                 <SearchBar addComponent={addComponent}/>
                 <SearchSelectorUser/>    
-                    {components.map((item) => (<ManageUsers user={item} handleClick = {handler} handleClickAgain = {addUserHandler}/>))}
+                    {components.map((item) => (<ManageUsers user={item} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal}/>))}
                 </div>
-                }
             </div>
         </div>
         

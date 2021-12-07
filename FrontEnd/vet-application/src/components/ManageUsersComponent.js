@@ -10,7 +10,7 @@ import AddModal from "../components/AddUserModal";
 
 
 
-const ManageUsersComponent = ({user, handleClick, handleClickAgain}) => {
+const ManageUsersComponent = ({user, addModal, editModal, deleteModal}) => {
 
 
     return(      
@@ -19,17 +19,16 @@ const ManageUsersComponent = ({user, handleClick, handleClickAgain}) => {
                     <ChangeAccess/>
                     <div className = "my-3"></div>
                     <div>
-                        <button onClick = {handleClickAgain} className= "button has-text-weight-bold has-text-primary-dark is-rounded">Add User</button>
+                        <button onClick = {addModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded">Add User</button>
                     </div>
                     <div className = "my-3"></div>
                     <div>
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded">Delete User</button>
+                        <button onClick = {deleteModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded">Delete User</button>
                     </div>
 
                 </div>
                 <div className = "column is-half">
-                    {/* {components.map((item) => (<ManageUsers userInfo={item}/>))} */}
-                    <UserInformationBox userInfo = {user} handleClick={handleClick}/>
+                    <UserInformationBox userInfo = {user} handleClick={editModal}/>
                 </div>
         </div>
     )

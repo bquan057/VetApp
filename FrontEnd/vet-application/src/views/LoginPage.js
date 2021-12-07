@@ -7,18 +7,22 @@ import "bulma/css/bulma.css";
 import cat from "../res/sora.jpg"
 import LoginHeader from "../components/LoginHeader";
 import '../Customization/LoginCard.css'
+import ForgotPassword from "../components/ForgotPassword";
 
 const LoginPage = () => {
+
+    const forgotPassword = () => {
+        document.getElementById('ForgotPassword').classList.add('is-active');
+    }
 
     return ( 
         <section class = "hero has-background-success-light is-fullheight">
             <div className = "is-centered">
                 <LoginHeader/>
+                <ForgotPassword/>
                 <div className = "columns is-centered is-vcentered">
-                    {/* <div className = "LoginCard"> */}
-                <Login/>
+                <Login forgotPassword = {forgotPassword}/>
                 <img src={cat} alt="Example1" width="300" height="130"/>
-                {/* </div> */}
                 </div>
             </div>
         </section>

@@ -1,15 +1,19 @@
 import React from "react"
 
-const ChangePasswordModal = ({handleClose}) => {
+const ChangePasswordModal = () => {
+
+    const modalClose = () => {
+        document.getElementById('ChangePasswordModal').classList.remove('is-active');
+    }
     
     return ( 
-        <div>
-        <div className="modal-background" />
+        <div class = "modal" id ="ChangePasswordModal">
+        <div className="modal-background"></div>
         <div className="modal-card">
             <header className="modal-card-head">
             <p className="modal-card-title">Change Password</p>
             <button
-                onClick={handleClose}
+                onClick={modalClose}
                 className="delete"
                 aria-label="close"
             />
@@ -51,13 +55,14 @@ const ChangePasswordModal = ({handleClose}) => {
 
             </section>
             <footer className="modal-card-foot">
-            <button className="button is-success">Save changes</button>
-            <button onClick={handleClose} className="button">
+                {/* setting the save button to close for now */}
+            <button onClick = {modalClose} className="button is-success">Save changes</button>
+            <button onClick={modalClose} className="button">
                 Cancel
             </button>
             </footer>
         </div>
-        </div> 
+        </div>
     );
 }
  
