@@ -13,7 +13,11 @@ const Header = () => {
                     <div className="icon is-large">
                         <i className="far fa-bell has-text-primary-dark fas fa-2x"></i>
                     </div>
+<<<<<<< HEAD
                     <div className="mx-3 icon is-large">
+=======
+                    <div className="mx-3 icon is-large ">
+>>>>>>> develop-roh
                         <i className="far fa-user-circle has-text-primary-dark fas fa-2x"></i>
                     </div>
             </span>
