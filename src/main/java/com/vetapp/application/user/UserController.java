@@ -21,7 +21,7 @@ public class UserController {
     /*
     * Method to get all users in the DB
     */
-    @GetMapping("api/user")
+    @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers(){
 
         List<User> users = repository.findAll();
@@ -31,7 +31,7 @@ public class UserController {
     /*
         Method to add a new user
      */
-    @PostMapping("api/user")
+    @PostMapping("/user")
     public ResponseEntity<User> addNewUser(@RequestBody User newUser){
         User user = repository.save(newUser);
 
@@ -41,13 +41,13 @@ public class UserController {
     /*
         Method to update a user
      */
-    @PutMapping ("api/user")
+    @PutMapping ("/user")
     public ResponseEntity<User> updateUser(@RequestBody User user){
         User userFromDB = repository.findById(user.getUserid()).get();
 
         // set all attributes -> this is a problem when we have many attributes
         userFromDB.setUsername(user.getUsername());
-        userFromDB.setUsertype(user.getUsertype());
+        userFromDB.setRole(user.getRole());
         userFromDB.setEmail(user.getEmail());
 
         repository.save(userFromDB);
@@ -57,8 +57,8 @@ public class UserController {
     /*
         Method to delete a user
      */
-    @DeleteMapping("api/user/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable long id){
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable int id){
 
         if(repository.existsById(id)){
             User userToDelete = repository.getById(id);

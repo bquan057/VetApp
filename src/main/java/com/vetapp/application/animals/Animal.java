@@ -2,6 +2,7 @@ package com.vetapp.application.animals;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +16,7 @@ import lombok.Getter;
 public class Animal {
 
 	public Animal() {
-		this.animalid = "";
+		this.animalid = 0;
 		this.name = "";
 	    this.tattoo = "";
 	    this.citytattoo = "";
@@ -32,12 +33,12 @@ public class Animal {
 	    this.rdifid = "";
 	    this.hasmicrochip = "";
 	    this.species = "";
+	    this.status = "";
 		
 	}
 	
-	@Id @GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
-	@Getter @Setter String animalid;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter @Setter int animalid;
 	
 	@Getter @Setter String name;
     @Getter @Setter String tattoo;
@@ -55,5 +56,6 @@ public class Animal {
     @Getter @Setter String rdifid;
     @Getter @Setter String hasmicrochip;
 	@Getter @Setter String species;
+	@Getter @Setter String status;
     
 }

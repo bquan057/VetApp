@@ -15,18 +15,28 @@ public class User {
 	public User() {
 		this.userid = 0;
 		this.username = "";
-		this.usertype = "";
+		this.role = "";
+		this.password = "";
 		this.email = "";
 		this.activationdate = "";
 	}
 	
     @Column(name="UserID")
     @Id @GeneratedValue()@Getter
-    private long userid;
+    private int userid;
+    
+    @Column(name="username")
     @Setter@Getter
     private String username;
+    
+    @Column(name="password")
     @Setter@Getter
-    private String usertype;
+    String password;
+    
+    @Column(name="role")
+    @Setter@Getter
+    private String role;
+    
     @Setter@Getter
     private String email;
     @Getter@Setter

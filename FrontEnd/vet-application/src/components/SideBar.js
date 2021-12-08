@@ -29,7 +29,34 @@ const SideBar = () => {
                             </div>
                             <a className= "has-text-weight-bold has-text-primary-dark" href="/search" > Search Patient</a>
                         </span>
+                    </div>
+                    <div className = "my-3"></div>
+                    <div className = "has-text-centered">
+                        <span className="icon-text">
+                            {/* <div className="icon">
+                            <i className="far fa-user has-text-primary-dark"></i>
+                            </div> */}
+                            <a className= "has-text-weight-bold has-text-primary-dark" href="/MakeRequest" > Make Requests</a>
+                        </span>
                     </div> 
+                    <div className = "my-3"></div>
+                    <div className = "has-text-centered">
+                        <span className="icon-text">
+                            {/* <div className="icon">
+                            <i className="far fa-user has-text-primary-dark"></i>
+                            </div> */}
+                            <a className= "has-text-weight-bold has-text-primary-dark" href="/MyRequest" > My Requests</a>
+                        </span>
+                    </div> 
+                    <div className = "my-3"></div>
+                    <div className = "has-text-centered">
+                        <span className="icon-text">
+                            {/* <div className="icon">
+                            <i className="far fa-user has-text-primary-dark"></i>
+                            </div> */}
+                            <a className= "has-text-weight-bold has-text-primary-dark" href="/ManageRequest" > Manage Requests</a>
+                        </span>
+                    </div>  
                 </div>
             </div>
         </div>

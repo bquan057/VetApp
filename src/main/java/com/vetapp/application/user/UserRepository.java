@@ -1,13 +1,16 @@
 package com.vetapp.application.user;
 
-//import app.errors.UserNotFoundException;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 /*
-    Method definitions for interactions with the User Data
+    Definitions for methods that JPA implements
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
+    // find the User in the DB by the userName => JPA creates the implementation
+    User findByusername(String userName);
 }

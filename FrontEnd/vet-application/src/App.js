@@ -8,6 +8,8 @@ import SideBar from "./components/SideBar";
 import Header from "./components/Header";
 import ForgotPassword from "./components/ForgotPassword";
 import {BrowserRouter, Route, Routes, Link, Outlet} from "react-router-dom"
+import TeacherRoutes from "./components/TeacherRoutes";
+import MakeRequest from "./views/MakeRequest";
 
 
 function App() {
@@ -20,8 +22,16 @@ function App() {
           <Route path="" element = {<LoginPage/>} />
           <Route path = "/forgotPassword" element = {<ForgotPassword/>}/>
           <Route path="/search" element = {<SearchPage/>} />
+          <Route element={<TeacherRoutes/>}>
+              <Route path="/MakeRequest" element = {<MakeRequest/>} />
+              <Route path="/MyRequest" element = {<MyRequest/>} />
+          </Route>
+          <Route element={<AdminRoutes/>}>
+              <Route path="/ManageRequest" element = {<ManageRequest/>} />
+          </Route>
         <Route path="/animals" element={<ManageAnimalsPage/>} />
         <Route path="/animals/:id" element={<AnimalPage/>} />
+        <Route path="/home" element={<HomePage/>} />
         <Route path="/users" element={<ManageUsersPage/>} />
         </Routes>
       </BrowserRouter>

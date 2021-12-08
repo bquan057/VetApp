@@ -9,14 +9,20 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.vetapp.application.animals.Animal;
+import com.vetapp.application.animals.AnimalService;
+
 @RestController
 public class AnimalRegistrationController {
 
 	@Autowired
 	AnimalRepository animalRepository;
+	
+	@Autowired
+    AnimalService service;
 
     @CrossOrigin
-	@GetMapping("/api/animals")
+	@GetMapping("/animals")
 	public ResponseEntity<List<Animal>> getAll() {
 		
 		List<Animal> animals = animalRepository.findAll();
@@ -24,28 +30,39 @@ public class AnimalRegistrationController {
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/api/animals/animal_id/{animal_id}")
-	public ResponseEntity<Optional<Animal>> getByID(@PathVariable String animal_id) {
+    /*
+    Get mapping to get animal by status
+     */
+    @CrossOrigin
+	@GetMapping("/animals/status/{status}")
+	ResponseEntity<List<Animal>> getAnimalbyStatus(@PathVariable String status){
+    	List<Animal> animals = service.getAnimalByStatus(status);
+
+    	return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
+    }
+    
+	@GetMapping("/animals/animal_id/{animal_id}")
+	public ResponseEntity<Optional<Animal>> getByID(@PathVariable int animal_id) {
 		Optional<Animal> animals = animalRepository.findById(animal_id);
 		
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
 	}
 		
-	@GetMapping("/api/animals/name/{name}")
+	@GetMapping("/animals/name/{name}")
 	public ResponseEntity<List<Animal>> getByName(@PathVariable String name) {
 		List<Animal> animals = animalRepository.findByNameContaining(name);
 		
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/api/animals/species/{species}")
+	@GetMapping("/animals/species/{species}")
 	public ResponseEntity<List<Animal>> getBySpecies(@PathVariable String species) {
 		List<Animal> animals = animalRepository.findBySpeciesContaining(species);
 		
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping(path = "/api/animals", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/animals", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Animal> post(@RequestBody Animal newAnimal) {
 		
 		Animal animalForCreation = new Animal();
@@ -66,13 +83,14 @@ public class AnimalRegistrationController {
         animalForCreation.setRdifid(newAnimal.getRdifid());
         animalForCreation.setHasmicrochip(newAnimal.getHasmicrochip());
         animalForCreation.setSpecies(newAnimal.getSpecies());
+        animalForCreation.setStatus(newAnimal.getStatus());
         
         Animal animalCreated = animalRepository.save(animalForCreation);
         return new ResponseEntity<>(animalCreated, HttpStatus.ACCEPTED);
     }
 
-    @PutMapping(path = "/api/animals/{animal_id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Animal> put(@PathVariable String animal_id, @RequestBody Animal animal) {
+    @PutMapping(path = "/animals/{animal_id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Animal> put(@PathVariable int animal_id, @RequestBody Animal animal) {
         Animal animalForUpdate = animalRepository.findById(animal_id).orElseThrow();
         
         animalForUpdate.setAnimalid(animal_id);
@@ -92,14 +110,27 @@ public class AnimalRegistrationController {
         animalForUpdate.setRdifid(animal.getRdifid());
         animalForUpdate.setHasmicrochip(animal.getHasmicrochip());
         animalForUpdate.setSpecies(animal.getSpecies());
+        animalForUpdate.setStatus(animal.getStatus());
         
         Animal animalWithUpdate = animalRepository.save(animalForUpdate);
         
         return new ResponseEntity<>(animalWithUpdate, HttpStatus.ACCEPTED);
     }
+    
+    /*
+    mapping to update an animals status
+     */
+	@CrossOrigin
+	@PutMapping("/animals/status")
+	ResponseEntity<Animal> updatedAnimalStatus(@RequestBody Animal animal){
 	
-    @DeleteMapping("api/animals/{animal_id}")
-    public ResponseEntity<String> deleteUser(@PathVariable String animal_id){
+	    Animal animalToUpdate = service.updatedAnimalStatus(animal);
+	
+	    return new ResponseEntity<>(animalToUpdate, HttpStatus.ACCEPTED);
+	}
+	
+    @DeleteMapping("/animals/{animal_id}")
+    public ResponseEntity<String> deleteUser(@PathVariable int animal_id){
 
         if(animalRepository.existsById(animal_id)){
             Animal animalToDelete = animalRepository.getById(animal_id);

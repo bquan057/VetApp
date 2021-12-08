@@ -7,7 +7,29 @@ const Login = ({forgotPassword}) => {
 
     let navigate = useNavigate();
     function handleClick() {
-        navigate('/search');
+        // TO-DO: Navigate to search page. Leave in when testing.
+        navigate('/home');
+
+        // TO-DO: API call to check login credentials. Add back in when pushing final product.
+        // const apiEndpoint = `http://localhost:8080/login`;
+
+        // var u = document.querySelector('#username').value;
+        // var p = document.querySelector('#password').value;
+        
+        // const user = {
+        //     username:u,
+        //     password:p
+        // }
+
+        // axios.post(apiEndpoint, user)
+        //     .then((res) => {
+        //         const token = res.data;
+        //         sessionStorage.setItem('token', token);
+        //         if (token != null && token != "") {
+        //             navigate("/home")
+        //         }
+        //     })
+
     };
 
     return (

@@ -1,33 +1,38 @@
 package com.vetapp.application.user;
 
-//import app.errors.UserNotFoundException;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
+@Service
 public class UserService {
-    private final UserRepository userRepository;
 
-//    // creating a new user
-//    public String create(NewUser newUser){return userRepository.create(newUser);}
-//
-//    // get all users
-//    public List<User> getUsers(){return userRepository.getUsers();}
-//
-//    // get a specific user
-//    public User getUserById(String id) throws UserNotFoundException {return userRepository.getUserById(id);}
-//
-//    // delete a specific user
-//    public void deleteUser (String id) throws UserNotFoundException{
-//        // user must exist
-//        Objects.requireNonNull(id,"User id is required");
-//        userRepository.deleteUser(id);
-//    }
-//
-//    // update an existing user
-//    public User updateUser(User user) throws UserNotFoundException{
-//        // user must exist
-//        Objects.requireNonNull(user.getUserId(),"User id is required for update");
-//        return userRepository.updateUser(user);
-//    }
+    // instance of user database
+    // query db for uname and password
+    // if we get valid user
+    // create the TokenManager
+
+    @Autowired
+    UserRepository repository;
+
+    TokenManager tokenManager;
+
+    public UserService(){
+        tokenManager = new TokenManager();
+    }
+
+    // method to validate user by creating TokenManager
+    public String validateUser(String uname, String pword){
+        // query db
+        User user = repository.findByusername(uname);
+
+        // credientials dont match in db
+        if(!user.getUsername().equals(uname) || !user.getPassword().equals(pword)){
+            return null;
+        }
+
+        // create jwt from uname and pword
+        // respond with jwt
+        return tokenManager.createToken(user.getUserid(), user.getUsername(), user.getPassword(), user.getRole());
+    }
 
 }
