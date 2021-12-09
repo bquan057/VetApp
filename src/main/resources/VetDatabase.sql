@@ -159,12 +159,12 @@ VALUES
 
 DROP TABLE IF EXISTS TREATMENT_METHODS;
 CREATE TABLE TREATMENT_METHODS (
-	MethodId				integer not null,
+	TreatmentId				integer not null,
     TreatmentMethod			varchar(30),
-    primary key (MethodId)
+    primary key (TreatmentId)
 );
 
-INSERT INTO TREATMENT_METHODS (MethodId, TreatmentMethod)
+INSERT INTO TREATMENT_METHODS (TreatmentId, TreatmentMethod)
 VALUES
 (1, 'Eat vitamin C'),
 (2, 'Surgery'),
@@ -178,19 +178,20 @@ CREATE TABLE TREATMENT (
     TechnicianId			integer,
     AttendantId				integer,
     AnimalId				integer,
-    MethodId				integer,
+    TreatmentId				integer,
     IsComplete				boolean,
-    primary key (TimeStamp, TechnicianId, AnimalId, MethodId),
+    primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
     foreign key (TechnicianId) references USER(UserId),
     foreign key (AttendantId) references USER(UserId),
     foreign key (AnimalId) references ANIMAL(AnimalId),
-    foreign key (MethodId) references TREATMENT_METHODS(MethodId)
+    foreign key (TreatmentId) references TREATMENT_METHODS(TreatmentId)
 );
 
-INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, MethodId, IsComplete)
+INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, IsComplete)
 VALUES
 ("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
-("2021-09-01 9:30:00", 12346, 12351, 124, 2, false);
+("2021-09-01 9:30:00", 12346, 12351, 124, 2, false),
+("2021-12-01 10:45:00", 12348, 12351, 125, 1, false);
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -210,7 +211,7 @@ VALUES
 
 DROP TABLE IF EXISTS NOTIFICATION;
 CREATE TABLE NOTIFICATION (
-	NotificationId			integer not null,
+	NotificationId			integer not null auto_increment,
     TimeStamp				DateTime,
     Notification			varchar(30),
     primary key (NotificationId)
@@ -249,10 +250,10 @@ CREATE TABLE LAB_REQUESTS (
 
 INSERT INTO LAB_REQUESTS (AnimalId, TeachingId, BookingStatus)
 VALUES
-(123, 12346, "Booked"),
-(124, 12347, "Available"),
-(125, 12346, "Booked"),
-(126, 12347, "Available");
+(123, 12346, "New"),
+(124, 12347, "New"),
+(125, 12346, "Approved_By_Admin"),
+(126, 12347, "Approved_By_Technician");
 
 DROP TABLE IF EXISTS ONGOING_CARE;
 CREATE TABLE ONGOING_CARE (
@@ -285,3 +286,40 @@ SELECT * FROM NOTIFICATION;
 SELECT * FROM USER_NOTIFICATIONS;
 SELECT * FROM LAB_REQUESTS;
 SELECT * FROM ONGOING_CARE;
+
+-- 2. A basic retrieval query. Selecting all animals that are available for lab requests.
+SELECT * FROM ANIMAL WHERE Availability = "Available";
+
+-- 3. A retrieval query with ordered results. Retrieve all upcoming appointments sorted by ascending order.
+SELECT * FROM ONGOING_CARE ORDER BY DueDate;
+
+-- 4. A nested retrieval query. Get the number of treatments of the type 'Eat vitamin C' that haven't been performed yet.
+SELECT COUNT(*) FROM TREATMENT WHERE IsComplete = false AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
+-- Get all comments for a specific animal where the user is an admin.
+SELECT * FROM COMMENT WHERE AnimalId = 123 AND UserId in (SELECT UserId FROM USER WHERE Role = "Admin");
+
+-- 5. A retrieval query using joined tables. Select animal names, ids, and booking statuses where the request booking status is new.
+SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN LAB_REQUESTS AS L WHERE L.BookingStatus = "New";
+
+-- 6. An update operation with any necessary triggers.
+-- CREATE TRIGGER DISEASE_NOTIFICATION
+-- BEFORE INSERT OR UPDATE OF DiseaseId ON STATUS
+-- FOR EACH ROW
+-- WHEN (NEW.DiseaseId IS NOT NULL)
+-- INSERT INTO NOTIFICATION (TimeStamp, Notification)
+-- VALUES
+-- (CURRENT_TIMESTAMP, "Disaese Detected!");
+
+CREATE TRIGGER REQUEST_CREATION
+AFTER UPDATE ON ANIMAL
+FOR EACH ROW
+INSERT INTO LAB_REQUESTS(AnimalId, TeachingId, BookingStatus)
+VALUES
+(ANIMAL.AnimalId, USER.UserId, "New");
+
+
+-- IF (NEW.Availabity = "Requested")
+-- THEN
+-- INSERT INTO LAB_REQUESTS (AnimalId, TeachingId, BookingStatus)
+-- VALUES
+-- (123, 12345, "New");
