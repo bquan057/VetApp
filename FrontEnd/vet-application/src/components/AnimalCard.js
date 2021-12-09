@@ -42,7 +42,7 @@ const AnimalCard = ({weightModal}) => {
                             <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={weightModal} >View Weight History</button>
                         </div>
                         <div className="column is-centered">
-                            <div className="columns is-multiline ">
+                            <div className="columns">
                                 {
                                     Object.entries(animal).map(([att, value]) => <Card att={att} value={value}/>) 
                                 }

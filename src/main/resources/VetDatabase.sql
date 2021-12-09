@@ -16,41 +16,42 @@ CREATE TABLE ANIMAL (
     SpecialInstructions		varchar(30),
     Diet					varchar(30),
     IsActive				boolean,
-    RDIF					integer,
-    HasMicrochip			boolean,
+    RFID					integer,
     Species					varchar(30),
+    Availability			varchar(30),
     primary key (AnimalID)
 );
 
-INSERT INTO ANIMAL (AnimalId, AnimalName, Tattoo, CityTattoo, Age, Birthdate, Breed, Sex, CoatColour, SpecialInstructions, Diet, IsActive, RDIF, HasMicrochip, Species)
+INSERT INTO ANIMAL (AnimalId, AnimalName, Tattoo, CityTattoo, Age, Birthdate, Breed, Sex, CoatColour, SpecialInstructions, Diet, IsActive, RFID, Species, Availability)
 VALUES
-(123, 'Sora', "hellokitty", "hellokitty1", 1, '2021-12-01', 'Orange Tabby', 'female', 'black', 'N/A', 'vegan', true, 12, true, 'Orange Tabby'),
-(124, 'Bruno', "hellodoggy", "hellodoggy1", 2, '2020-07-01', 'italian greyhound', 'female', 'brown', 'N/A', 'vegan', false, 12, true, 'dog'),
-(125, 'Pengu', "hellopenguin", "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', 'N/A', 'fish', true, 12, false, 'penguin'),
-(126, 'Cat', "hellokittykawaii", "hellokitty12", 1, '2018-12-01', 'Black cat', 'male', 'black', 'N/A', 'salmon', true, 12, false, 'blackkitty');
+(123, 'Sora', "hellokitty", "hellokitty1", 1, '2021-12-01', 'Orange Tabby', 'female', 'black', 'N/A', 'vegan', true, 12, 'Orange Tabby', 'Available'),
+(124, 'Bruno', "hellodoggy", "hellodoggy1", 2, '2020-07-01', 'italian greyhound', 'female', 'brown', 'N/A', 'vegan', false, 12, 'dog', 'Available'),
+(125, 'Pengu', "hellopenguin", "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', 'N/A', 'fish', true, 12, 'penguin', 'Available'),
+(126, 'Cat', "hellokittykawaii", "hellokitty12", 1, '2018-12-01', 'Black cat', 'male', 'black', 'N/A', 'salmon', true, 12, 'blackkitty', 'Available');
 
 
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
 	UserId					integer	not null,
-	UserName				varchar(30),
+	Username				varchar(30),
     Password				varchar(30),
     Email					varchar(30),
     FName					varchar(30),
     ActivationDate			varchar(30),
+    IsActive				boolean,
     Role					varchar(30),
 	primary key (UserId)
 );
 
-INSERT INTO USER (UserId, UserName, Password, Email, FName, ActivationDate, Role)
+INSERT INTO USER (UserId, Username, Password, Email, FName, ActivationDate, IsActive, Role)
 VALUES
-(12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily', '2021-12-01', 'Admin'),
-(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', '2021-01-01', 'Teaching Technician'),
-(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh', '2021-05-01', 'Teaching Technician'),
-(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora', '2020-05-01', 'Health Technician'),
-(12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', '2019-05-01', 'Student'),
-(12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda', '2019-05-01', 'Student'),
-(12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid', '2016-05-01', 'Care Attendant');
+(12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily', '2021-12-01', true, 'Admin'),
+(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', '2021-01-01', true, 'Teaching Technician'),
+(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh', '2021-05-01', true, 'Teaching Technician'),
+(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora', '2020-05-01', true, 'Health Technician'),
+(12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', '2019-05-01', true, 'Student'),
+(12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda', '2019-05-01', true, 'Student'),
+(12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid', '2016-05-01', true, 'Care Attendant');
 
 DROP TABLE IF EXISTS COMMENT;
 CREATE TABLE COMMENT (
@@ -140,7 +141,6 @@ CREATE TABLE STATUS (
 	TimeStamp				DateTime not null,
     UserId					integer not null,
     AnimalId				integer not null,
-    Status					varchar(30),
     Location				varchar(30),
     Description				varchar(30),
     DiseaseId				integer,
@@ -150,12 +150,12 @@ CREATE TABLE STATUS (
     foreign key (DiseaseId) references DISEASES(DiseaseId)
 );
 
-INSERT INTO STATUS (TimeStamp, UserId, AnimalId, Status, Location, Description, DiseaseId)
+INSERT INTO STATUS (TimeStamp, UserId, AnimalId, Location, Description, DiseaseId)
 VALUES
-("2021-12-01 8:15:00", 12345, 123, 'Alive', 'Clinic', 'Doing well', 1),
-("2021-12-02 8:35:40", 12345, 124, 'Concussion', 'Field', 'Not doing well', 2),
-("2021-12-03 10:35:00", 12345, 125, 'Fat', 'Clinic', 'Healthy', 3),
-("2021-12-04 8:14:30", 12345, 126, 'Obese', 'Clinic', 'Not doing well', 4);
+("2021-12-01 8:15:00", 12345, 123, 'Clinic', 'Doing well', 1),
+("2021-12-02 8:35:40", 12345, 124, 'Field', 'Not doing well', 2),
+("2021-12-03 10:35:00", 12345, 125, 'Clinic', 'Healthy', 3),
+("2021-12-04 8:14:30", 12345, 126, 'Clinic', 'Not doing well', 4);
 
 DROP TABLE IF EXISTS TREATMENT_METHODS;
 CREATE TABLE TREATMENT_METHODS (
@@ -174,24 +174,23 @@ VALUES
 
 DROP TABLE IF EXISTS TREATMENT;
 CREATE TABLE TREATMENT (
-	TreatmentId				integer not null,
 	TimeStamp				DateTime,
     TechnicianId			integer,
     AttendantId				integer,
     AnimalId				integer,
     MethodId				integer,
     IsComplete				boolean,
-    primary key (TreatmentId),
+    primary key (TimeStamp, TechnicianId, AnimalId, MethodId),
     foreign key (TechnicianId) references USER(UserId),
     foreign key (AttendantId) references USER(UserId),
     foreign key (AnimalId) references ANIMAL(AnimalId),
     foreign key (MethodId) references TREATMENT_METHODS(MethodId)
 );
 
-INSERT INTO TREATMENT (TreatmentId, TimeStamp, TechnicianId, AttendantId, AnimalId, MethodId, IsComplete)
+INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, MethodId, IsComplete)
 VALUES
-(123456, "2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
-(456789, "2021-09-01 9:30:00", 12346, 12351, 124, 2, false);
+("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
+("2021-09-01 9:30:00", 12346, 12351, 124, 2, false);
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -255,6 +254,22 @@ VALUES
 (125, 12346, "Booked"),
 (126, 12347, "Available");
 
+DROP TABLE IF EXISTS ONGOING_CARE;
+CREATE TABLE ONGOING_CARE (
+	AnimalId				integer not null,
+    Care					varchar(30),
+    DueDate					varchar(30),
+    primary key (AnimalId, Care),
+    foreign key (AnimalId) references ANIMAL(AnimalId)
+);
+
+INSERT INTO ONGOING_CARE (AnimalId, Care, DueDate)
+VALUES
+(123, 'vaccine', '12-12-21'),
+(124, 'rabies vaccine', '12-28-21'),
+(125, 'annual check up', '12-29-21'),
+(126, 'annual check up', '12-30-21');
+
 SELECT * FROM ANIMAL;
 SELECT * FROM USER;
 SELECT * FROM COMMENT;
@@ -269,3 +284,4 @@ SELECT * FROM WEIGHT;
 SELECT * FROM NOTIFICATION;
 SELECT * FROM USER_NOTIFICATIONS;
 SELECT * FROM LAB_REQUESTS;
+SELECT * FROM ONGOING_CARE;

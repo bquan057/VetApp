@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useNavigate} from "react-router-dom";
+import axios from "axios";
 
 
 const Login = ({forgotPassword}) => {
@@ -8,27 +9,29 @@ const Login = ({forgotPassword}) => {
     let navigate = useNavigate();
     function handleClick() {
         // TO-DO: Navigate to search page. Leave in when testing.
-        navigate('/home');
+        // navigate('/home');
 
         // TO-DO: API call to check login credentials. Add back in when pushing final product.
-        // const apiEndpoint = `http://localhost:8080/login`;
+        const apiEndpoint = `http://localhost:8080/login`;
 
-        // var u = document.querySelector('#username').value;
-        // var p = document.querySelector('#password').value;
+        var u = document.getElementById('username').value;
+        var p = document.getElementById('password').value;
         
-        // const user = {
-        //     username:u,
-        //     password:p
-        // }
+        const user = {
+            username:u,
+            password:p
+        }
 
-        // axios.post(apiEndpoint, user)
-        //     .then((res) => {
-        //         const token = res.data;
-        //         sessionStorage.setItem('token', token);
-        //         if (token != null && token != "") {
-        //             navigate("/home")
-        //         }
-        //     })
+        console.log(user)
+
+        axios.post(apiEndpoint, user)
+            .then((res) => {
+                const token = res.data;
+                sessionStorage.setItem('token', token);
+                if (token != null && token != "") {
+                    navigate("/home")
+                }
+            })
 
     };
 
@@ -42,8 +45,8 @@ const Login = ({forgotPassword}) => {
 
             <div className="field ml-5">
                 <p class = "control has-iconsleft">
-                <label className = "has-text-primary-dark">Email address: </label>
-                <input type="email" className="form-control " placeholder="Enter email" />
+                <label className = "has-text-primary-dark">Username: </label>
+                <input type="email" id="username" className="form-control " placeholder="Enter username" />
                 {/* <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                 </span> */}
@@ -52,7 +55,7 @@ const Login = ({forgotPassword}) => {
 
             <div className="form-group ml-5">
                 <label className = "has-text-primary-dark">Password: </label>
-                <input type="password" className="form-control" placeholder="Enter password" />
+                <input type="password" id="password" className="form-control" placeholder="Enter password" />
             </div>
 
             <div className="form-group is-centered ml-5">

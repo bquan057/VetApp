@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     // find the User in the DB by the userName => JPA creates the implementation
-    User findByusername(String userName);
+    User findByusername(String username);
 }

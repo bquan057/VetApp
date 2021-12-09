@@ -11,6 +11,7 @@ import DeleteAnimalModal from "../components/DeleteAnimalModal";
 import RequestAnimalModal from "../components/RequestAnimalModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import EditModal from "../components/EditModal";
+import animalData from "../data/animalData";
 
 const ManageAnimalsPage = () => {
 
@@ -77,10 +78,16 @@ const ManageAnimalsPage = () => {
         },
     ]
 
-    const[components, setComponents] = useState([]);
+    const[animals, setAnimals] = useState([]);
 
-    const addComponent = () => {
-        setComponents(animalData)
+    const addAnimals = () => {
+        // axios.get("http://localhost:8080/animals")
+        //     .then((res) => {
+        //         setAnimals(res.data)
+        //     }
+        // )
+
+        setAnimals(animalData)
     }
 
     const addAnimalModal = () => {
@@ -106,6 +113,7 @@ const ManageAnimalsPage = () => {
     const editAccountModal = () => {
         document.getElementById('EditModal').classList.add('is-active');
     }
+
     return(
         <div className="columns">
             <SideBar/>
@@ -113,17 +121,17 @@ const ManageAnimalsPage = () => {
             <ChangePasswordModal/>
             <EditModal/>
             <div>
-                {components.map(item => <EditAnimalModal animal={item}/>)}
-                {components.map(item => <DeleteAnimalModal animal={item}/>)}
-                {components.map(item => <RequestAnimalModal animal={item}/>)}
+                {animals.map(item => <EditAnimalModal animal={item}/>)}
+                {animals.map(item => <DeleteAnimalModal animal={item}/>)}
+                {animals.map(item => <RequestAnimalModal animal={item}/>)}
             </div>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
                 <NewAnimalButton addAnimalModal = {addAnimalModal}/>
-                <SearchBarManageAnimals addComponent = {addComponent}/>
+                <SearchBarManageAnimals addAnimals = {addAnimals}/>
                 <SearchSelectorAnimal/>  
                 <div>
-                    {components.map(item => <ManageAnimalsCard animal={item} editAnimalModal = {editAnimalModal} deleteAnimalModal = {deleteAnimalModal} requestAnimalModal = {requestAnimalModal}/>)}
+                    {animals.map(item => <ManageAnimalsCard animal={item} editAnimalModal = {editAnimalModal} deleteAnimalModal = {deleteAnimalModal} requestAnimalModal = {requestAnimalModal}/>)}
                 </div>
             </div>
         </div>

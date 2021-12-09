@@ -9,38 +9,96 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="Users")
+@Table(name="User")
 public class User {
-
-	public User() {
-		this.userid = 0;
-		this.username = "";
-		this.role = "";
-		this.password = "";
-		this.email = "";
-		this.activationdate = "";
-	}
 	
     @Column(name="UserID")
-    @Id @GeneratedValue()@Getter
+    @Id @GeneratedValue()
+    @Getter @Setter
     private int userid;
     
-    @Column(name="username")
-    @Setter@Getter
+    @Column(name="Username")
+    @Getter @Setter
     private String username;
     
-    @Column(name="password")
-    @Setter@Getter
+    @Column(name="Password")
+    @Getter @Setter
     String password;
     
-    @Column(name="role")
-    @Setter@Getter
-    private String role;
-    
-    @Setter@Getter
+    @Column(name="Email")
+    @Getter @Setter
     private String email;
-    @Getter@Setter
+    
+    @Column(name="FName")
+    @Getter @Setter
+    private String fname;
+    
+    @Column(name="ActivationDate")
+    @Getter @Setter
     private String activationdate;
+    
+    @Column(name="Role")
+    @Getter @Setter
+    private String role;
+   
+    
+
+
+//	public int getUserid() {
+//		return userid;
+//	}
+//
+//	public void setUserid(int userid) {
+//		this.userid = userid;
+//	}
+
+//	public String getUsername() {
+//		return username;
+//	}
+//
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
+//
+//	public String getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
+//
+//	public String getRole() {
+//		return role;
+//	}
+//
+//	public void setRole(String role) {
+//		this.role = role;
+//	}
+//
+//	public String getFname() {
+//		return fname;
+//	}
+//
+//	public void setFname(String fname) {
+//		this.fname = fname;
+//	}
+//
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+//
+//	public String getActivationdate() {
+//		return activationdate;
+//	}
+//
+//	public void setActivationdate(String activationdate) {
+//		this.activationdate = activationdate;
+//	}
 
 //    String password;
 //    String name;

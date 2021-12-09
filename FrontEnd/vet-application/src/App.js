@@ -10,7 +10,10 @@ import ForgotPassword from "./components/ForgotPassword";
 import {BrowserRouter, Route, Routes, Link, Outlet} from "react-router-dom"
 import TeacherRoutes from "./components/TeacherRoutes";
 import MakeRequest from "./views/MakeRequest";
-
+import MyRequest from "./views/MyRequest";
+import AdminRoutes from "./components/AdminRoutes";
+import ManageRequest from "./views/ManageRequest";
+import HomePage from "./views/HomePage";
 
 function App() {
   

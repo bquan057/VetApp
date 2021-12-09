@@ -17,7 +17,20 @@ public class UserController {
 
     @Autowired
     UserRepository repository;
+    
+    @Autowired
+    UserService userService;
 
+    // create post mapping => /login username and password => send TokenManager in response
+    @CrossOrigin
+    @PostMapping("/login")
+    public ResponseEntity<String> validateUser(@RequestBody User user){
+
+        String token = userService.validateUser(user.getUsername(), user.getPassword());
+
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    }
+    
     /*
     * Method to get all users in the DB
     */
