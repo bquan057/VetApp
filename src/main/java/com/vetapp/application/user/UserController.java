@@ -14,9 +14,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 public class UserController {
-
-    @Autowired
-    UserRepository repository;
     
     @Autowired
     UserService userService;
@@ -38,8 +35,8 @@ public class UserController {
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers(){
 
-        List<User> users = repository.findAll();
-        return new ResponseEntity<List<User>>(users, HttpStatus.ACCEPTED);
+        List<User> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
     }
 
     /*
@@ -48,9 +45,9 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/user")
     public ResponseEntity<User> addNewUser(@RequestBody User newUser){
-        User user = repository.save(newUser);
+        User user = userService.saveUser(newUser);
 
-        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     /*
@@ -59,22 +56,9 @@ public class UserController {
     @CrossOrigin
     @PutMapping ("/user/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int UserId){
-        User userFromDB = repository.findById(user.getUserid()).get();
+        User userFromDB = userService.getUserFromDB(user);
 
-        // set all attributes -> this is a problem when we have many attributes
-        if(userFromDB.getFname() != null){
-            userFromDB.setFname(userFromDB.getFname());
-        }
-        if(userFromDB.getLname() != null){
-            userFromDB.setLname(userFromDB.getLname());
-        }
-        if(userFromDB.getUsername() != null){
-            userFromDB.setUsername(userFromDB.getUsername());
-        }
-        if(userFromDB.getRole() != null){
-            userFromDB.setRole(userFromDB.getRole());
-        }
-        repository.save(userFromDB);
+        userFromDB = userService.setUserFromDB(userFromDB);
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
     }
 
@@ -85,12 +69,9 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id){
 
-        if(repository.existsById(id)){
-            User userToDelete = repository.getById(id);
-            repository.delete(userToDelete);
-            return new ResponseEntity<>("User Deleted", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("User not found", HttpStatus.OK);
+        boolean userAnswer = userService.checkIdExists(id);
+        String userStatus = userService.deleteUser(userAnswer, id);
+        return new ResponseEntity<>(userStatus, HttpStatus.OK);
     }
 
     /*
@@ -99,7 +80,7 @@ public class UserController {
     @GetMapping("/user/{id}")
     @ResponseBody
     public ResponseEntity<List<User>> searchUser(@RequestParam String name){
-        List<User> users = repository.findByName(name);
+        List<User> users = userService.getByName(name);
         return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
     }
 
@@ -110,12 +91,10 @@ public class UserController {
     @PutMapping("/user/{id}")
     public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam boolean isActive) {
 
-        User userFromDB = repository.findById(user.getUserid()).get();
-        if(userFromDB.getIsactive() == true) {
-            userFromDB.setIsactive(false);
-            return new ResponseEntity<>("User blocked with status", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("User cannot be blocked", HttpStatus.OK);
+        User userFromDB = userService.getUserFromDB(user);
+        boolean statusActive = userService.checkIsActive(userFromDB);
+        String userActiveStatus = userService.setIsActive(statusActive, userFromDB);
+        return new ResponseEntity<>(userActiveStatus, HttpStatus.OK);
     }
 
     /*
@@ -124,11 +103,8 @@ public class UserController {
     @CrossOrigin
     @PutMapping("/user/{id}")
     public ResponseEntity<String> checkPassword(@RequestBody User user, @RequestParam String password){
-        User userFromDB = repository.findById(user.getUserid()).get();
-        if(userFromDB.getPassword().equals(password)){
-            userFromDB.setPassword(userFromDB.getPassword());
-            return new ResponseEntity<>("Password changed", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Passwords don't match", HttpStatus.OK);
+        User userFromDB = userService.getUserFromDB(user);
+        String userPasswordStatus = userService.setPassword(password, userFromDB);
+        return new ResponseEntity<>(userPasswordStatus, HttpStatus.OK);
     }
 }
