@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestAnimalModal}) =>{
 const ManageAnimalsCard = (props) =>{
 
-    const[animal, setAnimal] = useState(props.animal);
+    const[animal] = useState(props.animal);
 
     function Card (att) {
         let label = att.att

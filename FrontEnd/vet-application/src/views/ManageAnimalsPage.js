@@ -16,87 +16,28 @@ import axios from "axios";
 
 const ManageAnimalsPage = () => {
 
-    const animalData = [
-        {
-            name: "1111",
-            id: "1111",
-            weight: "1111", 
-            tattoo: "1111",
-            cityTattoo: "1111",
-            age: "1111",
-            birthdate: "1111",
-            breed: "1111",
-            sex: "1111",
-            coatColour: "1111",
-            species: "1111",
-            problems: "1111",
-            comments: "1111",
-            medication: "1111",
-            instructions: "1111",
-            isActive: "1111",
-            rfid: "1111",
-        },
-        {
-            name: "2222",
-            id: "2222",
-            weight: "2222", 
-            tattoo: "2222",
-            cityTattoo: "2222",
-            age: "2222",
-            birthdate: "2222",
-            breed: "2222",
-            sex: "2222",
-            coatColour: "2222",
-            species: "2222",
-            problems: "2222",
-            comments: "2222",
-            medication: "2222",
-            instructions: "2222",
-            isActive: "2222",
-            rfid: "2222",
-        },
-        {
-            name: "3333",
-            id: "3333",
-            weight: "3333", 
-            tattoo: "3333",
-            cityTattoo: "3333",
-            age: "3333",
-            birthdate: "3333",
-            breed: "3333",
-            sex: "3333",
-            coatColour: "3333",
-            species: "3333",
-            problems: "3333",
-            comments: "3333",
-            medication: "3333",
-            instructions: "3333",
-            isActive: "3333",
-            rfid: "3333",
-        },
-    ]
-
     const[animals, setAnimals] = useState([]);
 
-    const addAnimals = () => {
+    var addAnimals = () => {
         var apiEndpoint=""
 
+        setAnimals([])
+
         if (document.getElementById("search_by_id_manage_animals").checked) {
-            apiEndpoint = "http://localhost:8080/animal?animalid="
+            apiEndpoint = "http://localhost:8080/animal/search?animalid=" + document.getElementById("searchbar_manage_animals").value
         }
         else if (document.getElementById("search_by_name_manage_animals").checked) {
-            apiEndpoint = "http://localhost:8080/animal?animalname="
+            apiEndpoint = "http://localhost:8080/animal/search?animalname=" + document.getElementById("searchbar_manage_animals").value
         }
-        else if (document.getElementById("search_by_name_manage_animals").checked) {
-            apiEndpoint = "http://localhost:8080/animal?species="
+        else if (document.getElementById("search_by_species_manage_animals").checked) {
+            apiEndpoint = "http://localhost:8080/animal/search?species=" + document.getElementById("searchbar_manage_animals").value
         }
         else {
             apiEndpoint = "http://localhost:8080/animal"
         }
-
+  
         axios.get(apiEndpoint)
             .then((res) => {
-                console.log(res.data)
                 setAnimals(res.data)
             }
         )

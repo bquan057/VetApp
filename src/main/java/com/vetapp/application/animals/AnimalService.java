@@ -14,6 +14,18 @@ public class AnimalService {
     public List<Animal> findAll() {
 		return repository.findAll();
 	}
+
+	public List<Animal> findByAnimalid(int animalid) {
+		return repository.findByAnimalid(animalid);
+	}
+	
+	public List<Animal> findByAnimalname(String animalname) {
+		return repository.findByAnimalname(animalname);
+	}
+	
+	public List<Animal> findBySpecies(String species) {
+		return repository.findBySpecies(species);
+	}
     
 //    /*
 //        get all animals of a specified status

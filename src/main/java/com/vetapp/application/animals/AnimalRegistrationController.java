@@ -31,6 +31,37 @@ public class AnimalRegistrationController {
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
 	}
     
+    @CrossOrigin
+	@GetMapping("/animal/search")
+	public ResponseEntity<List<Animal>> findBy(@RequestParam(required = false) Integer animalid, @RequestParam(required = false) String animalname,
+			@RequestParam(required = false) String species) {
+		
+    	List<Animal> animals = null;
+    	
+		if (animalid != null) {
+			animals = service.findByAnimalid(animalid);
+		}
+		else if (animalname != null) {
+			animals = service.findByAnimalname(animalname);
+		}
+		else if (species != null) {
+			animals = service.findBySpecies(species);
+		}
+		
+		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
+	}
+    
+    
+    
+//    @CrossOrigin
+//	@GetMapping("/animal/search?animalname")
+//	public ResponseEntity<List<Animal>> findByAnimalname(@RequestParam String animalname) {
+//		
+//		List<Animal> animals = service.findByAnimalname(animalname);
+//		
+//		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
+//	}
+    
 	
 //    /*
 //    Get mapping to get animal by status
