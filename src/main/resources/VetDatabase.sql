@@ -303,23 +303,28 @@ SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN L
 
 -- 6. An update operation with any necessary triggers.
 -- CREATE TRIGGER DISEASE_NOTIFICATION
--- BEFORE INSERT OR UPDATE OF DiseaseId ON STATUS
+-- BEFORE UPDATE ON STATUS
 -- FOR EACH ROW
--- WHEN (NEW.DiseaseId IS NOT NULL)
--- INSERT INTO NOTIFICATION (TimeStamp, Notification)
--- VALUES
--- (CURRENT_TIMESTAMP, "Disaese Detected!");
+-- IF (NEW.DiseaseId IS NOT NULL) THEN	INSERT INTO NOTIFICATION (TimeStamp, Notification) VALUES (CURRENT_TIMESTAMP, "Disease Detected!");
 
+DELIMITER //
 CREATE TRIGGER REQUEST_CREATION
 AFTER UPDATE ON ANIMAL
 FOR EACH ROW
+IF (Animal.Availability = "Requested") THEN
 INSERT INTO LAB_REQUESTS(AnimalId, TeachingId, BookingStatus)
 VALUES
-(ANIMAL.AnimalId, USER.UserId, "New");
+(NEW.AnimalId, 12346, "New");
+DELIMITER ;
 
+UPDATE ANIMAL SET Availability = "Requested" WHERE AnimalId = 126;
 
--- IF (NEW.Availabity = "Requested")
--- THEN
--- INSERT INTO LAB_REQUESTS (AnimalId, TeachingId, BookingStatus)
--- VALUES
--- (123, 12345, "New");
+-- DELIMITER //
+-- CREATE TRIGGER CONVERT_STUDENT_COMMENT
+-- BEFORE UPDATE ON COMMENT
+-- FOR EACH ROW
+-- IF (COMMENT.UserId IN (SELECT UserId FROM USER WHERE User.Role = "Student")) THEN
+-- INSERT INTO STUDENT_COMMENT (TimeStamp, UserId, AnimalId, Comment) VALUES (NEW.TimeStamp, NEW.UserId, NEW.AnimalId, NEW.Comment);
+-- DELIMITER ;
+
+UPDATE COMMENT SET Comment = "Test" WHERE UserId = 12349
