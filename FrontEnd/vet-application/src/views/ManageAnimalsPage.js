@@ -12,6 +12,7 @@ import RequestAnimalModal from "../components/RequestAnimalModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import EditModal from "../components/EditModal";
 import animalData from "../data/animalData";
+import axios from "axios";
 
 const ManageAnimalsPage = () => {
 
@@ -33,8 +34,7 @@ const ManageAnimalsPage = () => {
             medication: "1111",
             instructions: "1111",
             isActive: "1111",
-            rdif: "1111",
-            hasMicrochip: "1111"
+            rfid: "1111",
         },
         {
             name: "2222",
@@ -53,8 +53,7 @@ const ManageAnimalsPage = () => {
             medication: "2222",
             instructions: "2222",
             isActive: "2222",
-            rdif: "2222",
-            hasMicrochip: "2222"
+            rfid: "2222",
         },
         {
             name: "3333",
@@ -73,21 +72,34 @@ const ManageAnimalsPage = () => {
             medication: "3333",
             instructions: "3333",
             isActive: "3333",
-            rdif: "3333",
-            hasMicrochip: "3333"
+            rfid: "3333",
         },
     ]
 
     const[animals, setAnimals] = useState([]);
 
     const addAnimals = () => {
-        // axios.get("http://localhost:8080/animals")
-        //     .then((res) => {
-        //         setAnimals(res.data)
-        //     }
-        // )
+        var apiEndpoint=""
 
-        setAnimals(animalData)
+        if (document.getElementById("search_by_id_manage_animals").checked) {
+            apiEndpoint = "http://localhost:8080/animal?animalid="
+        }
+        else if (document.getElementById("search_by_name_manage_animals").checked) {
+            apiEndpoint = "http://localhost:8080/animal?animalname="
+        }
+        else if (document.getElementById("search_by_name_manage_animals").checked) {
+            apiEndpoint = "http://localhost:8080/animal?species="
+        }
+        else {
+            apiEndpoint = "http://localhost:8080/animal"
+        }
+
+        axios.get(apiEndpoint)
+            .then((res) => {
+                console.log(res.data)
+                setAnimals(res.data)
+            }
+        )
     }
 
     const addAnimalModal = () => {
@@ -120,18 +132,19 @@ const ManageAnimalsPage = () => {
             <AddAnimalModal/>
             <ChangePasswordModal/>
             <EditModal/>
-            <div>
-                {animals.map(item => <EditAnimalModal animal={item}/>)}
-                {animals.map(item => <DeleteAnimalModal animal={item}/>)}
-                {animals.map(item => <RequestAnimalModal animal={item}/>)}
-            </div>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
                 <NewAnimalButton addAnimalModal = {addAnimalModal}/>
                 <SearchBarManageAnimals addAnimals = {addAnimals}/>
-                <SearchSelectorAnimal/>  
                 <div>
-                    {animals.map(item => <ManageAnimalsCard animal={item} editAnimalModal = {editAnimalModal} deleteAnimalModal = {deleteAnimalModal} requestAnimalModal = {requestAnimalModal}/>)}
+                    {animals.map(item => 
+                        <div>
+                            <ManageAnimalsCard animal={item} editAnimalModal = {editAnimalModal} deleteAnimalModal = {deleteAnimalModal} requestAnimalModal = {requestAnimalModal}/>
+                            <EditAnimalModal animal={item}/>
+                            <DeleteAnimalModal animal={item}/>
+                            <RequestAnimalModal animal={item}/>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

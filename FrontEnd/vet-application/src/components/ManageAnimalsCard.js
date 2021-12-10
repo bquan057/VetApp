@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestAnimalModal}) =>{
+// const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestAnimalModal}) =>{
+const ManageAnimalsCard = (props) =>{
+
+    const[animal, setAnimal] = useState(props.animal);
 
     function Card (att) {
         let label = att.att
@@ -27,7 +30,7 @@ const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestA
                         </div>
                         <div class="my-6">
                             <div>
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={editAnimalModal}>
+                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick="editAnimalModal">
                                     <span class="icon is-small">
                                         <i class="fas fa-edit"></i>
                                     </span>
@@ -35,7 +38,7 @@ const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestA
                                 </button>
                             </div>
                             <div>
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2 " onClick={deleteAnimalModal}>
+                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2 " onClick="deleteAnimalModal">
                                     <span class="icon is-small">
                                         <i class="fas fa-trash"></i>
                                     </span>
@@ -43,7 +46,7 @@ const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestA
                                 </button>
                             </div>
                             <div>
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={requestAnimalModal}>
+                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick="requestAnimalModal">
                                     <span class="icon is-small">
                                         <i class="fas fa-bookmark"></i>
                                     </span>
