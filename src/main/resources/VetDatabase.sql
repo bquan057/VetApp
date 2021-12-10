@@ -37,6 +37,7 @@ CREATE TABLE USER (
     Password				varchar(30),
     Email					varchar(30),
     FName					varchar(30),
+    LName					varchar(30),
     ActivationDate			varchar(30),
     IsActive				boolean,
     Role					varchar(30),
@@ -316,6 +317,25 @@ FOR EACH ROW
 INSERT INTO LAB_REQUESTS(AnimalId, TeachingId, BookingStatus)
 VALUES
 (ANIMAL.AnimalId, USER.UserId, "New");
+
+
+CREATE TRIGGER REQUEST_CREATION 
+	FOR UPDATE
+	AS 
+	BEGIN
+		UPDATE LAB_REQUESTS
+        SET LAB_REQUESTS.AnimalId = ANIMAL.AnimalId,
+        LAB_REQUESTS.TeachingId = USER.UserId,
+        LAB_REQUESTS.BookingStatus = "New"
+        FROM ANIMAL, USER
+        WHERE LAB_REQUESTS.AnimalId = ANIMAL.AnimalId AND LAB_REQUESTS.TeachingId = USER.UserId
+    END
+
+
+AFTER UPDATE ON ANIMAL
+FOR EACH ROW
+AS BEGIN
+
 
 
 -- IF (NEW.Availabity = "Requested")

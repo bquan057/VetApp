@@ -34,6 +34,7 @@ public class UserController {
     /*
     * Method to get all users in the DB
     */
+    @CrossOrigin
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers(){
 
@@ -44,6 +45,7 @@ public class UserController {
     /*
         Method to add a new user
      */
+    @CrossOrigin
     @PostMapping("/user")
     public ResponseEntity<User> addNewUser(@RequestBody User newUser){
         User user = repository.save(newUser);
@@ -54,15 +56,24 @@ public class UserController {
     /*
         Method to update a user
      */
-    @PutMapping ("/user")
-    public ResponseEntity<User> updateUser(@RequestBody User user){
+    @CrossOrigin
+    @PutMapping ("/user/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int UserId){
         User userFromDB = repository.findById(user.getUserid()).get();
 
         // set all attributes -> this is a problem when we have many attributes
-        userFromDB.setUsername(user.getUsername());
-        userFromDB.setRole(user.getRole());
-        userFromDB.setEmail(user.getEmail());
-
+        if(userFromDB.getFname() != null){
+            userFromDB.setFname(userFromDB.getFname());
+        }
+        if(userFromDB.getLname() != null){
+            userFromDB.setLname(userFromDB.getLname());
+        }
+        if(userFromDB.getUsername() != null){
+            userFromDB.setUsername(userFromDB.getUsername());
+        }
+        if(userFromDB.getRole() != null){
+            userFromDB.setRole(userFromDB.getRole());
+        }
         repository.save(userFromDB);
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
     }
@@ -70,16 +81,54 @@ public class UserController {
     /*
         Method to delete a user
      */
+    @CrossOrigin
     @DeleteMapping("/user/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id){
 
         if(repository.existsById(id)){
             User userToDelete = repository.getById(id);
             repository.delete(userToDelete);
-            return new ResponseEntity<String>("User Deleted", HttpStatus.OK);
+            return new ResponseEntity<>("User Deleted", HttpStatus.OK);
         }
+        return new ResponseEntity<>("User not found", HttpStatus.OK);
+    }
 
+    /*
+        Method to search for a user based on type of user button clicked, returns all users with that name
+     */
+    @GetMapping("/user/{id}")
+    @ResponseBody
+    public ResponseEntity<List<User>> searchUser(@RequestParam String name){
+        List<User> users = repository.findByName(name);
+        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
+    }
 
-        return new ResponseEntity<String>("User not found", HttpStatus.OK);
+    /*
+        Block user
+     */
+    @CrossOrigin
+    @PutMapping("/user/{id}")
+    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam boolean isActive) {
+
+        User userFromDB = repository.findById(user.getUserid()).get();
+        if(userFromDB.getIsactive() == true) {
+            userFromDB.setIsactive(false);
+            return new ResponseEntity<>("User blocked with status", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("User cannot be blocked", HttpStatus.OK);
+    }
+
+    /*
+        Change password
+     */
+    @CrossOrigin
+    @PutMapping("/user/{id}")
+    public ResponseEntity<String> checkPassword(@RequestBody User user, @RequestParam String password){
+        User userFromDB = repository.findById(user.getUserid()).get();
+        if(userFromDB.getPassword().equals(password)){
+            userFromDB.setPassword(userFromDB.getPassword());
+            return new ResponseEntity<>("Password changed", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Passwords don't match", HttpStatus.OK);
     }
 }

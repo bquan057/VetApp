@@ -32,16 +32,26 @@ public class User {
     @Column(name="FName")
     @Getter @Setter
     private String fname;
+
+    @Column(name="LName")
+    @Getter @Setter
+    private String lname;
     
     @Column(name="ActivationDate")
     @Getter @Setter
     private String activationdate;
+
+    @Column(name="IsActive")
+    @Getter @Setter
+    private boolean isactive;
     
     @Column(name="Role")
     @Getter @Setter
     private String role;
-   
-    
+
+    public boolean getIsactive() {
+        return isactive;
+    }
 
 
 //	public int getUserid() {

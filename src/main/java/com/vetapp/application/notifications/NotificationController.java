@@ -14,19 +14,19 @@ public class NotificationController {
 	@Autowired
 	NotificationRepository notificationRepository;
 	
-	@GetMapping("/api/users/{userid}/notifications")
+	@GetMapping("/user/{userid}/notifications")
 	public ResponseEntity<List<Notification>> getNotifications(@PathVariable String userid) {
 		return new ResponseEntity<>(notificationRepository.findByUseridContaining(userid), HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/api/users/{userid}/notifications")
+	@PostMapping("/user/{userid}/notifications")
 	public ResponseEntity<Notification> addNotification(@PathVariable String userid, @RequestBody Notification newNotification) {
 		newNotification.setUserid(userid);
 		Notification notification = notificationRepository.save(newNotification);
 		return new ResponseEntity<>(notification, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("api/users/notifications/{notificationid}")
+	@DeleteMapping("user/notifications/{notificationid}")
     public ResponseEntity<String> deleteNotification(@PathVariable int notificationid){
 
 		try{

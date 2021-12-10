@@ -35,4 +35,6 @@ public class UserService {
         return tokenManager.createToken(user.getUserid(), user.getUsername(), user.getPassword(), user.getRole());
     }
 
+//    public String updateUserActive(int userId)
+
 }
