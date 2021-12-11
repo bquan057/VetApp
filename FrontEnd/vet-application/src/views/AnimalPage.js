@@ -11,11 +11,16 @@ import CreateCommentModal from "../components/CreateCommentModal";
 import NewPictureModal from "../components/NewPictureModal";
 import RequestTreatmentModal from "../components/RequestTreatmentModal";
 import { useParams } from "react-router";
+import { useLocation } from "react-router-dom";
 
 
 const AnimalPage = () => {
     const {id} = useParams();
-    // TODO MAKE API CALL HERE TO GET INFORMATION OF ANIMAL USING ID
+    
+    const location = useLocation();
+
+    const animal = location.state.animal
+    console.log(animal)
 
     const weightModal = () => {
         document.getElementById("WeightModal").classList.add('is-active')
@@ -47,7 +52,7 @@ const AnimalPage = () => {
             <SideBar/>
             <div className="column">
                 <Header/>
-                <AnimalCard weightModal = {weightModal}/>
+                <AnimalCard animal = {animal} weightModal = {weightModal}/>
                 <TreatmentCard id={id} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 <CommentCard id= {id} newCommentModal={newCommentModal}/>
                 <PictureCard id={id} newPictureModal = {newPictureModal}/>

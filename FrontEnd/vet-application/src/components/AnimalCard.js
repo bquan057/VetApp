@@ -1,12 +1,8 @@
 import React from "react";
-import animalData from "../data/animalData";
-
-import { useState } from "react";
 
 
-const AnimalCard = ({weightModal}) => {
+const AnimalCard = ({animal, weightModal}) => {
 
-    let animal = animalData[0]
 
     function Card (att) {
         let label = att.att
@@ -42,7 +38,7 @@ const AnimalCard = ({weightModal}) => {
                             <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={weightModal} >View Weight History</button>
                         </div>
                         <div className="column is-centered">
-                            <div className="columns">
+                            <div className="columns is-multiline">
                                 {
                                     Object.entries(animal).map(([att, value]) => <Card att={att} value={value}/>) 
                                 }

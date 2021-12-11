@@ -33,7 +33,7 @@ function App() {
               <Route path="/ManageRequest" element = {<ManageRequest/>} />
           </Route>
         <Route path="/animals" element={<ManageAnimalsPage/>} />
-        <Route path="/animals/:id" element={<AnimalPage/>} />
+        <Route path="/animal/:id" element={<AnimalPage/>} />
         <Route path="/home" element={<HomePage/>} />
         <Route path="/users" element={<ManageUsersPage/>} />
         </Routes>
