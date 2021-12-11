@@ -17,11 +17,19 @@ public class CommentsController {
         Get all comments from the DB with the searching on animals id
      */
     @GetMapping("animal/{animalid}/comment")
-    public ResponseEntity<List<Comment>> all(@PathVariable int animalid) {
+    public ResponseEntity<List<Comment>> getCommentByAnimalId(@PathVariable int animalid) {
 
         List<Comment> comments = service.getAllComments(animalid);
 
         return new ResponseEntity<>(comments, HttpStatus.ACCEPTED);
+    }
+
+
+    @PostMapping("animal/{animalid}/comment")
+    public ResponseEntity<Comment> newComment(@PathVariable int animalid, @RequestBody Comment comment){
+
+        Comment newComment = service.createComment(animalid, comment);
+        return new ResponseEntity<>(newComment, HttpStatus.OK);
     }
 
 
