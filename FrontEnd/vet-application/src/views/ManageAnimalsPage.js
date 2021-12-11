@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Header from "../components/Header"
 import SideBar from "../components/SideBar"
 import NewAnimalButton from "../components/NewAnimalButton";
-import SearchBarManageAnimals from "../components/SearchBarManageAnimals";
+import SearchBar from "../components/SearchBar";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 import ManageAnimalsCard from "../components/ManageAnimalsCard";
 import AddAnimalModal from "../components/AddAnimalModal";
@@ -18,7 +18,7 @@ const ManageAnimalsPage = () => {
 
     const[animals, setAnimals] = useState([]);
 
-    var addAnimals = () => {
+    var addComponents = () => {
         var apiEndpoint=""
 
         setAnimals([])
@@ -48,7 +48,7 @@ const ManageAnimalsPage = () => {
     }
 
     const editAnimalModal = () => {
-        document.getElementById('EditAnimalModal').classList.add('is-active');
+        document.getElementById("EditAnimalModal").classList.add('is-active');
     }
 
     const deleteAnimalModal = () => {
@@ -76,7 +76,8 @@ const ManageAnimalsPage = () => {
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
                 <NewAnimalButton addAnimalModal = {addAnimalModal}/>
-                <SearchBarManageAnimals addAnimals = {addAnimals}/>
+                <SearchBar addComponents = {addComponents}/>
+                <SearchSelectorAnimal/>
                 <div>
                     {animals.map(item => 
                         <div>

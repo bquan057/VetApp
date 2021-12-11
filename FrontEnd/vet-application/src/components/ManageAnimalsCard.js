@@ -20,6 +20,10 @@ const ManageAnimalsCard = (props) =>{
         )
     }
 
+    var editmodalid = props.animal.id + "EditAnimalModal"
+    var deletemodalid = props.animal.id + "DeleteAnimalModal"
+    var requestmodalid = props.animal.id + "RequestAnimalModal"
+
     return (
         <div className="columns is-centered mb-6">
             <div className="column is-two-thirds">
