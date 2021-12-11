@@ -1,5 +1,6 @@
 package com.vetapp.application.animals;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,50 +13,44 @@ import lombok.Setter;
 import lombok.Getter;
 
 @Entity
-@Table(name="Animals")
+@Table(name="Animal")
 public class Animal {
 
-	public Animal() {
-		this.animalid = 0;
-		this.name = "";
-	    this.tattoo = "";
-	    this.citytattoo = "";
-	    this.age = "";
-	    this.birthday = "";
-	    this.birthmonth = "";
-	    this.birthyear = "";
-	    this.breed = "";
-	    this.sex = "";
-	    this.coatcolour = "";
-	    this.specialinstructions = "";
-	    this.diet = "";
-	    this.isactive = "";
-	    this.rdifid = "";
-	    this.hasmicrochip = "";
-	    this.species = "";
-	    this.status = "";
-		
-	}
-	
+	@Column(name="Animalid")
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter int animalid;
 	
-	@Getter @Setter String name;
+	@Column(name="Animalname")
+	@Getter @Setter String animalname;
+	
+	@Column(name="Tattoo")
     @Getter @Setter String tattoo;
-    @Getter @Setter String citytattoo;
+	
+	@Column(name="Age")
     @Getter @Setter String age;
-    @Getter @Setter String birthday;
-    @Getter @Setter String birthmonth;
-    @Getter @Setter String birthyear;
-    @Getter @Setter String breed;
-    @Getter @Setter String sex;
-    @Getter @Setter String coatcolour;
-    @Getter @Setter String specialinstructions;
-    @Getter @Setter String diet;
-    @Getter @Setter String isactive;
-    @Getter @Setter String rdifid;
-    @Getter @Setter String hasmicrochip;
+	
+	@Column(name="Birthdate")
+    @Getter @Setter String birthdate;
+
+	@Column(name="Breed")
+	@Getter @Setter String breed;
+
+	@Column(name="Sex")
+	@Getter @Setter String sex;
+
+	@Column(name="Coatcolour")
+	@Getter @Setter String coatcolour;
+
+	@Column(name="Isactive")
+	@Getter @Setter String isactive;
+    
+	@Column(name="RFID")
+	@Getter @Setter int rfid;
+	
+	@Column(name="Species")
 	@Getter @Setter String species;
-	@Getter @Setter String status;
+	
+	@Column(name="Availability")
+	@Getter @Setter String availability;
     
 }

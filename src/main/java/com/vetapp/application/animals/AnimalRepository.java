@@ -12,11 +12,17 @@ import com.vetapp.application.animals.Animal;
 public interface AnimalRepository extends JpaRepository<Animal, Integer>{
 
 	
-	@Query(value = "SELECT * FROM ANIMAL WHERE status= ? ", nativeQuery = true)
-    List<Animal> findByStatus(String status);
+	List<Animal> findByAnimalid(int animalid);
 	
-    List<Animal> findByNameContaining(String name);
-    List<Animal> findBySpeciesContaining(String species);
+	List<Animal> findByAnimalname(String animalname);
+	
+	List<Animal> findBySpecies(String species);
+	
+//	@Query(value = "SELECT * FROM ANIMAL WHERE status= ? ", nativeQuery = true)
+//    List<Animal> findByStatus(String status);
+	
+//    List<Animal> findByAnimalnameContaining(String animalname);
+//    List<Animal> findBySpeciesContaining(String species);
     
     
 }

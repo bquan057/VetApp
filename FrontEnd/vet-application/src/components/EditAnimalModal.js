@@ -3,8 +3,10 @@ import React from "react";
 const EditAnimalModal = ({animal}) => {
 
     const modalClose = () => {
-        document.getElementById('EditAnimalModal').classList.remove('is-active');
+        document.getElementById("EditAnimalModal").classList.remove('is-active');
     }
+
+    // var modalid = animal.id + "EditAnimalModal"
 
     return (
         <div class="modal" id="EditAnimalModal">

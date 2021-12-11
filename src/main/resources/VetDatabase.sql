@@ -4,17 +4,14 @@ USE VETDATA;
 
 DROP TABLE IF EXISTS ANIMAL;
 CREATE TABLE ANIMAL (
-	AnimalId				integer not null,
+	AnimalId				integer auto_increment not null,
     AnimalName				varchar(30),
     Tattoo					varchar(30),
-    CityTattoo				varchar(30),
     Age						integer,
     Birthdate				varchar(30),
     Breed					varchar(30),
     Sex						varchar(30),
 	CoatColour				varchar(30),
-    SpecialInstructions		varchar(30),
-    Diet					varchar(30),
     IsActive				boolean,
     RFID					integer,
     Species					varchar(30),
@@ -22,12 +19,12 @@ CREATE TABLE ANIMAL (
     primary key (AnimalID)
 );
 
-INSERT INTO ANIMAL (AnimalId, AnimalName, Tattoo, CityTattoo, Age, Birthdate, Breed, Sex, CoatColour, SpecialInstructions, Diet, IsActive, RFID, Species, Availability)
+INSERT INTO ANIMAL (AnimalId, AnimalName, Tattoo, Age, Birthdate, Breed, Sex, CoatColour, IsActive, RFID, Species, Availability)
 VALUES
-(123, 'Sora', "hellokitty", "hellokitty1", 1, '2021-12-01', 'Orange Tabby', 'female', 'black', 'N/A', 'vegan', true, 12, 'Orange Tabby', 'Available'),
-(124, 'Bruno', "hellodoggy", "hellodoggy1", 2, '2020-07-01', 'italian greyhound', 'female', 'brown', 'N/A', 'vegan', false, 12, 'dog', 'Available'),
-(125, 'Pengu', "hellopenguin", "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', 'N/A', 'fish', true, 12, 'penguin', 'Available'),
-(126, 'Cat', "hellokittykawaii", "hellokitty12", 1, '2018-12-01', 'Black cat', 'male', 'black', 'N/A', 'salmon', true, 12, 'blackkitty', 'Available');
+(123, 'Sora', "hellokitty", 1, '2021-12-01', 'Orange Tabby', 'female', 'black', true, 12, 'Cat', 'Available'),
+(124, 'Bruno', "hellodoggy", 2, '2020-07-01', 'italian greyhound', 'female', 'brown', false, 12, 'Dog', 'Available'),
+(125, 'Pengu', "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', true, 12, 'Penguin', 'Available'),
+(126, 'Cat', "hellokittykawaii", 1, '2018-12-01', 'Black cat', 'male', 'black', true, 12, 'Cat', 'Available');
 
 
 DROP TABLE IF EXISTS USER;
@@ -308,17 +305,17 @@ SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN L
 -- FOR EACH ROW
 -- IF (NEW.DiseaseId IS NOT NULL) THEN	INSERT INTO NOTIFICATION (TimeStamp, Notification) VALUES (CURRENT_TIMESTAMP, "Disease Detected!");
 
-DELIMITER //
-CREATE TRIGGER REQUEST_CREATION
-AFTER UPDATE ON ANIMAL
-FOR EACH ROW
-IF (Animal.Availability = "Requested") THEN
-INSERT INTO LAB_REQUESTS(AnimalId, TeachingId, BookingStatus)
-VALUES
-(NEW.AnimalId, 12346, "New");
-DELIMITER ;
+-- DELIMITER //
+-- CREATE TRIGGER REQUEST_CREATION
+-- AFTER UPDATE ON ANIMAL
+-- FOR EACH ROW
+-- IF (Animal.Availability = "Requested") THEN
+-- INSERT INTO LAB_REQUESTS(AnimalId, TeachingId, BookingStatus)
+-- VALUES
+-- (NEW.AnimalId, 12346, "New");
+-- DELIMITER ;
 
-UPDATE ANIMAL SET Availability = "Requested" WHERE AnimalId = 126;
+-- UPDATE ANIMAL SET Availability = "Requested" WHERE AnimalId = 126;
 
 
 -- CREATE TRIGGER REQUEST_CREATION 
