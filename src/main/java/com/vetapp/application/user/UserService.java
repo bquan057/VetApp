@@ -42,23 +42,33 @@ public class UserService {
         return userFromDB;
     }
 
-    public User setUserFromDB(User userFromDB){
+    public User setUserFromDB(User userFromDB, User user){
         // set all attributes -> this is a problem when we have many attributes
-        if(userFromDB.getFname() != null){
-            userFromDB.setFname(userFromDB.getFname());
+        if(user.getFname() != null){
+            userFromDB.setFname(user.getFname());
         }
-        if(userFromDB.getLname() != null){
-            userFromDB.setLname(userFromDB.getLname());
+        if(user.getLname() != null){
+            userFromDB.setLname(user.getLname());
         }
-        if(userFromDB.getUsername() != null){
-            userFromDB.setUsername(userFromDB.getUsername());
+        if(user.getUsername() != null){
+            userFromDB.setUsername(user.getUsername());
         }
-        if(userFromDB.getRole() != null){
-            userFromDB.setRole(userFromDB.getRole());
+        if(user.getRole() != null){
+            userFromDB.setRole(user.getRole());
         }
         repository.save(userFromDB);
         return userFromDB;
     }
+
+    public User getUserById(int id){
+        User userFromDB = repository.findById(id).get();
+        return userFromDB;
+    }
+
+//    public void setUserById(int id){
+//        User userFromDB = repository.findById(id).get();
+//        return userFromDB;
+//    }
 
     public boolean checkIdExists(int id){
         if(repository.existsById(id)){
@@ -90,6 +100,7 @@ public class UserService {
     public String setIsActive(boolean statusActive, User userFromDB){
         if(statusActive == true){
             userFromDB.setIsactive(false);
+            repository.save(userFromDB);
             return "User has been blocked";
         }
         return "User cannot be blocked";
@@ -106,14 +117,35 @@ public class UserService {
 
     //gets all users with the name
     public List<User> getByName(String name){
-        return repository.findByName(name);
+        List<User> nameFound = repository.findByfnameContaining(name);
+        nameFound.addAll(repository.findBylnameContaining(name));
+
+        return nameFound;
     }
 
-    public String setPassword(String password, User userFromDB){
-        if(userFromDB.getPassword().equals(password)){
-            userFromDB.setPassword(userFromDB.getPassword());
+    public String setPassword(User userFromDB, User user){
+        try{
+            userFromDB.setPassword(user.getPassword());
+            repository.save(userFromDB);
             return "Password has been changed successful";
+        }catch(Exception e){
+            return "Password change is unsucessful";
         }
-        return "Password change is unsuccessful";
+
+
+
+//        if(userFromDB.getPassword().equals(password)){
+//            userFromDB.setPassword(userFromDB.getPassword());
+//            repository.save(userFromDB);
+//            return "Password has been changed successful";
+//        }
+//        return "Password change is unsuccessful";
+    }
+
+    public boolean checkValidPassword(String password, User userFromDB){
+        if(userFromDB.getPassword().equals(password)){
+            return true;
+        }
+        return false;
     }
 }

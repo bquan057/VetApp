@@ -24,7 +24,6 @@ public class UserController {
     public ResponseEntity<String> validateUser(@RequestBody User user){
 
         String token = userService.validateUser(user.getUsername(), user.getPassword());
-
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
     
@@ -46,7 +45,6 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<User> addNewUser(@RequestBody User newUser){
         User user = userService.saveUser(newUser);
-
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
@@ -54,12 +52,38 @@ public class UserController {
         Method to update a user
      */
     @CrossOrigin
-    @PutMapping ("/user/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int UserId){
-        User userFromDB = userService.getUserFromDB(user);
-
-        userFromDB = userService.setUserFromDB(userFromDB);
+    @PutMapping (value = "/user/update", params = "id")
+    public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam int id){
+        //get the user using the id
+        User userFromDB = userService.getUserById(id);
+        //set the attributes of new user to replace userFromDB
+        userFromDB = userService.setUserFromDB(userFromDB, user);
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
+    }
+    /*
+        Block user
+    */
+    @CrossOrigin
+    @PutMapping(value = "/user/block", params = "id")
+    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam int id) {
+        //get user from database
+        User userFromDB = userService.getUserById(id);
+        //check if status is active
+        boolean statusActive = userService.checkIsActive(userFromDB);
+        //set the status
+        String userActiveStatus = userService.setIsActive(statusActive, userFromDB);
+        return new ResponseEntity<>(userActiveStatus, HttpStatus.OK);
+    }
+
+    /*
+        Change password
+     */
+    @CrossOrigin
+    @PutMapping(value = "/user/password", params = "id")
+    public ResponseEntity<String> changePassword(@RequestBody User user, @RequestParam int id){
+        User userFromDB = userService.getUserById(id);
+        String passwordStatus = userService.setPassword(userFromDB, user);
+        return new ResponseEntity<>(passwordStatus, HttpStatus.OK);
     }
 
     /*
@@ -75,36 +99,12 @@ public class UserController {
     }
 
     /*
-        Method to search for a user based on type of user button clicked, returns all users with that name
+        Method to search for a user based on type of user button clicked, returns all users containing nam enterede
      */
-    @GetMapping("/user/{id}")
+    @GetMapping(value= "/user/search/{name}")
     @ResponseBody
-    public ResponseEntity<List<User>> searchUser(@RequestParam String name){
+    public ResponseEntity<List<User>> searchUser(@PathVariable String name){
         List<User> users = userService.getByName(name);
         return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
-    }
-
-    /*
-        Block user
-     */
-    @CrossOrigin
-    @PutMapping("/user/{id}")
-    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam boolean isActive) {
-
-        User userFromDB = userService.getUserFromDB(user);
-        boolean statusActive = userService.checkIsActive(userFromDB);
-        String userActiveStatus = userService.setIsActive(statusActive, userFromDB);
-        return new ResponseEntity<>(userActiveStatus, HttpStatus.OK);
-    }
-
-    /*
-        Change password
-     */
-    @CrossOrigin
-    @PutMapping("/user/{id}")
-    public ResponseEntity<String> checkPassword(@RequestBody User user, @RequestParam String password){
-        User userFromDB = userService.getUserFromDB(user);
-        String userPasswordStatus = userService.setPassword(password, userFromDB);
-        return new ResponseEntity<>(userPasswordStatus, HttpStatus.OK);
     }
 }

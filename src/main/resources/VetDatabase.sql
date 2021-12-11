@@ -44,15 +44,15 @@ CREATE TABLE USER (
 	primary key (UserId)
 );
 
-INSERT INTO USER (UserId, Username, Password, Email, FName, ActivationDate, IsActive, Role)
+INSERT INTO USER (UserId, Username, Password, Email, FName, LName, ActivationDate, IsActive, Role)
 VALUES
-(12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily', '2021-12-01', true, 'Admin'),
-(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', '2021-01-01', true, 'Teaching Technician'),
-(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh', '2021-05-01', true, 'Teaching Technician'),
-(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora', '2020-05-01', true, 'Health Technician'),
-(12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', '2019-05-01', true, 'Student'),
-(12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda', '2019-05-01', true, 'Student'),
-(12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid', '2016-05-01', true, 'Care Attendant');
+(12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily','Wang', '2021-12-01', true, 'Admin'),
+(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', true, 'Teaching Technician'),
+(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', true, 'Teaching Technician'),
+(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', true, 'Health Technician'),
+(12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', 'Yasuo','2019-05-01', true, 'Student'),
+(12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda',' ','2019-05-01', true, 'Student'),
+(12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid',' ','2016-05-01', true, 'Care Attendant');
 
 DROP TABLE IF EXISTS COMMENT;
 CREATE TABLE COMMENT (
@@ -320,39 +320,24 @@ DELIMITER ;
 
 UPDATE ANIMAL SET Availability = "Requested" WHERE AnimalId = 126;
 
-<<<<<<< HEAD
-CREATE TRIGGER REQUEST_CREATION 
-	FOR UPDATE
-	AS 
-	BEGIN
-		UPDATE LAB_REQUESTS
-        SET LAB_REQUESTS.AnimalId = ANIMAL.AnimalId,
-        LAB_REQUESTS.TeachingId = USER.UserId,
-        LAB_REQUESTS.BookingStatus = "New"
-        FROM ANIMAL, USER
-        WHERE LAB_REQUESTS.AnimalId = ANIMAL.AnimalId AND LAB_REQUESTS.TeachingId = USER.UserId
-    END
+
+-- CREATE TRIGGER REQUEST_CREATION 
+-- 	FOR UPDATE
+-- 	AS 
+-- 	BEGIN
+-- 		UPDATE LAB_REQUESTS
+--         SET LAB_REQUESTS.AnimalId = ANIMAL.AnimalI,
+--         LAB_REQUESTS.TeachingId = USER.UserId,
+--         LAB_REQUESTS.BookingStatus = "New"
+--         FROM ANIMAL, USER
+--         WHERE LAB_REQUESTS.AnimalId = ANIMAL.AnimalId AND LAB_REQUESTS.TeachingId = USER.UserId
+--     END
 
 
-AFTER UPDATE ON ANIMAL
-FOR EACH ROW
-AS BEGIN
-
-
-
--- IF (NEW.Availabity = "Requested")
--- THEN
--- INSERT INTO LAB_REQUESTS (AnimalId, TeachingId, BookingStatus)
--- VALUES
--- (123, 12345, "New");
-=======
--- DELIMITER //
--- CREATE TRIGGER CONVERT_STUDENT_COMMENT
--- BEFORE UPDATE ON COMMENT
+-- AFTER UPDATE ON ANIMAL
 -- FOR EACH ROW
--- IF (COMMENT.UserId IN (SELECT UserId FROM USER WHERE User.Role = "Student")) THEN
--- INSERT INTO STUDENT_COMMENT (TimeStamp, UserId, AnimalId, Comment) VALUES (NEW.TimeStamp, NEW.UserId, NEW.AnimalId, NEW.Comment);
--- DELIMITER ;
+-- AS BEGIN
 
-UPDATE COMMENT SET Comment = "Test" WHERE UserId = 12349
->>>>>>> e2b2e98000777b86831722513e571421af2d9171
+
+
+

@@ -37,11 +37,11 @@ public class User {
     @Getter @Setter
     private String lname;
     
-    @Column(name="ActivationDate")
+    @Column(name="Activationdate")
     @Getter @Setter
     private String activationdate;
 
-    @Column(name="IsActive")
+    @Column(name="Isactive")
     @Getter @Setter
     private boolean isactive;
     
