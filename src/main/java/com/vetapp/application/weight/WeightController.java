@@ -12,6 +12,7 @@ public class WeightController {
 
 	@Autowired
 	WeightService service;
+
 	@CrossOrigin
 	@GetMapping("animal/{animalid}/weight")
 	public ResponseEntity<List<Weight>> getAnimalWeight(@PathVariable int animalid) {
@@ -20,11 +21,13 @@ public class WeightController {
 
 		return new ResponseEntity<>(weights, HttpStatus.ACCEPTED);
 	}
-	
-//	@PostMapping("/api/animals/{animalid}/weight")
-//	public ResponseEntity<Weight> addAnimalWeight(@PathVariable String animalid, @RequestBody Weight newWeight) {
-//		newWeight.setAnimalid(animalid);
-//		Weight weight = weightRepository.save(newWeight);
-//		return new ResponseEntity<>(weight, HttpStatus.ACCEPTED);
-//	}
+
+	@CrossOrigin
+	@PostMapping("animal/{animalid}/weight")
+	public ResponseEntity<Weight> addAnimalWeight(@PathVariable int animalid, @RequestBody Weight newWeight) {
+
+		Weight weight = service.addWeight(newWeight, animalid);
+
+		return new ResponseEntity<>(weight, HttpStatus.ACCEPTED);
+	}
 }

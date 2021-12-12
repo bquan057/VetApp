@@ -12,9 +12,8 @@ import lombok.Setter;
 @Table(name="Weight")
 public class Weight {
 
-
-	@Id
 	@Getter @Setter int animalid;
+	@Id
 	@Getter @Setter String date;
 	@Getter @Setter double weight;
 	

@@ -3,6 +3,8 @@ import axios from "axios"
 
 const WeightHistoryModal = ({animal}) => {
 
+    // get the animals id
+    let id = animal.animalid
 
     const modalClose = () => {
         document.getElementById('WeightModal').classList.remove('is-active');
@@ -11,8 +13,9 @@ const WeightHistoryModal = ({animal}) => {
 
     const [weights, setWeights] = useState([])
 
+    // api call when component is reloaded
     useEffect(() => {
-        let id = animal.animalid
+        
         const apiendpoint ="http://localhost:8080/animal/" + id + "/weight"
         axios.get(apiendpoint)
             .then((res) => {
@@ -33,10 +36,17 @@ const WeightHistoryModal = ({animal}) => {
     }
 
     function addWeight(){
-        let newWeight = document.querySelector('#newWeight').value
-        setWeights([...weights, {date:"newDate2", weight: newWeight}])
-        console.log(newWeight)
-        console.log(weights)
+                
+        const newWeight = {
+            weight:document.querySelector('#newWeight').value
+        }
+
+        const apiendpoint ="http://localhost:8080/animal/" + id + "/weight"
+        axios.post(apiendpoint, newWeight)
+            .then((res) => {
+                setWeights([...weights, res.data])
+                }
+            )
     }
 
     return(
