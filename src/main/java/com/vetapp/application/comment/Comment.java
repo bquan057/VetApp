@@ -4,24 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name="Comment")
 public class Comment {
 
-    @Column(name = "CommentID")
-    @Getter @Id @GeneratedValue()
-    private long commentid;
     @Getter @Setter
-    private String animalid;
+    @Id
+    @Column(name="Timestamp")
+    private LocalDateTime timestamp;
     @Getter @Setter
+    @Column(name = "Userid")
+    private int userid;
+    @Getter @Setter
+    @Column(name="Animalid")
+    private int animalid;
+    @Getter @Setter
+    @Column(name="Comment")
     private String comment;
-
-
-    public Comment() {
-        commentid = 0;
-        animalid = "";
-        comment = "";
-    }
-
 }

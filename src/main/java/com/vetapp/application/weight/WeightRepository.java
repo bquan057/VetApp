@@ -7,5 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WeightRepository extends JpaRepository<Weight, Integer>{
-    List<Weight> findByAnimalidContaining(String animalid);
+
+    /*
+        Query to get weights by specified animalid from the DB
+     */
+    List<Weight> findByAnimalid(int animalid);
+
 }

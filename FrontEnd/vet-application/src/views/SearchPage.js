@@ -8,6 +8,7 @@ import AnimalSearchCard from "../components/AnimalSearchCard";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import EditModal from "../components/EditModal";
 import TreatmentModal from "../components/TreatmentModal";
+import animalData from "../data/animalData";
 
 const SearchPage= () => {
     
@@ -22,35 +23,6 @@ const SearchPage= () => {
     const editAccountModal = () => {
         document.getElementById('EditModal').classList.add('is-active');
     }
-
-    // to be deleted
-    let animalData = [
-        {
-            id:1,
-            imgPath:"/sora.jpg",
-            name: "Sora"
-        },
-        {
-            id:2,
-            imgPath:"/sora.jpg",
-            name: "Sora2"
-        },
-        {
-            id:3,
-            imgPath:"/sora.jpg",
-            name: "Sora2"
-        },
-        {
-            id:4,
-            imgPath:"/sora.jpg",
-            name: "Sora2"
-        },
-        {
-            id:5,
-            imgPath:"/sora.jpg",
-            name: "Sora2"
-        }
-    ];
 
     // ** api call here ** //
     const [components, setComponents] = useState([]); 

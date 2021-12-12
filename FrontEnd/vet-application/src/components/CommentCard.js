@@ -1,9 +1,12 @@
 import React from "react";
 import commentData from "../data/commentData";
-import { useState } from "react";
 
 
-const CommentCard = ({id, newCommentModal}) => {
+const CommentCard = ({animal, newCommentModal}) => {
+
+    // get id of animal
+    const id = animal.id
+    // API CALL HERE
 
     function CommentBox({comment}){
 

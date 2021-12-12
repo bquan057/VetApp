@@ -1,23 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 
-const AnimalSearchCard = ({animal}) => {
-    //***  TODO remove this *** //
-    // let navigate = useNavigate();
-    // function animalPage() {
-    //     navigate('/animals:id');
+const AnimalSearchCard = (props) => {
+    
+    const navigate = useNavigate()
+    
+    // create animal object from props
+    let animal = props.animal
 
-    // };
+    // go to animal page and pass animal object
+    const toAnimalPage = () => {
+        navigate(`/animal/${animal.id}`, {state:{animal}})
+    }
 
     return(
-        <Link
-            to = {{
-                pathname:`/animals/${animal.id}`,
-                state: {animal:animal}
-            }}
-        >
-        <div className='card column my-3'  >
+
+        <div className='card column my-3' onClick={toAnimalPage}>
             <div className='columns is-vcentered' >
 
                 <div className="card-image column is-narrow has-text-left">
@@ -31,7 +29,6 @@ const AnimalSearchCard = ({animal}) => {
                 </div>
             </div>
         </div>
-        </Link>
     )
 };
 
