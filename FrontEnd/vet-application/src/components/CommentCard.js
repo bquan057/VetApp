@@ -1,19 +1,18 @@
+import axios from "axios";
 import React from "react";
-import commentData from "../data/commentData";
 
 
-const CommentCard = ({animal, newCommentModal}) => {
+const CommentCard = ({comments, newCommentModal}) => {
 
-    // get id of animal
-    const id = animal.id
-    // API CALL HERE
+    
+    
 
     function CommentBox({comment}){
 
         return(
             <div class="tile is-parent is-12">
                 <article class="tile is-child box notification is-primary">
-                    <p className="has-text-weight-bold">Date: {comment.timeStamp} </p>
+                    <p className="has-text-weight-bold">Date: {comment.TimeStamp} </p>
                     <p className="has-text-weight-bold"> Made by: {comment.userName} </p>
                     <div class="content">
                         <p>{comment.comment}</p>
@@ -35,8 +34,7 @@ const CommentCard = ({animal, newCommentModal}) => {
                     </div>
                     <div className="column is-one-quarter"></div>
                     <div className="column">
-                    {commentData.filter(comment => comment.animalid==id).map(filteredComment =>(<CommentBox comment = {filteredComment}/>
-                            ))}
+                    {comments.map(comment =>(<CommentBox comment = {comment}/>))}
                     </div>
                 </div>
             </div>

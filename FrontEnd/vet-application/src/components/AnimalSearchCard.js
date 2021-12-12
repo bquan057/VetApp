@@ -10,7 +10,7 @@ const AnimalSearchCard = (props) => {
 
     // go to animal page and pass animal object
     const toAnimalPage = () => {
-        navigate(`/animal/${animal.id}`, {state:{animal}})
+        navigate(`/animal/${animal.animalid}`, {state:{animal}})
     }
 
     return(
@@ -24,8 +24,8 @@ const AnimalSearchCard = (props) => {
                     </figure>
                 </div>
                 <div className="class-content column">
-                    <p className="has-text-weight-bold has-text-primary-dark"> {animal.name}</p> 
-                    <p className="has-text-weight-bold has-text-primary-dark">{animal.id} </p>
+                    <p className="has-text-weight-bold has-text-primary-dark"> {animal.animalname}</p> 
+                    <p className="has-text-weight-bold has-text-primary-dark">{animal.animalid} </p>
                 </div>
             </div>
         </div>
