@@ -1,13 +1,13 @@
 import React from "react";
 
-const DeleteAnimalModal = ({animal}) => {
+const DeleteAnimalModal = ({selectedAnimal}) => {
 
     const modalClose = () => {
-        document.getElementById('DeleteAnimalModal').classList.remove('is-active');
+        document.getElementById('DeleteAnimalModal'+selectedAnimal.animalid).classList.remove('is-active');
     }
 
     return (
-        <div class="modal" id="DeleteAnimalModal">
+        <div class="modal" id={"DeleteAnimalModal"+selectedAnimal.animalid}>
             <div class="modal-background"></div>
             <div class="modal-content">
                 <div class="modal-card-body">
@@ -22,7 +22,7 @@ const DeleteAnimalModal = ({animal}) => {
                                     <h1 class="has-text-weight-bold has-text-primary-dark">Name:</h1>
                                 </div>
                                 <div className="column">
-                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.name}></input>
+                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={selectedAnimal.animalname}></input>
                                 </div>
                             </div>
                             <div class="columns is-vcentered">
@@ -30,7 +30,7 @@ const DeleteAnimalModal = ({animal}) => {
                                     <h1 class="has-text-weight-bold has-text-primary-dark">Id:</h1>
                                 </div>
                                 <div className="column">
-                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.id}></input>
+                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={selectedAnimal.animalid}></input>
                                 </div>
                             </div>
                             <div class="columns is-vcentered">
