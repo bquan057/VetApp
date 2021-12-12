@@ -3,33 +3,15 @@ import React, {useState, useEffect} from "react"
 import UserInformationBox from "./UserInformationBox";
 
 const EditModal = ({id}) => {
-    console.log(id);
 
     const modalClose = () => {
         document.getElementById('EditModal').classList.remove('is-active');
     }
     const[edit, setEdits] = useState([]);
 
-    // var addComponents = () =>{
-        // const token =sessionStorage.getItem('token')
-
-        // const base64Url = token.split('.')[1];
-        // const base64 = base64Url.replace('-', '+').replace('_', '/');
-        
-        // const userInfo = JSON.parse(window.atob(base64));
-    
-        // const userId = userInfo.userId;
-
         var apiEndpoint = ""
-        // setEdits([])
 
         apiEndpoint = "http://localhost:8080/user/edit?id=" + id;
-
-        // useEffect(() => {
-        //     axios.get(apiEndpoint).then((response) => {
-        //       setEdits(response.data);
-        //     });
-        //   }, []);
 
         function updateUser(){
             axios
@@ -43,10 +25,6 @@ const EditModal = ({id}) => {
                 console.log(err);
               });
         }
-        // .then((response) => {
-        //   setEdits(response.data);
-        // });
-        // }
 
     
     return ( 

@@ -1,10 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, {useState} from "react";
 
-const BlockUserModal = () => {
+const BlockUserModal = ({id}) => {
     const modalClose = () => {
         document.getElementById('BlockModal').classList.remove('is-active');
     }
     
+    const[block, setBlock] = useState([])
+    var apiEndpoint = ""
+    console.log(id)
+
+    apiEndpoint = "http://localhost:8080/user/block?id=" + id;
+
+    function blockUser(){
+        axios.put(apiEndpoint, {
+            isactive: false
+        }).then((response) => {setBlock(response.data);}).catch((err) => {
+            console.log(err);
+        });
+    }
+
     return ( 
         <div className = 'modal' id = 'BlockModal'>
         <div className="modal-background" />
@@ -31,7 +46,7 @@ const BlockUserModal = () => {
                     <div className = "columns is-centered">
                         <div className = "columns">
                             <div className = "column">
-                            <button onClick = {modalClose} className = "button is-success">
+                            <button onClick = {()=> {modalClose(); blockUser()}} className = "button is-success">
                                 <span Class = "icon is-small">
                                     <i className = "fas fa-check"></i>
                                 </span>

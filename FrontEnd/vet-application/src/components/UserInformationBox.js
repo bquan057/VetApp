@@ -70,7 +70,7 @@ const UserInformationBox = ({user, addModal, editModal, deleteModal, blockModal,
                      {/* <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button> */}
                      <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button>
                      <button onClick = {deleteModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Delete User</button>
-                     <button onClick = {blockModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Block User</button>
+                     <button onClick = {()=> {blockModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Block User</button>
                      <div className = "my-5"></div>
                 <div>
             </div>

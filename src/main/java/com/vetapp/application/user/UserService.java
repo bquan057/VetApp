@@ -102,13 +102,18 @@ public class UserService {
         }
     }
 
-    public String setIsActive(boolean statusActive, User userFromDB){
-        if(statusActive == true){
-            userFromDB.setIsactive(false);
-            repository.save(userFromDB);
-            return "User has been blocked";
-        }
-        return "User cannot be blocked";
+    public String setIsActive(boolean statusActive, User userFromDB, User user){
+//        if(statusActive == true){
+//            userFromDB.setIsactive(false);
+//            repository.save(userFromDB);
+//            return "User has been blocked";
+//        }
+//        return "User cannot be blocked";
+
+        userFromDB.setIsactive(user.getIsactive());
+        System.out.println("user:" + user.getIsactive());
+        System.out.println("userFromDB:" + userFromDB.getIsactive());
+        return "User has been blocked";
     }
 
     public List<User> getAllUsers(){

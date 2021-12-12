@@ -57,8 +57,6 @@ public class UserController {
     public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam int id){
         //get the user using the id
         User userFromDB = userService.getUserById(id);
-        System.out.println("ASDFGH");
-        System.out.println(user.getFname());
         //set the attributes of new user to replace userFromDB
         userFromDB = userService.setUserFromDB(userFromDB, user);
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
@@ -74,7 +72,7 @@ public class UserController {
         //check if status is active
         boolean statusActive = userService.checkIsActive(userFromDB);
         //set the status
-        String userActiveStatus = userService.setIsActive(statusActive, userFromDB);
+        String userActiveStatus = userService.setIsActive(statusActive, userFromDB, user);
         return new ResponseEntity<>(userActiveStatus, HttpStatus.OK);
     }
 

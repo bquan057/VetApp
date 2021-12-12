@@ -74,15 +74,15 @@ const ManageUsersPage = () => {
             <EditModal id = {id}/>
             <AddUserModal/>
             <DeleteModal/>
-            <BlockModal/>
+            <BlockModal id = {id}/>
             <div className="column">
             
             <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <div>
                     <SearchBarUser addComponents ={addComponents}/>
                     <SearchSelectorUser/>    
-                    {/* {components.map((item) => (<UserInformationBox user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} />))} */}
-                    {components.map((item) => (<ManageUsers user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))}
+                    {components.map((item) => (<UserInformationBox user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))}
+                    {/* {components.map((item) => (<ManageUsers user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))} */}
                 </div>
             </div>
         </div>
