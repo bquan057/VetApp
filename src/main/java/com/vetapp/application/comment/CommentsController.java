@@ -26,7 +26,7 @@ public class CommentsController {
         return new ResponseEntity<>(comments, HttpStatus.ACCEPTED);
     }
 
-
+    @CrossOrigin
     @PostMapping("animal/{animalid}/comment")
     public ResponseEntity<Comment> newComment(@PathVariable int animalid, @RequestBody Comment comment){
 

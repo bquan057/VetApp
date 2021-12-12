@@ -20,7 +20,6 @@ const WeightHistoryModal = ({animal}) => {
         axios.get(apiendpoint)
             .then((res) => {
                     setWeights(res.data)
-                    console.log(res.data)
                 }
             )
     }, []);

@@ -13,7 +13,6 @@ const CommentCard = ({animal, newCommentModal}) => {
         axios.get(apiendpoint)
             .then((res) => {
                     setComments(res.data)
-                    console.log(res.data)
                 }
             )
     }, []);
@@ -25,8 +24,9 @@ const CommentCard = ({animal, newCommentModal}) => {
                 <article class="tile is-child box notification is-primary">
                     <p className="has-text-weight-bold">Date: {comment.timestamp} </p>
                     <p className="has-text-weight-bold"> Made by: {comment.fname} {comment.lname}</p>
-                    <div class="content">
-                        <p>{comment.comment}</p>
+                    <p className="has-text-weight-bold"> Comment: </p>
+                    <div className="tile is-child notification has-background-white">
+                            <p className="has-text-black has-text-weight-bold">{comment.comment}</p>
                     </div>
                 </article>
             </div>
@@ -45,7 +45,7 @@ const CommentCard = ({animal, newCommentModal}) => {
                     </div>
                     <div className="column is-one-quarter"></div>
                     <div className="column">
-                    {comments.map(comment =>(<CommentBox comment = {comment}/>))}
+                        {comments.map(comment =>(<CommentBox comment = {comment}/>))}
                     </div>
                 </div>
             </div>
