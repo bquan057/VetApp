@@ -51,18 +51,39 @@ public class AnimalRegistrationController {
 		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
 	}
     
-    
-    
-//    @CrossOrigin
-//	@GetMapping("/animal/search?animalname")
-//	public ResponseEntity<List<Animal>> findByAnimalname(@RequestParam String animalname) {
-//		
-//		List<Animal> animals = service.findByAnimalname(animalname);
-//		
-//		return new ResponseEntity<>(animals, HttpStatus.ACCEPTED);
-//	}
-    
+    @CrossOrigin
+    @PutMapping("/animal/{animalid}")
+    public ResponseEntity<Animal> updateAnimal(@PathVariable int animalid, @RequestBody Animal animal) {
+    	
+        Animal animalForUpdate = service.findByAnimalid(animalid).get(0);
+        
+        animalForUpdate.setAnimalid(animalid);
+        animalForUpdate.setTattoo(animal.getTattoo());
+        animalForUpdate.setAge(animal.getAge());
+        animalForUpdate.setIsactive(animal.getIsactive());
+        animalForUpdate.setRfid(animal.getRfid());
+        
+        Animal animalWithUpdate = service.save(animalForUpdate);
+        
+        return new ResponseEntity<>(animalWithUpdate, HttpStatus.ACCEPTED);
+    }
 	
+    @CrossOrigin
+    @DeleteMapping("/animal/{animalid}")
+    public ResponseEntity<Animal> deleteAnimal(@PathVariable int animalid) {
+    	try {
+    		Animal animalForDeletion = service.findByAnimalid(animalid).get(0);
+        	
+        	service.deleteById(animalForDeletion.getAnimalid());
+     
+        	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    	}
+    	catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    	
+    }
+    
 //    /*
 //    Get mapping to get animal by status
 //     */
@@ -116,27 +137,6 @@ public class AnimalRegistrationController {
 //        return new ResponseEntity<>(animalCreated, HttpStatus.ACCEPTED);
 //    }
 //
-//    @PutMapping(path = "/animals/{animal_id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Animal> put(@PathVariable int animal_id, @RequestBody Animal animal) {
-//        Animal animalForUpdate = animalRepository.findById(animal_id).orElseThrow();
-//        
-//        animalForUpdate.setAnimalid(animal_id);
-//        animalForUpdate.setName(animal.getName());
-//        animalForUpdate.setTattoo(animal.getTattoo());
-//        animalForUpdate.setAge(animal.getAge());
-//        animalForUpdate.setBirthdate(animal.getBirthdate());
-//        animalForUpdate.setBreed(animal.getBreed());
-//        animalForUpdate.setSex(animal.getSex());
-//        animalForUpdate.setCoatcolour(animal.getCoatcolour());
-//        animalForUpdate.setIsactive(animal.getIsactive());
-//        animalForUpdate.setRdifid(animal.getRdifid());
-//        animalForUpdate.setSpecies(animal.getSpecies());
-//        animalForUpdate.setStatus(animal.getStatus());
-//        
-//        Animal animalWithUpdate = animalRepository.save(animalForUpdate);
-//        
-//        return new ResponseEntity<>(animalWithUpdate, HttpStatus.ACCEPTED);
-//    }
 //    
 //    /*
 //    mapping to update an animals status

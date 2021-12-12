@@ -1,9 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
-const DeleteAnimalModal = ({selectedAnimal}) => {
+const DeleteAnimalModal = (props) => {
 
+    const[selectedAnimal, setSelectedAnimal] = useState(props.selectedAnimal)
+    
     const modalClose = () => {
         document.getElementById('DeleteAnimalModal'+selectedAnimal.animalid).classList.remove('is-active');
+    }
+
+    const deleteAnimal = () => {
+
+        axios.delete("http://localhost:8080/animal/"+selectedAnimal.animalid)
+            .then(setSelectedAnimal([]), props.setAnimal([]))
+
+        modalClose()
     }
 
     return (
@@ -35,7 +46,7 @@ const DeleteAnimalModal = ({selectedAnimal}) => {
                             </div>
                             <div class="columns is-vcentered">
                                 <div className="column is-vcentered has-text-centered is-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={deleteAnimal}>
                                         <span class="icon is-small">
                                             <i class="fas fa-check-circle"></i>
                                         </span>
@@ -43,7 +54,7 @@ const DeleteAnimalModal = ({selectedAnimal}) => {
                                     </button>
                                 </div>
                                 <div className="column is-vcentered has-text-centered is-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={modalClose}>
                                         <span class="icon is-small">
                                             <i class="fas fa-ban"></i>
                                         </span>

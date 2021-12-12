@@ -58,10 +58,15 @@ CREATE TABLE COMMENT (
     AnimalId				integer not null,
     Comment					varchar(300),
 	primary key (TimeStamp, UserId, AnimalId),
-    foreign key (UserId) references USER(UserId),
-    foreign key (AnimalId) references ANIMAL(AnimalId)
+    foreign key (UserId) references USER(UserId)
 );
 
+ALTER TABLE COMMENT ADD 
+CONSTRAINT fk_Comment_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12345, 123, 'Purrs too much'),
@@ -76,10 +81,15 @@ CREATE TABLE STUDENT_COMMENT (
     AnimalId				integer not null,
     Comment					varchar(300),
 	primary key (TimeStamp, UserId, AnimalId),
-    foreign key (UserId) references USER(UserId),
-    foreign key (AnimalId) references ANIMAL(AnimalId)
+    foreign key (UserId) references USER(UserId)
 );
 
+ALTER TABLE STUDENT_COMMENT ADD 
+CONSTRAINT fk_StudentComment_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO STUDENT_COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12349, 123, 'Purrs too much'),
@@ -94,10 +104,15 @@ CREATE TABLE IMAGE (
     CreationDate			varchar(30),
     FileName				varchar(30),
     AnimalId				integer,
-    primary key (ImageId),
-    foreign key (AnimalId) references ANIMAL(AnimalId)
+    primary key (ImageId)
 );
 
+ALTER TABLE IMAGE ADD 
+CONSTRAINT fk_Image_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO IMAGE (ImageId, ImageType, CreationDate, FileName, AnimalId)
 VALUES
 (1, 'jpg', '2021-12-01', 'B&Wcat.jpg', '123'),
@@ -111,9 +126,14 @@ CREATE TABLE PRESCRIPTION (
     PrescriptionName		varchar(30),
     primary key (UserId, AnimalId, PrescriptionName),
     foreign key (UserId) references USER(UserId),
-    foreign key (AnimalId) references ANIMAL(AnimalId)
 );
 
+ALTER TABLE PRESCRIPTION ADD 
+CONSTRAINT fk_Prescription_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO PRESCRIPTION (UserId, AnimalId, PrescriptionName)
 VALUES
 (12347, 123, 'adderall'),
@@ -144,10 +164,15 @@ CREATE TABLE STATUS (
     DiseaseId				integer,
     primary key (TimeStamp, UserId, AnimalId),
     foreign key (UserId) references USER(UserId),
-    foreign key (AnimalId) references ANIMAL(AnimalId),
     foreign key (DiseaseId) references DISEASES(DiseaseId)
 );
 
+ALTER TABLE STATUS ADD 
+CONSTRAINT fk_STATUS_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO STATUS (TimeStamp, UserId, AnimalId, Location, Description, DiseaseId)
 VALUES
 ("2021-12-01 8:15:00", 12345, 123, 'Clinic', 'Doing well', 1),
@@ -181,10 +206,15 @@ CREATE TABLE TREATMENT (
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
     foreign key (TechnicianId) references USER(UserId),
     foreign key (AttendantId) references USER(UserId),
-    foreign key (AnimalId) references ANIMAL(AnimalId),
     foreign key (TreatmentId) references TREATMENT_METHODS(TreatmentId)
 );
 
+ALTER TABLE TREATMENT ADD 
+CONSTRAINT fk_Treatment_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, IsComplete)
 VALUES
 ("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
@@ -197,7 +227,6 @@ CREATE TABLE WEIGHT (
     Date					varchar(30),
     Weight					double,
     primary key (AnimalId, Date),
-    foreign key (AnimalId) references ANIMAL(AnimalId)
 );
 
 INSERT INTO WEIGHT (AnimalId, Date, Weight)
@@ -207,6 +236,12 @@ VALUES
 (125, '2021-12-05', 12.0),
 (126, '2020-12-08', 10.0);
 
+ALTER TABLE WEIGHT ADD 
+CONSTRAINT fk_Weight_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 DROP TABLE IF EXISTS NOTIFICATION;
 CREATE TABLE NOTIFICATION (
 	NotificationId			integer not null auto_increment,
@@ -242,10 +277,15 @@ CREATE TABLE LAB_REQUESTS (
     TeachingId				integer not null,
     BookingStatus			varchar(30),
     primary key (AnimalId, TeachingId),
-    foreign key (AnimalId) references ANIMAL(AnimalId),
     foreign key (TeachingId) references USER(UserId)
 );
 
+ALTER TABLE LAB_REQUESTS ADD 
+CONSTRAINT fk_LabRequests_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO LAB_REQUESTS (AnimalId, TeachingId, BookingStatus)
 VALUES
 (123, 12346, "New"),
@@ -259,9 +299,14 @@ CREATE TABLE ONGOING_CARE (
     Care					varchar(30),
     DueDate					varchar(30),
     primary key (AnimalId, Care),
-    foreign key (AnimalId) references ANIMAL(AnimalId)
 );
 
+ALTER TABLE ONGOING_CARE ADD 
+CONSTRAINT fk_OngoingCare_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO ONGOING_CARE (AnimalId, Care, DueDate)
 VALUES
 (123, 'vaccine', '12-12-21'),

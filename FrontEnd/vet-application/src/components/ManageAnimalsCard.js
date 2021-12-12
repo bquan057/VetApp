@@ -3,10 +3,9 @@ import EditAnimalModal from "./EditAnimalModal";
 import DeleteAnimalModal from "./DeleteAnimalModal";
 import EditModal from "./EditModal";
 
-// const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestAnimalModal}) =>{
 const ManageAnimalsCard = (props) =>{
 
-    const[animal] = useState(props.animal);
+    const[animal, setAnimal] = useState(props.animal);
 
     const Card = (att) => {
         let label = att.att
@@ -35,8 +34,8 @@ const ManageAnimalsCard = (props) =>{
 
     return (
         <div>
-            <EditAnimalModal selectedAnimal={props.animal}/>
-            <DeleteAnimalModal selectedAnimal={props.animal}/>
+            <EditAnimalModal selectedAnimal={props.animal} setAnimal={setAnimal} />
+            <DeleteAnimalModal selectedAnimal={props.animal} setAnimal={setAnimal}/>
 
             <div className="columns is-centered mb-6">
             <div className="column is-two-thirds">
