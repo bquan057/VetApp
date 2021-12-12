@@ -1,6 +1,7 @@
 
-const NewPictureModal = ({id}) => {
+const NewPictureModal = (props) => {
 
+    const id = props.animal
 
     const modalClose = () => {
         document.getElementById('NewPicture').classList.remove('is-active');

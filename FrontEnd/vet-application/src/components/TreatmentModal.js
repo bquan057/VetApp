@@ -8,19 +8,11 @@ const TreatmentModal = () => {
     
     return ( 
         <div className = 'modal' id = 'TreatmentModal'>
-        <div className="modal-background" />
+        <div className="modal-background" onClick={modalClose} />
         <div className="modal-card">
-            <header className="modal-card-head">
-            <p className="modal-card-title">Treatments</p>
-            <button
-                onClick={modalClose}
-                className="delete"
-                aria-label="close"
-            />
-            </header>
+
             
             <section className="modal-card-body">
-
             <div className="control">
                     <div className = "columns">
                         <div className = "column is-centered">

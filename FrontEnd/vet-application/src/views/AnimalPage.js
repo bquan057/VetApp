@@ -16,7 +16,6 @@ import { useLocation } from "react-router-dom";
 const AnimalPage = () => {
         
     const location = useLocation();
-
     const animal = location.state.animal
    
     const weightModal = () => {
@@ -55,6 +54,7 @@ const AnimalPage = () => {
                 <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
                 <PictureCard animal={animal} newPictureModal = {newPictureModal}/>
+                
             </div>
         </div>
     )

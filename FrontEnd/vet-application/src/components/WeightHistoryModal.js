@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const WeightHistoryModal = ({animal}) => {
+const WeightHistoryModal = (props) => {
+
+    const animal = props.animal
 
     // get the animals id
     let id = animal.animalid

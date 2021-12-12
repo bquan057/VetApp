@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import treatmentData from "../data/treatmentData"
 
 
-const TreatmentHistoryModal = ({id}) => {
+const TreatmentHistoryModal = (props) => {
 
-
+    const id = props.animal
     const modalClose = () => {
         document.getElementById('TreatmentHistory').classList.remove('is-active');
         document.querySelector('#newWeight').value = ''

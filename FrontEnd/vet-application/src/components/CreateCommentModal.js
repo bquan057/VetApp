@@ -1,7 +1,9 @@
 import axios from "axios";
 
 
-const CreateCommentModal = ({animal}) => {
+const CreateCommentModal = (props) => {
+
+    const animal = props.animal
 
     const modalClose = () => {
         document.getElementById('NewComment').classList.remove('is-active');

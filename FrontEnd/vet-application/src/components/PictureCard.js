@@ -3,7 +3,10 @@ import pictureData from "../data/pictureData";
 import { useState } from "react";
 
 
-const PictureCard = ({id, newPictureModal}) => {
+const PictureCard = (props) => {
+
+    const id = props.animal
+    const newPictureModal = props.newPictureModal
 
     function TreatmentBox({image}){
 

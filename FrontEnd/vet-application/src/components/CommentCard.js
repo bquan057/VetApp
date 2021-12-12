@@ -2,7 +2,10 @@ import axios from "axios";
 import React,  { useEffect, useState } from "react";
 
 
-const CommentCard = ({animal, newCommentModal}) => {
+const CommentCard = (props) => {
+
+    const animal = props.animal
+    const newCommentModal = props.newCommentModal
 
     const [comments, setComments] = useState([])
 
