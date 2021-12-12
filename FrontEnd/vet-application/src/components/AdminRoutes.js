@@ -1,6 +1,7 @@
 import { Outlet, Navigate } from "react-router";
 
 const useAuth = () => {
+    
     const token =sessionStorage.getItem('token')
 
     const base64Url = token.split('.')[1];

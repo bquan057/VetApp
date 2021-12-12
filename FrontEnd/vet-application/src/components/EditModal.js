@@ -1,10 +1,53 @@
-import React from "react"
+import axios from "axios";
+import React, {useState, useEffect} from "react"
+import UserInformationBox from "./UserInformationBox";
 
-const EditModal = () => {
+const EditModal = ({id}) => {
+    console.log(id);
 
     const modalClose = () => {
         document.getElementById('EditModal').classList.remove('is-active');
     }
+    const[edit, setEdits] = useState([]);
+
+    // var addComponents = () =>{
+        // const token =sessionStorage.getItem('token')
+
+        // const base64Url = token.split('.')[1];
+        // const base64 = base64Url.replace('-', '+').replace('_', '/');
+        
+        // const userInfo = JSON.parse(window.atob(base64));
+    
+        // const userId = userInfo.userId;
+
+        var apiEndpoint = ""
+        // setEdits([])
+
+        apiEndpoint = "http://localhost:8080/user/edit?id=" + id;
+
+        // useEffect(() => {
+        //     axios.get(apiEndpoint).then((response) => {
+        //       setEdits(response.data);
+        //     });
+        //   }, []);
+
+        function updateUser(){
+            axios
+                .put(apiEndpoint, {
+                    fname: document.getElementById("first_name").value,
+                    lname: document.getElementById("last_name").value,
+                    username: document.getElementById("username").value,
+                    email: document.getElementById("email").value
+                    }
+                ).then((response)=>{setEdits(response.data);}).catch((err) => {
+                console.log(err);
+              });
+        }
+        // .then((response) => {
+        //   setEdits(response.data);
+        // });
+        // }
+
     
     return ( 
         <div className = 'modal' id = 'EditModal'>
@@ -27,7 +70,7 @@ const EditModal = () => {
                             <label className = "checkbox has-text-primary-dark">First Name: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="First Name"/>
+                            <input id = "first_name" class="input is-small is-primary is-rounded" type="text" placeholder="First Name"/>
                         </div>                       
                     </div>
                 </div>
@@ -38,7 +81,7 @@ const EditModal = () => {
                             <label className = "checkbox has-text-primary-dark">Last Name: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="Last Name"  />
+                            <input id = "last_name" class="input is-small is-primary is-rounded" type="text" placeholder="Last Name"  />
                         </div>                       
                     </div>
                 </div>
@@ -46,10 +89,10 @@ const EditModal = () => {
                 <div className="control">
                     <div className = "columns is-centered">
                         <div className = "column is-one-fifth">
-                            <label className = "checkbox has-text-primary-dark">Phone #: </label>
+                            <label className = "checkbox has-text-primary-dark">Username: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="Phone Number" />
+                            <input id = "username" class="input is-small is-primary is-rounded" type="text" placeholder="Username" />
                         </div>                       
                     </div>
                 </div>
@@ -57,29 +100,17 @@ const EditModal = () => {
                 <div className="control">
                     <div className = "columns is-centered">
                         <div className = "column is-one-fifth">
-                            <label className = "checkbox has-text-primary-dark">Address: </label>
+                            <label className = "checkbox has-text-primary-dark">Email: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="Address" />
+                            <input id = "email" class="input is-small is-primary is-rounded" type="text" placeholder="Address" />
                         </div>                       
                     </div>
                 </div>
-
-                <div className="control">
-                    <div className = "columns is-centered">
-                        <div className = "column is-one-fifth">
-                            <label className = "checkbox has-text-primary-dark">Position: </label>
-                        </div>                        
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="Position" />
-                        </div>                       
-                    </div>
-                </div>
-
 
             </section>
             <footer className="modal-card-foot">
-            <button onClick = {modalClose} className="button is-success">Save changes</button>
+            <button onClick = {()=> {modalClose(); updateUser()}} className="button is-success">Save changes</button>
             <button onClick={modalClose} className="button">
                 Cancel
             </button>

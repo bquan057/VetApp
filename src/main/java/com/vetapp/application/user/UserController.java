@@ -1,5 +1,6 @@
 package com.vetapp.application.user;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -49,13 +50,15 @@ public class UserController {
     }
 
     /*
-        Method to update a user
+        Method to edit a user
      */
     @CrossOrigin
-    @PutMapping (value = "/user/update", params = "id")
+    @PutMapping (value = "/user/edit", params = "id")
     public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam int id){
         //get the user using the id
         User userFromDB = userService.getUserById(id);
+        System.out.println("ASDFGH");
+        System.out.println(user.getFname());
         //set the attributes of new user to replace userFromDB
         userFromDB = userService.setUserFromDB(userFromDB, user);
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
@@ -101,10 +104,35 @@ public class UserController {
     /*
         Method to search for a user based on type of user button clicked, returns all users containing nam enterede
      */
-    @GetMapping(value= "/user/search/{name}")
+//    @GetMapping(value= "/user/search/{name}")
+//    @ResponseBody
+//    public ResponseEntity<List<User>> searchUser(@PathVariable String name){
+//        List<User> users = userService.getByName(name);
+//        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
+//    }
+
+    @CrossOrigin
+    @GetMapping("/user/search")
     @ResponseBody
-    public ResponseEntity<List<User>> searchUser(@PathVariable String name){
-        List<User> users = userService.getByName(name);
-        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
+    public ResponseEntity<List<User>> searchUser(@RequestParam(required = false) String student, @RequestParam(required = false) String staff, @RequestParam(required = false) String management){
+        List<User> user = null;
+        if (student != null) {
+            user = userService.getByName(student, "Student");
+        }
+        else if (staff != null) {
+            user = userService.getByName(staff, "Staff");
+        }
+        else if (management != null) {
+            user = userService.getByName(management, "Admin");
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/user/edit")
+    @ResponseBody
+    public ResponseEntity<User> getUserById(@RequestBody User user, @RequestParam String email){
+       User users = userService.getUserFromDB(user);
+       return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

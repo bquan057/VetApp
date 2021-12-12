@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Header from "../components/Header"
 import SideBar from "../components/SideBar"
-import SearchBar from "../components/SearchBar";
+import SearchBarUser from "../components/SearchBarUser";
 import SearchSelectorUser from "../components/SearchSelectorUser";
 import ChangeAccess from "../components/ChangeAccess";
 import UserInformationBox from "../components/UserInformationBox";
@@ -10,43 +10,40 @@ import ManageUsers from "../components/ManageUsersComponent"
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import AddUserModal from "../components/AddUserModal";
 import DeleteModal from "../components/DeleteUserModal";
+import BlockModal from "../components/BlockUserModal";
+import axios from "axios";
 
 const ManageUsersPage = () => {
 
-    let userData = [
-        {
-            id:1,
-            // imgPath:"/sora.jpg",
-            name: "Emily"
-        },
-        {
-            id:2,
-            // imgPath:"/sora.jpg",
-            name: "Emily"
-        },
-        {
-            id:2,
-            // imgPath:"/sora.jpg",
-            name: "Emily"
-        },
-        {
-            id:2,
-            // imgPath:"/sora.jpg",
-            name: "Sora2"
-        },
-        {
-            id:2,
-            // imgPath:"/sora.jpg",
-            name: "Sora2"
-        }
-    ];
+    //create useState on this page because EditModal is rendered on this page
+    const [id, setId] = useState("");
 
+    const something = (id) => {
+        setId(id);
+    }
 
     const [components, setComponents] = useState([]);
 
-    const addComponent = () => {
-        setComponents(userData)
+    var addComponents = () => {
+        var apiEndpoint = ""
+
+        if(document.getElementById("search_by_student").checked){
+            console.log(document.getElementById("search_bar_user").value);
+            apiEndpoint = "http://localhost:8080/user/search?student=" + document.getElementById("search_bar_user").value
+
+        }
+        else if(document.getElementById("search_by_staff").checked){
+            apiEndpoint = "http://localhost:8080/user/search?staff=" + document.getElementById("search_bar_user").value   
+        }
+        else if(document.getElementById("search_by_management").checked){
+            apiEndpoint = "http://localhost:8080/user/search?management=" + document.getElementById("search_bar_user").value
+        }
+        axios.get(apiEndpoint).then((res) => {
+            setComponents(res.data)
+        })
+
     }
+
 
     const changePasswordModal = () => {
         document.getElementById('ChangePasswordModal').classList.add('is-active');
@@ -65,21 +62,27 @@ const ManageUsersPage = () => {
     const deleteUserModal = () => {
         document.getElementById('DeleteModal').classList.add('is-active');
     }
+    const blockUserModal = () => {
+        document.getElementById('BlockModal').classList.add('is-active');
+    }
 
     return(
         <div className="columns">
             <SideBar/>
             <ChangePasswordModal/>
-            <EditModal/>
+            {/* passes the id to EditModal */}
+            <EditModal id = {id}/>
             <AddUserModal/>
             <DeleteModal/>
+            <BlockModal/>
             <div className="column">
             
             <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <div>
-                <SearchBar addComponent={addComponent}/>
-                <SearchSelectorUser/>    
-                    {components.map((item) => (<ManageUsers user={item} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal}/>))}
+                    <SearchBarUser addComponents ={addComponents}/>
+                    <SearchSelectorUser/>    
+                    {/* {components.map((item) => (<UserInformationBox user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} />))} */}
+                    {components.map((item) => (<ManageUsers user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))}
                 </div>
             </div>
         </div>

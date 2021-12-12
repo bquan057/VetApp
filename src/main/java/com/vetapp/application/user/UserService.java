@@ -1,10 +1,12 @@
 package com.vetapp.application.user;
 
+import com.vetapp.application.animals.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,19 +44,22 @@ public class UserService {
         return userFromDB;
     }
 
+//    public User
+
     public User setUserFromDB(User userFromDB, User user){
+
         // set all attributes -> this is a problem when we have many attributes
-        if(user.getFname() != null){
+        if(user.getFname() != ""){
             userFromDB.setFname(user.getFname());
         }
-        if(user.getLname() != null){
+        if(user.getLname() != ""){
             userFromDB.setLname(user.getLname());
         }
-        if(user.getUsername() != null){
+        if(user.getUsername() != ""){
             userFromDB.setUsername(user.getUsername());
         }
-        if(user.getRole() != null){
-            userFromDB.setRole(user.getRole());
+        if(user.getEmail() != ""){
+            userFromDB.setEmail(user.getEmail());
         }
         repository.save(userFromDB);
         return userFromDB;
@@ -116,11 +121,41 @@ public class UserService {
     }
 
     //gets all users with the name
-    public List<User> getByName(String name){
-        List<User> nameFound = repository.findByfnameContaining(name);
+    public List<User> getByName(String name, String role){
+        List<User> nameFound = new ArrayList<User>();
+
+        nameFound.addAll(repository.findByfnameContaining(name));
         nameFound.addAll(repository.findBylnameContaining(name));
 
-        return nameFound;
+//        if(role.equals("Staff")){
+//            List<String> allRoles = new ArrayList<>();
+//            allRoles.add("Teaching Technician");
+//            allRoles.add("Health Technician");
+//            allRoles.add("Care Attendant");
+//
+//                for(int j = 0; j<allRoles.size(); j++) {
+//                    for (int i = 0; i < nameFound.size(); i++) {
+//                    if (!nameFound.get(i).getRole().equals(allRoles.get(j))) {
+//                        nameFound.remove(i);
+//                    }
+//                }
+//            }
+        if(role.equals("Staff")) {
+            for (int i = 0; i < nameFound.size(); i++) {
+                if (!nameFound.get(i).getRole().equals("Teaching Technician") && !nameFound.get(i).getRole().equals("Health Technician") && !nameFound.get(i).getRole().equals("Care Attendant")) {
+                    nameFound.remove(i);
+            }
+        }
+            return nameFound;
+        }
+        else {
+            for (int i = 0; i < nameFound.size(); i++) {
+                if (!nameFound.get(i).getRole().equals(role)) {
+                    nameFound.remove(i);
+                }
+            }
+            return nameFound;
+        }
     }
 
     public String setPassword(User userFromDB, User user){
