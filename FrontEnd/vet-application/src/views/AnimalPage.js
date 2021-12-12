@@ -18,7 +18,6 @@ const AnimalPage = () => {
     const location = useLocation();
 
     const animal = location.state.animal
-    let id = animal.animalid
    
     const weightModal = () => {
         document.getElementById("WeightModal").classList.add('is-active')
@@ -44,18 +43,18 @@ const AnimalPage = () => {
 
     return(
         <div className="columns">
-            <WeightHistoryModal id={id}/>
-            <TreatmentHistoryModal id={id}/>
-            <CreateCommentModal id= {id}/>
-            <NewPictureModal id = {id}/>
-            <RequestTreatmentModal id= {id}/>
+            <WeightHistoryModal animal={animal}/>
+            <TreatmentHistoryModal animal={animal}/>
+            <CreateCommentModal animal= {animal}/>
+            <NewPictureModal animal = {animal}/>
+            <RequestTreatmentModal animal= {animal}/>
             <SideBar/>
             <div className="column">
                 <Header/>
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
-                <TreatmentCard id={id} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
+                <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
-                <PictureCard id={id} newPictureModal = {newPictureModal}/>
+                <PictureCard animal={animal} newPictureModal = {newPictureModal}/>
             </div>
         </div>
     )

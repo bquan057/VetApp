@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react"
-import weightData from "../data/weightData"
+import axios from "axios"
 
-const WeightHistoryModal = ({id}) => {
+const WeightHistoryModal = ({animal}) => {
 
 
     const modalClose = () => {
         document.getElementById('WeightModal').classList.remove('is-active');
         document.querySelector('#newWeight').value = ''
     }
+
+    const [weights, setWeights] = useState([])
+
+    useEffect(() => {
+        let id = animal.animalid
+        const apiendpoint ="http://localhost:8080/animal/" + id + "/weight"
+        axios.get(apiendpoint)
+            .then((res) => {
+                    setWeights(res.data)
+                    console.log(res.data)
+                }
+            )
+    }, []);
 
     const Row = ({weight}) => {
         
@@ -21,16 +34,10 @@ const WeightHistoryModal = ({id}) => {
 
     function addWeight(){
         let newWeight = document.querySelector('#newWeight').value
-        setWeights([...weightData, {date:"newDate2", weight: newWeight}])
+        setWeights([...weights, {date:"newDate2", weight: newWeight}])
         console.log(newWeight)
         console.log(weights)
     }
-
-    const [weights, setWeights] = useState([]);
-
-    useEffect(() => {
-        setWeights(weightData);
-    }, ([]))
 
     return(
         <div className="modal" id="WeightModal">

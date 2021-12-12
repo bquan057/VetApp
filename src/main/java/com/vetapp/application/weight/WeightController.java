@@ -12,7 +12,7 @@ public class WeightController {
 
 	@Autowired
 	WeightService service;
-
+	@CrossOrigin
 	@GetMapping("animal/{animalid}/weight")
 	public ResponseEntity<List<Weight>> getAnimalWeight(@PathVariable int animalid) {
 

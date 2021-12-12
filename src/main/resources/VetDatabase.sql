@@ -65,7 +65,7 @@ CREATE TABLE COMMENT (
 INSERT INTO COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12345, 123, 'Purrs too much'),
-("2021-12-02 8:35:40", 12346, 124, 'Farts smell'),
+("2021-12-02 8:35:40", 12346, 123, 'Farts smell'),
 ("2021-12-03 10:35:00", 12347, 125, 'Needs to eat less'),
 ("2021-12-04 8:14:30", 12348, 126, 'Obese');
 
@@ -334,3 +334,4 @@ SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN L
 -- AFTER UPDATE ON ANIMAL
 -- FOR EACH ROW
 -- AS BEGIN
+SELECT Fname, Lname, Timestamp, Comment FROM COMMENT NATURAL JOIN USER WHERE animalid=123

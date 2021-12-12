@@ -7,8 +7,9 @@ const CommentCard = ({animal, newCommentModal}) => {
     const [comments, setComments] = useState([])
 
     useEffect(() => {
-         
-        const apiendpoint ="http://localhost:8080/animal/123/comment"
+
+        let id = animal.animalid
+        const apiendpoint ="http://localhost:8080/animal/" + id +"/comment"
         axios.get(apiendpoint)
             .then((res) => {
                     setComments(res.data)
