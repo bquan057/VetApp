@@ -99,36 +99,36 @@ public class UserController {
     @GetMapping("/user/{id}")
     @ResponseBody
     public ResponseEntity<List<User>> searchUser(@RequestParam String name){
-        List<User> users = repository.findByName(name);
+        List<User> users = repository.findByfname(name);
         return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
     }
 
     /*
         Block user
      */
-    @CrossOrigin
-    @PutMapping("/user/{id}")
-    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam boolean isActive) {
-
-        User userFromDB = repository.findById(user.getUserid()).get();
-        if(userFromDB.getIsactive() == true) {
-            userFromDB.setIsactive(false);
-            return new ResponseEntity<>("User blocked with status", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("User cannot be blocked", HttpStatus.OK);
-    }
+//    @CrossOrigin
+//    @PutMapping("/user/{id}")
+//    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam boolean isActive) {
+//
+//        User userFromDB = repository.findById(user.getUserid()).get();
+//        if(userFromDB.getIsactive() == true) {
+//            userFromDB.setIsactive(false);
+//            return new ResponseEntity<>("User blocked with status", HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>("User cannot be blocked", HttpStatus.OK);
+//    }
 
     /*
         Change password
      */
-    @CrossOrigin
-    @PutMapping("/user/{id}")
-    public ResponseEntity<String> checkPassword(@RequestBody User user, @RequestParam String password){
-        User userFromDB = repository.findById(user.getUserid()).get();
-        if(userFromDB.getPassword().equals(password)){
-            userFromDB.setPassword(userFromDB.getPassword());
-            return new ResponseEntity<>("Password changed", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Passwords don't match", HttpStatus.OK);
-    }
+//    @CrossOrigin
+//    @PutMapping("/user/{id}")
+//    public ResponseEntity<String> checkPassword(@RequestBody User user, @RequestParam String password){
+//        User userFromDB = repository.findById(user.getUserid()).get();
+//        if(userFromDB.getPassword().equals(password)){
+//            userFromDB.setPassword(userFromDB.getPassword());
+//            return new ResponseEntity<>("Password changed", HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>("Passwords don't match", HttpStatus.OK);
+//    }
 }

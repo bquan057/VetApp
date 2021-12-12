@@ -54,7 +54,7 @@ const AnimalPage = () => {
                 <Header/>
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
                 <TreatmentCard id={id} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
-                <CommentCard id= {id} newCommentModal={newCommentModal}/>
+                <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
                 <PictureCard id={id} newPictureModal = {newPictureModal}/>
             </div>
         </div>

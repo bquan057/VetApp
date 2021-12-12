@@ -29,7 +29,7 @@ public class User {
     @Getter @Setter
     private String email;
     
-    @Column(name="FName")
+    @Column(name="fname")
     @Getter @Setter
     private String fname;
 
@@ -43,15 +43,13 @@ public class User {
 
     @Column(name="IsActive")
     @Getter @Setter
-    private boolean isactive;
+    private Boolean isactive;
     
     @Column(name="Role")
     @Getter @Setter
     private String role;
 
-    public boolean getIsactive() {
-        return isactive;
-    }
+
 
 
 //	public int getUserid() {
