@@ -15,7 +15,9 @@ public class CommentsController {
 
     /*
         Get all comments from the DB with the searching on animals id
+        Response includes Comment date, the users name and comment
      */
+    @CrossOrigin
     @GetMapping("animal/{animalid}/comment")
     public ResponseEntity<List<Comment>> getCommentByAnimalId(@PathVariable int animalid) {
 

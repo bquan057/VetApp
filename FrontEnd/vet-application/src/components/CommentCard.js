@@ -1,19 +1,29 @@
 import axios from "axios";
-import React from "react";
+import React,  { useEffect, useState } from "react";
 
 
-const CommentCard = ({comments, newCommentModal}) => {
+const CommentCard = ({animal, newCommentModal}) => {
 
+    const [comments, setComments] = useState([])
+
+    useEffect(() => {
+         
+        const apiendpoint ="http://localhost:8080/animal/123/comment"
+        axios.get(apiendpoint)
+            .then((res) => {
+                    setComments(res.data)
+                    console.log(res.data)
+                }
+            )
+    }, []);
     
-    
-
     function CommentBox({comment}){
 
         return(
             <div class="tile is-parent is-12">
                 <article class="tile is-child box notification is-primary">
-                    <p className="has-text-weight-bold">Date: {comment.TimeStamp} </p>
-                    <p className="has-text-weight-bold"> Made by: {comment.userName} </p>
+                    <p className="has-text-weight-bold">Date: {comment.timestamp} </p>
+                    <p className="has-text-weight-bold"> Made by: {comment.fname} {comment.lname}</p>
                     <div class="content">
                         <p>{comment.comment}</p>
                     </div>

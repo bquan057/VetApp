@@ -3,7 +3,7 @@ package com.vetapp.application.request;
 import javax.persistence.*;
 
 @Entity
-@Table(name="REQUEST")
+@Table(name="LAB_REQUEST")
 public class Request {
 
     @Id@GeneratedValue(strategy=GenerationType.IDENTITY)

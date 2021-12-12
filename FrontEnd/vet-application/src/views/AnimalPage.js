@@ -1,4 +1,4 @@
-import React,  { useEffect, useState } from "react";
+import React from "react";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import AnimalCard from "../components/AnimalCard";
@@ -10,7 +10,6 @@ import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import CreateCommentModal from "../components/CreateCommentModal";
 import NewPictureModal from "../components/NewPictureModal";
 import RequestTreatmentModal from "../components/RequestTreatmentModal";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 
@@ -41,18 +40,7 @@ const AnimalPage = () => {
         document.getElementById("TreatmentModal").classList.add('is-active')
     }
 
-    const [comments, setComments] = useState([])
 
-    useEffect(() => {
-         
-        const apiendpoint ="http://localhost:8080/animal/123/comment"
-        axios.get(apiendpoint)
-            .then((res) => {
-                    setComments(res.data)
-                    console.log(res.data)
-                }
-            )
-    }, []);
 
     return(
         <div className="columns">
@@ -66,7 +54,7 @@ const AnimalPage = () => {
                 <Header/>
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
                 <TreatmentCard id={id} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
-                <CommentCard comments= {comments} newCommentModal={newCommentModal}/>
+                <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
                 <PictureCard id={id} newPictureModal = {newPictureModal}/>
             </div>
         </div>

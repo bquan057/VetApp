@@ -2,10 +2,13 @@ package com.vetapp.application.user;
 
 
 
+import com.vetapp.application.comment.Comment;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -49,74 +52,4 @@ public class User {
     @Getter @Setter
     private String role;
 
-
-
-
-//	public int getUserid() {
-//		return userid;
-//	}
-//
-//	public void setUserid(int userid) {
-//		this.userid = userid;
-//	}
-
-//	public String getUsername() {
-//		return username;
-//	}
-//
-//	public void setUsername(String username) {
-//		this.username = username;
-//	}
-//
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-//
-//	public String getRole() {
-//		return role;
-//	}
-//
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
-//
-//	public String getFname() {
-//		return fname;
-//	}
-//
-//	public void setFname(String fname) {
-//		this.fname = fname;
-//	}
-//
-//	public String getEmail() {
-//		return email;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-//
-//	public String getActivationdate() {
-//		return activationdate;
-//	}
-//
-//	public void setActivationdate(String activationdate) {
-//		this.activationdate = activationdate;
-//	}
-
-//    String password;
-//    String name;
-//    String firstName;
-//    String lastName;
-//    String phoneNumber;
-//    String number;
-//    String street;
-//    String streetType;
-//    String city;
-//    String province;
-//    String postalCode;
 }
