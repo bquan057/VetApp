@@ -64,6 +64,7 @@ public class StatusService {
         newStatus.setDiseasename(reqStatus.getDiseasename());
         newStatus.setUserid(reqStatus.getUserid());
         newStatus.setDescription(reqStatus.getDescription());
+        newStatus.setLocation(reqStatus.getLocation());
         newStatus.setDiseaseid(dId);
 
         // persist

@@ -13,6 +13,8 @@ import RequestTreatmentModal from "../components/RequestTreatmentModal";
 import { useLocation } from "react-router-dom";
 import PrescriptionCard from "../components/PrescriptionCard";
 import NewPrescriptionModal from "../components/NewPrescriptionModal";
+import StatusCard from "../components/StatusCard";
+import UpdateStatusModal from "../components/UpdateStatusModal";
 
 
 const AnimalPage = () => {
@@ -44,6 +46,10 @@ const AnimalPage = () => {
         document.getElementById("NewPrescription").classList.add('is-active')
     }
 
+    const updateStatusModal = () => {
+        document.getElementById("StatusModal").classList.add('is-active')
+    }
+
     return(
         <div className="columns">
             <WeightHistoryModal animal={animal}/>
@@ -52,10 +58,12 @@ const AnimalPage = () => {
             <NewPictureModal animal = {animal}/>
             <RequestTreatmentModal animal= {animal}/>
             <NewPrescriptionModal animal = {animal}/>
+            <UpdateStatusModal animal = {animal}/>
             <SideBar/>
             <div className="column">
                 <Header/>
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
+                <StatusCard animal={animal} updateStatusModal={updateStatusModal}/>
                 <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
                 <PrescriptionCard animal={animal} newPrescriptionModal = {newPrescriptionModal}/>

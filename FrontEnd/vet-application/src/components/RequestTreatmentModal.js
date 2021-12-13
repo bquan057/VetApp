@@ -4,8 +4,6 @@ import axios from "axios";
 
 const RequestTreatmentModal = (props) => {
 
-    const id = props.animal
-
     const [treatments, setTreatments] = useState([])
 
     const modalClose = () => {

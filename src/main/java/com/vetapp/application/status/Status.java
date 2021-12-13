@@ -20,6 +20,7 @@ public class Status {
 	LocalDateTime timestamp;
 	@Getter @Setter int userid;
 	@Getter @Setter int animalid;
+	@Column(name = "Location")
 	@Getter @Setter String location;
 	@Getter @Setter String description;
 	@Getter @Setter int diseaseid;

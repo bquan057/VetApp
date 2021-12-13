@@ -132,8 +132,8 @@ VALUES
 (1, 'Scurvy'),
 (2, 'Cancer'),
 (3, 'Heart Disease'),
-(4, 'Strokes')
-(5, 'none');
+(4, 'Strokes'),
+(5, 'N/A');
 
 DROP TABLE IF EXISTS STATUS;
 CREATE TABLE STATUS (
@@ -151,7 +151,7 @@ CREATE TABLE STATUS (
 
 INSERT INTO STATUS (TimeStamp, UserId, AnimalId, Location, Description, DiseaseId)
 VALUES
-("2021-12-01 8:15:00", 12345, 123, 'Clinic', 'Doing well', 1),
+("2021-12-01 8:15:00", 12345, 123, 'Clinic', 'Doing well', 5),
 ("2021-12-02 8:35:40", 12345, 124, 'Field', 'Not doing well', 2),
 ("2021-12-03 10:35:00", 12345, 125, 'Clinic', 'Healthy', 3),
 ("2021-12-04 8:14:30", 12345, 126, 'Clinic', 'Not doing well', 4);
@@ -335,3 +335,7 @@ SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN L
 -- AFTER UPDATE ON ANIMAL
 -- FOR EACH ROW
 -- AS BEGIN
+
+SELECT S.timestamp, S.location, S.description, D.diseasename FROM STATUS as S, DISEASES as D 
+WHERE S.diseaseid = D.diseaseid
+ORDER BY S.timestamp  desc
