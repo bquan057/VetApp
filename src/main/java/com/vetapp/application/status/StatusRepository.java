@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Integer>{
-    List<Status> findByAnimalidContaining(String animalid);
+
 }

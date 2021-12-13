@@ -19,4 +19,12 @@ public class DiseaseService {
     public List<Disease> getAllDiseases() {
         return repository.findAll();
     }
+
+    /*
+        Method to return disease id by name
+     */
+    public int getDiseaseId(String dName){
+        Disease disease = repository.findBydiseasename(dName);
+        return disease.getDiseaseid();
+    }
 }
