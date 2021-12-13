@@ -23,11 +23,13 @@ const PrescriptionCard = (props) => {
     function PrescriptionBox({prescription}){
 
         return(
-            <div class="tile is-parent">
-                <article class="tile is-child box notification is-primary">
-                    <p className="has-text-weight-bold"> Made by: {prescription.fname} {prescription.lname}</p>
-                    <p className="has-text-weight-bold"> Prescription Name: {prescription.prescriptionname}</p>
-                </article>
+            <div className="column is-one-third px-1">
+                <div class="tile is-parent">
+                    <article class="tile is-child box notification is-primary">
+                        <p className="has-text-weight-bold"> Made by: {prescription.fname} {prescription.lname}</p>
+                        <p className="has-text-weight-bold"> Prescription Name: {prescription.prescriptionname}</p>
+                    </article>
+                </div>
             </div>
         )
     }
@@ -42,9 +44,9 @@ const PrescriptionCard = (props) => {
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Prescriptions</div>
                     </div>
-                    <div className="columns is-multiline is-centered">
-                        <div className="column is-one-third px-1">
-                            {prescriptions.map(prescription =>(<PrescriptionBox prescription = {prescription}/>))}
+                    <div className="column is-full">
+                        <div className="columns is-multiline is-centered">
+                                {prescriptions.map(prescription =>(<PrescriptionBox prescription = {prescription}/>))}
                         </div>
                     </div>
                 </div>

@@ -32,14 +32,31 @@ public class PrescriptionService {
             String fname = (String) result[0];
             String lname = (String) result[1];
             String thePres = (String) result[2];
+            int userid = (Integer) result[3];
+            int aid = (Integer) result[4];
 
             prescription.setFname(fname);
             prescription.setLname(lname);
             prescription.setPrescriptionname(thePres);
+            prescription.setUserid(userid);
+            prescription.setAnimalid(aid);
             prescriptions.add(prescription);
         }
 
-
             return prescriptions;
+    }
+
+
+    public Prescription createNewPrescription(int animalid, Prescription prescription) {
+        Prescription newPrescription = new Prescription();
+        newPrescription.setAnimalid(animalid);
+        newPrescription.setUserid(prescription.getUserid());
+        newPrescription.setPrescriptionname(prescription.getPrescriptionname());
+        System.out.println(newPrescription.getUserid());
+        System.out.println(newPrescription.getAnimalid());
+
+        repository.save(newPrescription);
+
+        return newPrescription;
     }
 }

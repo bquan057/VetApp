@@ -8,19 +8,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Prescription")
 @NamedQuery(name= "findPrescriptionbyanimalid",
-        query = "SELECT u.fname, u.lname, p.prescriptionname FROM Prescription p, User u WHERE p.userid = u.userid AND p.animalid = :animalid")
+        query = "SELECT u.fname, u.lname, p.prescriptionname, p.userid, p.animalid FROM Prescription p, User u WHERE p.userid = u.userid AND p.animalid = :animalid")
 public class Prescription {
 
 
-    @Getter @Id
+    @Getter @Setter @Id
     private int userid;
 
     @Getter @Setter
     private int animalid;
 
-    @Getter @Setter
+    @Getter @Setter 
     private String prescriptionname;
-
 
 
     @Getter @Setter

@@ -14,27 +14,28 @@ const NewPrescriptionModal = (props) => {
         const id = animal.animalid
         
         // TODO GET FROM SESSION STORAGE
-        const userid = 12345
+        const uid = 12345
         
         // get comment
         const prescription = document.getElementById("prescription").value
         // create request
 
         const request = {
-            prescription: prescription,
-            userid:userid
+            prescriptionname: prescription,
+            userid:uid
         }
 
        
-        const apiendpoint ="http://localhost:8080/animal/" + id +"/comment"
+        const apiendpoint ="http://localhost:8080/animal/" + id +"/prescription"
         axios.post(apiendpoint, request)
             .then((res) => {
-                console.log(res)
+                    console.log(res)
+                    alert("User Saved!");
                 }
             )
 
         // clear field
-        document.getElementById("comment").value = ""
+        document.getElementById("prescription").value = ""
         document.getElementById('NewPrescription').classList.remove('is-active');
     }
 
