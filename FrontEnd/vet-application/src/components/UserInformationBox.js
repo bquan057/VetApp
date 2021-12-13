@@ -69,7 +69,7 @@ const UserInformationBox = ({user, addModal, editModal, deleteModal, blockModal,
                 <div className = "columns is-centered">
                      {/* <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button> */}
                      <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button>
-                     <button onClick = {deleteModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Delete User</button>
+                     <button onClick = {() => {deleteModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Delete User</button>
                      <button onClick = {()=> {blockModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Block User</button>
                      <div className = "my-5"></div>
                 <div>

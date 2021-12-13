@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
-const DeleteModal = () => {
+const DeleteModal = ({id}) => {
     const modalClose = () => {
         document.getElementById('DeleteModal').classList.remove('is-active');
+    }
+
+    const[callDelete, setDelete] = useState([]);
+
+    var apiEndPoint = ""
+    apiEndPoint = "http://localhost:8080/user/" + id;
+
+    function deleteUser() {
+        axios
+        .delete(apiEndPoint)
+        .then((response) => {
+            setDelete(response.data);
+            alert("User Deleted!");
+            // setPost(null)
+      });
     }
     
     return ( 
@@ -31,7 +47,7 @@ const DeleteModal = () => {
                     <div className = "columns is-centered">
                         <div className = "columns">
                             <div className = "column">
-                            <button onClick = {modalClose} className = "button is-success">
+                            <button onClick = {()=> {modalClose(); deleteUser()}} className = "button is-success">
                                 <span Class = "icon is-small">
                                     <i className = "fas fa-check"></i>
                                 </span>

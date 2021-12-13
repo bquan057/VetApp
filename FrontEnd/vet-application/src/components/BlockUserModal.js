@@ -15,7 +15,10 @@ const BlockUserModal = ({id}) => {
     function blockUser(){
         axios.put(apiEndpoint, {
             isactive: false
-        }).then((response) => {setBlock(response.data);}).catch((err) => {
+        }).then((response) => {
+            setBlock(response.data);
+            alert("User Blocked!");
+        }).catch((err) => {
             console.log(err);
         });
     }

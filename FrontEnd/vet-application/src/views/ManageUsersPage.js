@@ -65,6 +65,12 @@ const ManageUsersPage = () => {
     const blockUserModal = () => {
         document.getElementById('BlockModal').classList.add('is-active');
     }
+    // const modalCloseAdd = () => {
+    //     document.getElementById('DeleteModal').classList.remove('is-active');
+    // }
+    // const modalClose = () => {
+    //     document.getElementById('DeleteModal').classList.remove('is-active');
+    // }
 
     return(
         <div className="columns">
@@ -73,16 +79,29 @@ const ManageUsersPage = () => {
             {/* passes the id to EditModal */}
             <EditModal id = {id}/>
             <AddUserModal/>
-            <DeleteModal/>
+            <DeleteModal id = {id}/>
             <BlockModal id = {id}/>
             <div className="column">
             
             <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <div>
+                    <div className = "columns is-centered">
+                            <label onClick = {()=> {addUserModal(); something()}} class="button is-primary is-light">
+                                <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Add User</h1>
+                            </label>
+                            <div className= "mx-6"></div>
+                            <label class="button is-primary is-light">
+                                <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Manage Blocked Users</h1>
+                            </label>
+                    </div>
                     <SearchBarUser addComponents ={addComponents}/>
                     <SearchSelectorUser/>    
-                    {components.map((item) => (<UserInformationBox user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))}
+                    <div className = "columns is-centered">
+                        <div className = "column is-two-thirds">
+                        {components.map((item) => (<UserInformationBox user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))}
                     {/* {components.map((item) => (<ManageUsers user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))} */}
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

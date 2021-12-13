@@ -21,7 +21,9 @@ const EditModal = ({id}) => {
                     username: document.getElementById("username").value,
                     email: document.getElementById("email").value
                     }
-                ).then((response)=>{setEdits(response.data);}).catch((err) => {
+                ).then((response)=>{setEdits(response.data);
+                    alert("User Saved!");
+                }).catch((err) => {
                 console.log(err);
               });
         }
