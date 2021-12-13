@@ -132,7 +132,8 @@ VALUES
 (1, 'Scurvy'),
 (2, 'Cancer'),
 (3, 'Heart Disease'),
-(4, 'Strokes');
+(4, 'Strokes')
+(5, 'none');
 
 DROP TABLE IF EXISTS STATUS;
 CREATE TABLE STATUS (

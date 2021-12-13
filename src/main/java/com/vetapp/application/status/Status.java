@@ -8,24 +8,19 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="Status")
 public class Status {
 
-	public Status() {
-		this.statusid = 0;
-		this.animalid = "";
-		this.date = "";
-		this.description = "";
-		this.location = "";
-		this.status = "";
-	}
-	
-	@Id @GeneratedValue @Getter @Setter int statusid;
-	@Getter @Setter String animalid;
-	@Getter @Setter String date;
-	@Getter @Setter String description;
+
+	@Id @Getter @Setter
+	LocalDateTime timestamp;
+	@Getter @Setter int userid;
+	@Getter @Setter int animalid;
 	@Getter @Setter String location;
-	@Getter @Setter String status;
+	@Getter @Setter String description;
+	@Getter @Setter int diseaseid;
 	
 }
