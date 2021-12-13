@@ -7,7 +7,6 @@ import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 
 
 const HomePage= () => {
-
     return(
         <div className="columns">
             <SideBar/>

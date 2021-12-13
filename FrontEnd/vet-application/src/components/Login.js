@@ -9,29 +9,37 @@ const Login = ({forgotPassword}) => {
     let navigate = useNavigate();
     function handleClick() {
         // TO-DO: Navigate to search page. Leave in when testing.
-        navigate('/home');
+        // navigate('/home');
 
         // TO-DO: API call to check login credentials. Add back in when pushing final product.
-        // const apiEndpoint = `http://localhost:8080/login`;
+        const apiEndpoint = `http://localhost:8080/login`;
 
-        // var u = document.getElementById('username').value;
-        // var p = document.getElementById('password').value;
+        var u = document.getElementById('username').value;
+        var p = document.getElementById('password').value;
         
-        // const user = {
-        //     username:u,
-        //     password:p
-        // }
+        const user = {
+            username:u,
+            password:p
+        }
 
-        // console.log(user)
+        axios.post(apiEndpoint, user)
+            .then((res) => {
+                const token = res.data;
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace('-', '+').replace('_', '/');
+                const userInfo = JSON.parse(window.atob(base64));
 
-        // axios.post(apiEndpoint, user)
-        //     .then((res) => {
-        //         const token = res.data;
-        //         sessionStorage.setItem('token', token);
-        //         if (token != null && token != "") {
-        //             navigate("/home")
-        //         }
-        //     })
+                const userId = userInfo.userId
+                const role = userInfo.role
+                
+                sessionStorage.setItem('id', userId);
+                sessionStorage.setItem('role', role);
+                
+                if (userInfo != null && userInfo != "") {
+                    navigate("/home")
+                }
+            })
+
 
     };
 

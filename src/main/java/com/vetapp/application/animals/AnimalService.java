@@ -27,6 +27,10 @@ public class AnimalService {
 		return repository.findBySpecies(species);
 	}
 	
+	public List<Animal> findByAvailability(String availability) {
+		return repository.findByAvailability(availability);
+	}
+	
 	public Animal save(Animal updatedAnimal) {
 		return repository.save(updatedAnimal);
 	}

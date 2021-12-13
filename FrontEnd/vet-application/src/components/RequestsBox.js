@@ -9,15 +9,24 @@ const RequestsBox = (props) => {
 
     const cancelRequest = () =>{
 
-        const newRequest = {
-            requestid: request.requestid,
-            animalid: request.animalid, 
-            teacherid:request.teacherid,
-            status:"cancelled"
-        }
+        if (document.getElementById("RequestStatus"+props.request.requestid).placeholder != "Approved_By_Technician") {
+            const requestToCancel = {
+                requestid: request.requestid,
+                animalid: request.animalid, 
+                teachingid: request.teachingid,
+                bookingstatus:"Cancelled"
+            }
+    
+            axios.put("http://localhost:8080/request", requestToCancel)
+                .then((res)=> setRequest(res.data));
 
-        axios.put("http://localhost:8080/request", newRequest)
-            .then((res)=> setRequest(res.data));
+            const id = request.animalid
+
+            const updateToAnimal = {
+                availability: "Available"
+            }
+            axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
+        }
 
     } 
 
@@ -63,7 +72,7 @@ const RequestsBox = (props) => {
                             </div>
                         </div> 
                         <div className = "column is-one-third">
-                            <input class="input is-small has-text-centered is-primary is-rounded" type="text" placeholder={request.status} disabled  />
+                            <input id={"RequestStatus"+props.request.requestid} class="input is-small has-text-centered is-primary is-rounded" type="text" placeholder={request.bookingstatus} disabled  />
                         </div>
                         <div className = "column is-one-third">
                         <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={cancelRequest} >Cancel</button>                        </div>      

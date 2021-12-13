@@ -125,7 +125,7 @@ CREATE TABLE PRESCRIPTION (
     AnimalId				integer not null,
     PrescriptionName		varchar(30),
     primary key (UserId, AnimalId, PrescriptionName),
-    foreign key (UserId) references USER(UserId),
+    foreign key (UserId) references USER(UserId)
 );
 
 ALTER TABLE PRESCRIPTION ADD 
@@ -226,7 +226,7 @@ CREATE TABLE WEIGHT (
 	AnimalId				integer not null,
     Date					varchar(30),
     Weight					double,
-    primary key (AnimalId, Date),
+    primary key (AnimalId, Date)
 );
 
 INSERT INTO WEIGHT (AnimalId, Date, Weight)
@@ -273,10 +273,11 @@ VALUES
 
 DROP TABLE IF EXISTS LAB_REQUESTS;
 CREATE TABLE LAB_REQUESTS (
+	RequestId				integer not null auto_increment,
 	AnimalId				integer not null,
     TeachingId				integer not null,
     BookingStatus			varchar(30),
-    primary key (AnimalId, TeachingId),
+    primary key (RequestId),
     foreign key (TeachingId) references USER(UserId)
 );
 
@@ -286,19 +287,19 @@ CONSTRAINT fk_LabRequests_Animal
       REFERENCES ANIMAL(AnimalId)
       ON DELETE CASCADE;
       
-INSERT INTO LAB_REQUESTS (AnimalId, TeachingId, BookingStatus)
+INSERT INTO LAB_REQUESTS (RequestId, AnimalId, TeachingId, BookingStatus)
 VALUES
-(123, 12346, "New"),
-(124, 12347, "New"),
-(125, 12346, "Approved_By_Admin"),
-(126, 12347, "Approved_By_Technician");
+(450, 123, 12346, "New"),
+(451, 124, 12347, "New"),
+(452, 125, 12346, "Approved_By_Admin"),
+(453, 126, 12347, "Approved_By_Technician");
 
 DROP TABLE IF EXISTS ONGOING_CARE;
 CREATE TABLE ONGOING_CARE (
 	AnimalId				integer not null,
     Care					varchar(30),
     DueDate					varchar(30),
-    primary key (AnimalId, Care),
+    primary key (AnimalId, Care)
 );
 
 ALTER TABLE ONGOING_CARE ADD 

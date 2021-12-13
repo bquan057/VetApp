@@ -1,30 +1,28 @@
 import axios from "axios";
 import React, {useState} from "react";
-import getUser from "../components/GetUser";
 
-const ManageRequestCard = (props) =>{
+const MakeRequestCard = (props) =>{
 
     const [animal, setAnimal] = useState(props.animal)
 
     const makeRequest = () => {
+
         const updateToAnimal = {
-            animalid:animal.animalid,
-            animalname:animal.animalname,
-            species:animal.species,
-            status:"requested"
+            availability:"Requested"
         }
-        axios.put("http://localhost:8080/animal", updateToAnimal)
+
+        axios.put("http://localhost:8080/animal/"+animal.animalid, updateToAnimal)
             .then((res) => setAnimal(res.data))
 
-        const user = getUser()
-        const id = user.userId
+        const id = sessionStorage.getItem('id')
 
         const newRequest = {
             animalid:animal.animalid,
-            teacherid:id
+            teachingid:id
         }
 
         axios.post("http://localhost:8080/request", newRequest)
+        
     }
 
     return (
@@ -63,10 +61,10 @@ const ManageRequestCard = (props) =>{
                     </div>
                     <div class="columns is-vcentered">
                         <div className="column is-one-third">
-                            <h1 class="has-text-weight-bold has-text-primary-dark">Status:</h1>
+                            <h1 class="has-text-weight-bold has-text-primary-dark">Availability:</h1>
                         </div>
                         <div className="column">
-                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.status}></input>
+                            <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.availability}></input>
                         </div>
                     </div>
                     <div class ="columns is-centered my-3">
@@ -84,4 +82,4 @@ const ManageRequestCard = (props) =>{
     )
 };
 
-export default ManageRequestCard;
+export default MakeRequestCard;

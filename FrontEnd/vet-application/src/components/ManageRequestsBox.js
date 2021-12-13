@@ -9,43 +9,55 @@ const ManageRequestsBox = (props) => {
 
     const approveRequest = () =>{
         
-        const user = getUser()
-        const userRole = user.role
+        const role = sessionStorage.getItem('role')
         let approveMsg = ""
 
-        if(userRole == 'ROLE_ADMIN'){
-            approveMsg = "approved_by_admin"
+        if(role == 'Admin'){
+            approveMsg = "Approved_By_Admin"
         }else{
-            approveMsg = "approved"
+            approveMsg = "Approved_By_Technician"
         }
 
         const newRequest = {
             requestid: request.requestid,
             animalid: request.animalid, 
-            teacherid:request.teacherid,
-            status:approveMsg
+            teachingid: request.teachingid,
+            bookingstatus: approveMsg
         }
 
         axios.put("http://localhost:8080/request", newRequest)
             .then((res)=> setRequest(res.data));
+
+
+        if (role == 'Health Technician') {
+            const id = request.animalid
+
+            const updateToAnimal = {
+                availability: "Booked"
+            }
+            axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
+        }
 
     } 
 
     const rejectRequest = () =>{
-        
-        const user = getUser()
-        const userRole = user.role
-
 
         const newRequest = {
             requestid: request.requestid,
             animalid: request.animalid, 
-            teacherid:request.teacherid,
-            status:"rejected"
+            teachingid: request.teachingid,
+            bookingstatus: "Rejected"
         }
 
         axios.put("http://localhost:8080/request", newRequest)
             .then((res)=> setRequest(res.data));
+
+        const id = request.animalid
+
+        const updateToAnimal = {
+            availability: "Available"
+        }
+        axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
 
     } 
 
@@ -91,7 +103,7 @@ const ManageRequestsBox = (props) => {
                             </div>
                         </div> 
                         <div className = "column is-one-third">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" placeholder={request.status} disabled  />
+                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" placeholder={request.bookingstatus} disabled  />
                         </div>
                         <div className = "column is-one-third">
                             <div className = "columns">
