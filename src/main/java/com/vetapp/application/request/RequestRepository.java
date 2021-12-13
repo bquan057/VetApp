@@ -13,6 +13,6 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     List<Request> findByteacherid(int teacherid);
 
     // defintion for method to get by status
-    @Query(value = "SELECT * FROM REQUEST WHERE status= ? ", nativeQuery = true)
+    @Query(value = "SELECT * FROM REQUEST WHERE status = ? ", nativeQuery = true)
     List<Request> findBystatus(String status);
 }

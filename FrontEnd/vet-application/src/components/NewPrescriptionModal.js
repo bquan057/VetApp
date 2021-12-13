@@ -1,12 +1,12 @@
 import axios from "axios";
 
 
-const CreateCommentModal = (props) => {
+const NewPrescriptionModal = (props) => {
 
     const animal = props.animal
 
     const modalClose = () => {
-        document.getElementById('NewComment').classList.remove('is-active');
+        document.getElementById('NewPrescription').classList.remove('is-active');
     }
 
     const onSave = () => {
@@ -17,11 +17,11 @@ const CreateCommentModal = (props) => {
         const userid = 12345
         
         // get comment
-        const comment = document.getElementById("comment").value
+        const prescription = document.getElementById("prescription").value
         // create request
 
         const request = {
-            comment: comment,
+            prescription: prescription,
             userid:userid
         }
 
@@ -35,17 +35,17 @@ const CreateCommentModal = (props) => {
 
         // clear field
         document.getElementById("comment").value = ""
-        document.getElementById('NewComment').classList.remove('is-active');
+        document.getElementById('NewPrescription').classList.remove('is-active');
     }
 
     return(
-        <div className="modal" id="NewComment">
+        <div className="modal" id="NewPrescription">
             <div className="modal-background" onClick={modalClose}></div>
             <div className="modal-card has-background-white py-5 px-6" >
                 <div className="columns is-multiline is-v-centered">
                     <div className="column">
-                        <label className="label has-text-weight-bold has-text-primary-dark  ">Comment: </label>
-                        <textarea  id="comment"  className="textarea is-primary" placeholder="Comment"></textarea>
+                        <label className="label has-text-weight-bold has-text-primary-dark  ">Prescription: </label>
+                        <input  id="prescription"  className="textarea is-primary" placeholder="Prescription"/>
                     </div>
                     <div className="column is-full has-text-centered">
                     <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={onSave}>Save</button>
@@ -57,4 +57,4 @@ const CreateCommentModal = (props) => {
 
 }
 
-export default CreateCommentModal;
+export default NewPrescriptionModal;

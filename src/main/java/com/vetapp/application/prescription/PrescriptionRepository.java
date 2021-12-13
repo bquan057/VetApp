@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public interface PrescriptionRepository extends JpaRepository<Prescription, Long>{
-    List<Prescription> findByAnimalidContaining(String animalid);
+
+
+    List<Prescription> findByanimalid(int animalid);
 }
