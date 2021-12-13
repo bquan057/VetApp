@@ -4,8 +4,10 @@ package com.vetapp.application.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -13,102 +15,116 @@ import javax.persistence.*;
 public class User {
 	
     @Column(name="UserID")
-    @Id @GeneratedValue()
-    @Getter @Setter
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Getter @Setter
     private int userid;
     
     @Column(name="Username")
-    @Getter @Setter
+//    @Getter @Setter
     private String username;
     
     @Column(name="Password")
-    @Getter @Setter
+//    @Getter @Setter
     String password;
     
     @Column(name="Email")
-    @Getter @Setter
+//    @Getter @Setter
     private String email;
     
     @Column(name="FName")
-    @Getter @Setter
+//    @Getter @Setter
     private String fname;
 
     @Column(name="LName")
-    @Getter @Setter
+//    @Getter @Setter
     private String lname;
-    
-    @Column(name="Activationdate")
-    @Getter @Setter
-    private String activationdate;
+
+    @Column(name="Activationdate", updatable = false)
+//    @CreationTimestamp
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+//    @Getter @Setter
+    private Date activationdate = new Date();
 
     @Column(name="Isactive")
-    @Getter @Setter
+//    @Getter @Setter
     private boolean isactive;
     
     @Column(name="Role")
-    @Getter @Setter
+//    @Getter @Setter
     private String role;
 
     public boolean getIsactive() {
         return isactive;
     }
 
+    public void setIsactive(boolean isactive) {
+        this.isactive = isactive;
+    }
 
-//	public int getUserid() {
-//		return userid;
-//	}
-//
-//	public void setUserid(int userid) {
-//		this.userid = userid;
-//	}
 
-//	public String getUsername() {
-//		return username;
-//	}
+	public int getUserid() {
+		return userid;
+	}
 //
-//	public void setUsername(String username) {
-//		this.username = username;
-//	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
 //
-//	public String getPassword() {
-//		return password;
-//	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 //
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
+	public String getPassword() {
+		return password;
+	}
 //
-//	public String getRole() {
-//		return role;
-//	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 //
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
+	public String getRole() {
+		return role;
+	}
 //
-//	public String getFname() {
-//		return fname;
-//	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 //
-//	public void setFname(String fname) {
-//		this.fname = fname;
-//	}
+	public String getFname() {
+		return fname;
+	}
 //
-//	public String getEmail() {
-//		return email;
-//	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+    public String getLname() {
+        return lname;
+    }
+    //
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
 //
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
+	public String getEmail() {
+		return email;
+	}
 //
-//	public String getActivationdate() {
-//		return activationdate;
-//	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 //
-//	public void setActivationdate(String activationdate) {
-//		this.activationdate = activationdate;
-//	}
+	public Date getActivationdate() {
+		return activationdate;
+	}
+//
+	public void setActivationdate(Date activationdate) {
+		this.activationdate = activationdate;
+	}
 
 //    String password;
 //    String name;
