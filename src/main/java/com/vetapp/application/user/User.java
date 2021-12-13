@@ -2,12 +2,16 @@ package com.vetapp.application.user;
 
 
 
+import com.vetapp.application.comment.Comment;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 
 
 @Entity
@@ -31,8 +35,11 @@ public class User {
 //    @Getter @Setter
     private String email;
     
+
     @Column(name="FName")
 //    @Getter @Setter
+    @Getter @Setter
+
     private String fname;
 
     @Column(name="LName")
@@ -48,6 +55,7 @@ public class User {
     @Column(name="Isactive")
 //    @Getter @Setter
     private boolean isactive;
+
     
     @Column(name="Role")
 //    @Getter @Setter
@@ -137,4 +145,5 @@ public class User {
 //    String city;
 //    String province;
 //    String postalCode;
+
 }

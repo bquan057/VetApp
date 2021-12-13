@@ -1,22 +1,33 @@
 import React from "react";
+import axios from "axios";
 import pictureData from "../data/pictureData";
 import { useState } from "react";
 
 
-const PictureCard = ({id, newPictureModal}) => {
+const PictureCard = ({id, newPictureModal, handlePic}) => {
 
+    // const [pic, setPic] = useState(null);
+
+    // const sendDataToParent = (i) =>{
+    //     setPic(i);
+    // }
+    
     function TreatmentBox({image}){
 
         return(
             <div className="column is-two-fifths mx-1 mb-2">
                 <div className="tile is-child is-12 notification is-primary">
                     <div className="column has-text-centered ">
-                        <figure className="image">
+                        {/* <figure className="image">
                             <img src={image.path} alt="" />
                             <p>{image.creation}</p>
+                        </figure> */}
+                        {/* <figure class="image is-128x128"> */}
+                        {/* <img class="is-rounded" src="{{site.url}}/images/placeholders/128x128.png"/> */}
+                        <figure class="image is-128x128">
+                            <img src={handlePic}/>
                         </figure>
-                        
-                        
+                        {/* </figure> */}
                     </div>
                   </div>
             </div>
@@ -37,6 +48,9 @@ const PictureCard = ({id, newPictureModal}) => {
                     </div>
                     <div className="column">
                         <div className="columns is-multiline is-centered py-3">
+                        <figure class="image is-128x128">
+                            <img src={handlePic}/>
+                        </figure>
                         {pictureData.filter(image => image.animalid==id).map(filteredImage =>(<TreatmentBox image = {filteredImage}/>
                             ))}
                         </div>

@@ -1,5 +1,11 @@
+import axios from "axios";
+import React, {useState} from "react";
 
-const NewPictureModal = ({id}) => {
+const NewPictureModal = (props) => {
+
+    const id = props.animal
+    // props.picture = document.getElementById("image_url").value
+
 
 
     const modalClose = () => {
@@ -9,17 +15,19 @@ const NewPictureModal = ({id}) => {
     const handleSave = () => {
         // close modal
         document.getElementById('NewPicture').classList.remove('is-active');
+        var pictureName = document.getElementById("image_url").value
+        props.picture(pictureName)
         // TODO figure out file input
         // handle file input
-        const fileInput = document.querySelector('#picture-file input[type=file]');
-        console.log(fileInput)
+        // const fileInput = document.querySelector('#picture-file input[type=file]');
+        // console.log(fileInput)
         // if (fileInput.files.length > 0) {
         // const fileName = document.querySelector('#picture-file .file-name');
         // fileName.textContent = fileInput.files[0].name;
         // console.log(fileName)
         // }
     }
- 
+
     return(
         <div className="modal" id="NewPicture">
             <div className="modal-background" onClick={modalClose}></div>
@@ -29,7 +37,7 @@ const NewPictureModal = ({id}) => {
                 </header>
                 <section className="modal-card-body">
                     <div className="file is-centered is-primary is-boxed" id="picture-file">
-                        <label className="file-label">
+                        {/* <label className="file-label">
                             <input className="file-input" type="file" name="resume"/>
                             <span className="file-cta">
                                 <span className="file-icon">
@@ -39,9 +47,11 @@ const NewPictureModal = ({id}) => {
                                     Upload Image
                                 </span>
                             </span>
-                        </label>
+                        </label> */}
+
                     </div>
                     <div className="column has-text-centered">
+                        <input id = "image_url" class="input is-small is-primary is-rounded" type="text" placeholder="Enter Image URL"/>
                         <button className= "button is-centered has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={handleSave} >Save</button>
                     </div>
                 </section>

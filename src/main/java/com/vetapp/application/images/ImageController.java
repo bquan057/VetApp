@@ -18,14 +18,14 @@ public class ImageController {
     ImageRepository repository;
 
     // Mapping to get images for specified animal
-    @GetMapping("api/animals/{animalid}/images")
+    @GetMapping("animals/{animalid}/images")
     public ResponseEntity<List<Image>> getAllImages(@PathVariable String animalid){
         List<Image> images = repository.findAllByAnimalidContaining(animalid);
         return new ResponseEntity<>(images, HttpStatus.OK);
     }
 
     // Mapping to add images for a specified animal
-    @PostMapping("/api/animals/{animalid}/images")
+    @PostMapping("animals/{animalid}/images")
     public ResponseEntity<Image> addImage(@PathVariable String animalid, @RequestBody Image newImage){
         newImage.setAnimalid(animalid); // attach animal id to new image
         Image image = repository.save(newImage);
@@ -33,7 +33,7 @@ public class ImageController {
     }
 
     // Mapping to delete image
-    @DeleteMapping("/api/animals/images/{imageid}")
+    @DeleteMapping("animals/images/{imageid}")
     public ResponseEntity<String> deleteImage(@PathVariable long imageid){
         Optional<Image> image = repository.findById(imageid);
 

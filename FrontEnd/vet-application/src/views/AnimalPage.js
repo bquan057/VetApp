@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import AnimalCard from "../components/AnimalCard";
@@ -10,18 +10,21 @@ import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import CreateCommentModal from "../components/CreateCommentModal";
 import NewPictureModal from "../components/NewPictureModal";
 import RequestTreatmentModal from "../components/RequestTreatmentModal";
-import { useParams } from "react-router";
 import { useLocation } from "react-router-dom";
 
 
 const AnimalPage = () => {
-    const {id} = useParams();
-    
+
+
+    const [pic, setPic] = useState([]);
+
+    const setThePic = (pic) => {
+        setPic(pic);
+    }
+        
     const location = useLocation();
-
     const animal = location.state.animal
-    console.log(animal)
-
+   
     const weightModal = () => {
         document.getElementById("WeightModal").classList.add('is-active')
     }
@@ -41,21 +44,21 @@ const AnimalPage = () => {
     const newTreatmentModal = () => {
         document.getElementById("TreatmentModal").classList.add('is-active')
     }
-
     return(
         <div className="columns">
-            <WeightHistoryModal id={id}/>
-            <TreatmentHistoryModal id={id}/>
-            <CreateCommentModal id= {id}/>
-            <NewPictureModal id = {id}/>
-            <RequestTreatmentModal id= {id}/>
+            <WeightHistoryModal animal={animal}/>
+            <TreatmentHistoryModal animal={animal}/>
+            <CreateCommentModal animal= {animal}/>
+            <NewPictureModal animal = {animal} picture = {setPic}/>
+            <RequestTreatmentModal animal= {animal}/>
             <SideBar/>
             <div className="column">
                 <Header/>
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
-                <TreatmentCard id={id} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
-                <CommentCard id= {id} newCommentModal={newCommentModal}/>
-                <PictureCard id={id} newPictureModal = {newPictureModal}/>
+                <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
+                <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
+                <PictureCard animal={animal} newPictureModal = {newPictureModal} handlePic = {pic}/>
+                
             </div>
         </div>
     )

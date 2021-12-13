@@ -81,15 +81,17 @@ public class UserController {
      */
     @CrossOrigin
     @PutMapping(value = "/user/password", params = "id")
-    public ResponseEntity<String> changePassword(@RequestBody User user, @RequestParam int id){
+    public ResponseEntity<String> changePassword(@RequestBody User user, @RequestParam int id) {
         User userFromDB = userService.getUserById(id);
         String passwordStatus = userService.setPassword(userFromDB, user);
         return new ResponseEntity<>(passwordStatus, HttpStatus.OK);
     }
 
+
     /*
         Method to delete a user
      */
+
     @CrossOrigin
     @DeleteMapping("/user/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id){

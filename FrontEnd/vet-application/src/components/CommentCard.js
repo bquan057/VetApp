@@ -1,19 +1,35 @@
-import React from "react";
-import commentData from "../data/commentData";
-import { useState } from "react";
+import axios from "axios";
+import React,  { useEffect, useState } from "react";
 
 
-const CommentCard = ({id, newCommentModal}) => {
+const CommentCard = (props) => {
 
+    const animal = props.animal
+    const newCommentModal = props.newCommentModal
+
+    const [comments, setComments] = useState([])
+
+    useEffect(() => {
+
+        let id = animal.animalid
+        const apiendpoint ="http://localhost:8080/animal/" + id +"/comment"
+        axios.get(apiendpoint)
+            .then((res) => {
+                    setComments(res.data)
+                }
+            )
+    }, []);
+    
     function CommentBox({comment}){
 
         return(
             <div class="tile is-parent is-12">
                 <article class="tile is-child box notification is-primary">
-                    <p className="has-text-weight-bold">Date: {comment.timeStamp} </p>
-                    <p className="has-text-weight-bold"> Made by: {comment.userName} </p>
-                    <div class="content">
-                        <p>{comment.comment}</p>
+                    <p className="has-text-weight-bold">Date: {comment.timestamp} </p>
+                    <p className="has-text-weight-bold"> Made by: {comment.fname} {comment.lname}</p>
+                    <p className="has-text-weight-bold"> Comment: </p>
+                    <div className="tile is-child notification has-background-white">
+                            <p className="has-text-black has-text-weight-bold">{comment.comment}</p>
                     </div>
                 </article>
             </div>
@@ -32,8 +48,7 @@ const CommentCard = ({id, newCommentModal}) => {
                     </div>
                     <div className="column is-one-quarter"></div>
                     <div className="column">
-                    {commentData.filter(comment => comment.animalid==id).map(filteredComment =>(<CommentBox comment = {filteredComment}/>
-                            ))}
+                        {comments.map(comment =>(<CommentBox comment = {comment}/>))}
                     </div>
                 </div>
             </div>

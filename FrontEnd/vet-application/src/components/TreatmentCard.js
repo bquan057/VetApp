@@ -4,7 +4,11 @@ import treatmentData from "../data/treatmentData";
 import { useState } from "react";
 
 
-const TreatmentCard = ({id, treatmentHistory, newTreatment}) => {
+const TreatmentCard = (props) => {
+
+    const id = props.animal
+    const treatmentHistory = props.treatmentHistory
+    const newTreatment = props.newTreatment
 
     function TreatmentBox({treatment}){
 

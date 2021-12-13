@@ -31,7 +31,7 @@ public class UserService {
         // query db
         User user = repository.findByusername(uname);
         // credientials dont match in db
-        if(!user.getUsername().equals(uname) || !user.getPassword().equals(pword)){
+        if(user == null || !user.getPassword().equals(pword)){
             return null;
         }
         // create jwt from uname and pword

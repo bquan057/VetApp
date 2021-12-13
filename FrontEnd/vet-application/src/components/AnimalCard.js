@@ -1,9 +1,11 @@
 import React from "react";
 
 
-const AnimalCard = ({animal, weightModal}) => {
+const AnimalCard = (props) => {
 
-
+    const animal = props.animal
+    const weightModal = props.weightModal
+    
     function Card (att) {
         let label = att.att
         label = label.toUpperCase()

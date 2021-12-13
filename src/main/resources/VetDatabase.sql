@@ -80,7 +80,7 @@ CREATE TABLE COMMENT (
 INSERT INTO COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12345, 123, 'Purrs too much'),
-("2021-12-02 8:35:40", 12346, 124, 'Farts smell'),
+("2021-12-02 8:35:40", 12346, 123, 'Farts smell'),
 ("2021-12-03 10:35:00", 12347, 125, 'Needs to eat less'),
 ("2021-12-04 8:14:30", 12348, 126, 'Obese');
 
@@ -232,7 +232,7 @@ CREATE TABLE TREATMENT (
     AttendantId				integer,
     AnimalId				integer,
     TreatmentId				integer,
-    IsComplete				boolean,
+    Status					varchar(30),
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
     foreign key (TechnicianId) references USER(UserId) ON DELETE CASCADE, 
     foreign key (AttendantId) references USER(UserId) ON DELETE CASCADE,
@@ -247,9 +247,9 @@ CONSTRAINT fk_Treatment_Animal
       
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, IsComplete)
 VALUES
-("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
-("2021-09-01 9:30:00", 12346, 12351, 124, 2, false),
-("2021-12-01 10:45:00", 12348, 12351, 125, 1, false);
+("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'complete'),
+("2021-09-01 9:30:00", 12346, 12351, 124, 2, 'complete'),
+("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'complete');
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -374,7 +374,7 @@ SELECT * FROM ANIMAL WHERE Availability = "Available";
 SELECT * FROM ONGOING_CARE ORDER BY DueDate;
 
 -- 4. A nested retrieval query. Get the number of treatments of the type 'Eat vitamin C' that haven't been performed yet.
-SELECT COUNT(*) FROM TREATMENT WHERE IsComplete = false AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
+SELECT COUNT(*) FROM TREATMENT WHERE status = 'requested' AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
 -- Get all comments for a specific animal where the user is an admin.
 SELECT * FROM COMMENT WHERE AnimalId = 123 AND UserId in (SELECT UserId FROM USER WHERE Role = "Admin");
 
