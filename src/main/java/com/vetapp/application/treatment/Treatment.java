@@ -7,24 +7,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
-// Model for treatments
+
 @Entity
-@Table(name = "TREATMENT")
+@Table(name = "Treatment")
 public class Treatment {
 
-    @Getter
     @Id
-    @GeneratedValue
-    private long treatmentid;
+    @Getter @Setter
+    private LocalDateTime timestamp;
+
+    @Getter @Setter
+    private int technicianid;
+
+    @Getter @Setter
+    private int attendantid;
+
     @Getter@Setter
-    private String animalid;
-    @Getter@Setter
+    private int animalid;
+
+    @Getter @Setter
+    private int treatmentid;
+
+    @Getter @Setter
     private String treatmenttype;
 
-    public Treatment() {
-        this.treatmentid = 0;
-        this.animalid = "";
-        this.treatmenttype = "";
-    }
+    @Getter @Setter
+    private String status;
 }

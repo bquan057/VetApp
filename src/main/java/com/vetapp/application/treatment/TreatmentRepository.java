@@ -10,5 +10,5 @@ import java.util.List;
 public interface TreatmentRepository extends JpaRepository<Treatment, Long> {
 
     // method to get treatment by animalid
-    List<Treatment> findByAnimalidContaining(String animalid);
+    List<Treatment> findByanimalidandstatus(int animalid, String status );
 }
