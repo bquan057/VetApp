@@ -22,7 +22,6 @@ const PictureCard = ({id, newPictureModal}) => {
             </div>
         )
     }
-
     return(
         <div className="columns is-centered mb-6">
             <div className="column is-three-quarters">
