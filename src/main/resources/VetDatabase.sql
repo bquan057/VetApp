@@ -177,7 +177,7 @@ CREATE TABLE TREATMENT (
     AttendantId				integer,
     AnimalId				integer,
     TreatmentId				integer,
-    IsComplete				boolean,
+    Status					varchar(30),
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
     foreign key (TechnicianId) references USER(UserId),
     foreign key (AttendantId) references USER(UserId),
@@ -185,11 +185,11 @@ CREATE TABLE TREATMENT (
     foreign key (TreatmentId) references TREATMENT_METHODS(TreatmentId)
 );
 
-INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, IsComplete)
+INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, Status)
 VALUES
-("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
-("2021-09-01 9:30:00", 12346, 12351, 124, 2, false),
-("2021-12-01 10:45:00", 12348, 12351, 125, 1, false);
+("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'complete'),
+("2021-09-01 9:30:00", 12346, 12351, 124, 2, 'complete'),
+("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'complete');
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -292,7 +292,7 @@ SELECT * FROM ANIMAL WHERE Availability = "Available";
 SELECT * FROM ONGOING_CARE ORDER BY DueDate;
 
 -- 4. A nested retrieval query. Get the number of treatments of the type 'Eat vitamin C' that haven't been performed yet.
-SELECT COUNT(*) FROM TREATMENT WHERE IsComplete = false AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
+SELECT COUNT(*) FROM TREATMENT WHERE status = 'requested' AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
 -- Get all comments for a specific animal where the user is an admin.
 SELECT * FROM COMMENT WHERE AnimalId = 123 AND UserId in (SELECT UserId FROM USER WHERE Role = "Admin");
 
@@ -334,4 +334,3 @@ SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN L
 -- AFTER UPDATE ON ANIMAL
 -- FOR EACH ROW
 -- AS BEGIN
-SELECT Fname, Lname, Timestamp, Comment FROM COMMENT NATURAL JOIN USER WHERE animalid=123

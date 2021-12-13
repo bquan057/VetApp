@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 
 const RequestTreatmentModal = (props) => {
 
     const id = props.animal
+
+    const [treatments, setTreatments] = useState([])
 
     const modalClose = () => {
         document.getElementById('TreatmentModal').classList.remove('is-active');
@@ -13,10 +16,17 @@ const RequestTreatmentModal = (props) => {
         document.getElementById('TreatmentModal').classList.remove('is-active');
     }
 
+    useEffect(() => {
+        axios.get("http://localhost:8080/treatmentmethods")
+            .then((res)=>{
+                setTreatments(res.data)
+            })
+        }, [])
+
     const TreatmentList = () => {
-        
+
         return(
-            <option>option 2</option>
+            treatments.map((item)=><option>{item.treatmentmethod}</option>)
         )
     }
     
@@ -38,9 +48,6 @@ const RequestTreatmentModal = (props) => {
                     <div className="column is-half has-text-centered">
                         <div className="select is-rounded">
                             <select>
-                                <TreatmentList/>
-                                <TreatmentList/>   
-                                <TreatmentList/>   
                                 <TreatmentList/>                                       
                             </select>
                         </div>

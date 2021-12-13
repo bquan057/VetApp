@@ -9,6 +9,7 @@ import com.vetapp.application.prescription.PrescriptionRepository;
 import com.vetapp.application.request.RequestRepository;
 import com.vetapp.application.status.StatusRepository;
 import com.vetapp.application.treatment.TreatmentRepository;
+import com.vetapp.application.treatmentmethod.TreatmentMethodRepository;
 import com.vetapp.application.user.UserRepository;
 import com.vetapp.application.weight.WeightRepository;
 
@@ -19,7 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = {UserRepository.class, RequestRepository.class, AnimalRepository.class, AlertRepository.class,
 			CommentRepository.class, ImageRepository.class, NotificationRepository.class, PrescriptionRepository.class, StatusRepository.class,
-			TreatmentRepository.class, WeightRepository.class})
+			TreatmentRepository.class, WeightRepository.class, TreatmentMethodRepository.class})
 public class Application {
 
 	public static void main(String[] args) {
