@@ -295,12 +295,12 @@ CONSTRAINT fk_LabRequests_Animal
       REFERENCES ANIMAL(AnimalId)
       ON DELETE CASCADE;
       
-INSERT INTO LAB_REQUESTS (RequestId, AnimalId, TeachingId, BookingStatus)
-VALUES
-(450, 123, 12346, "New"),
-(451, 124, 12347, "New"),
-(452, 125, 12346, "Approved_By_Admin"),
-(453, 126, 12347, "Approved_By_Technician");
+-- INSERT INTO LAB_REQUESTS (RequestId, AnimalId, TeachingId, BookingStatus)
+-- VALUES
+-- (450, 123, 12346, "New"),
+-- (451, 124, 12347, "New"),
+-- (452, 125, 12346, "Approved_By_Admin"),
+-- (453, 126, 12347, "Approved_By_Technician");
 
 DROP TABLE IF EXISTS ONGOING_CARE;
 CREATE TABLE ONGOING_CARE (
