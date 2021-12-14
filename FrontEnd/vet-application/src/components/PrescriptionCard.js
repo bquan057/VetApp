@@ -6,6 +6,7 @@ const PrescriptionCard = (props) => {
 
     const animal = props.animal
     const newPrescriptionModal = props.newPrescriptionModal
+    const role = sessionStorage.getItem('role')
 
     const [prescriptions, setPrescriptions] = useState([])
 
@@ -38,9 +39,12 @@ const PrescriptionCard = (props) => {
         <div className="columns is-centered mb-6">
             <div className="column is-three-quarters">
                 <div class="columns card is-multiline is-vcentered py-1">
-                    <div className="column is-one-quarter has-text-centered">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={newPrescriptionModal}>New Prescription</button>
-                    </div>
+                    {role === "Health Technician"
+                        ?<div className="column is-one-quarter has-text-centered">
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={newPrescriptionModal}>New Prescription</button>
+                        </div>
+                        :<div className="column is-one-quarter has-text-centered"/>
+                    }
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Prescriptions</div>
                     </div>

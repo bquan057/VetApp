@@ -1,11 +1,12 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 
 const AnimalCard = (props) => {
 
     const animal = props.animal
     const weightModal = props.weightModal
-    
+
     function Card (att) {
         let label = att.att
         label = label.toUpperCase()

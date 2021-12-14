@@ -23,7 +23,7 @@ const RequestTreatmentModal = (props) => {
         let lname = document.getElementById("lname").value
         
         // TODO GET FROM SESSION STORAGE
-        let userid = 12351
+        let userid = sessionStorage.getItem('id')
         
         // Create api call
         let id = props.animal.animalid

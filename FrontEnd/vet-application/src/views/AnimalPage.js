@@ -21,6 +21,8 @@ const AnimalPage = () => {
         
     const location = useLocation();
     const animal = location.state.animal
+
+    const role = sessionStorage.getItem('role')
    
     const weightModal = () => {
         document.getElementById("WeightModal").classList.add('is-active')
@@ -65,7 +67,10 @@ const AnimalPage = () => {
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
                 <StatusCard animal={animal} updateStatusModal={updateStatusModal}/>
                 <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
-                <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
+                {role!="Student" 
+                    ?<CommentCard animal= {animal} newCommentModal={newCommentModal}/>
+                    : <div/>
+                }
                 <PrescriptionCard animal={animal} newPrescriptionModal = {newPrescriptionModal}/>
                 <PictureCard animal={animal} newPictureModal = {newPictureModal}/>
                 

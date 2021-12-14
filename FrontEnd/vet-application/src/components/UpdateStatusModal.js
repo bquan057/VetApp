@@ -35,17 +35,19 @@ const UpdateStatusModal = (props) => {
     const selectDisease = (e) => {
         setDisease(e.target.value)
     }
-    console.log(id)
+    
     function handleUpdate(){
         let location = document.getElementById('location').value
         let description = document.getElementById('description').value
         
+        let userid = sessionStorage.getItem('id')
+
         // build request
         let request = {
             location:location,
             description:description,
             diseasename:disease,
-            userid:12345
+            userid:userid
         }
         
         // end point

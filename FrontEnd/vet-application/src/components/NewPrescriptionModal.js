@@ -13,8 +13,7 @@ const NewPrescriptionModal = (props) => {
         // get the animal id
         const id = animal.animalid
         
-        // TODO GET FROM SESSION STORAGE
-        const uid = 12345
+        const uid = sessionStorage.getItem('id')
         
         // get comment
         const prescription = document.getElementById("prescription").value
@@ -30,7 +29,6 @@ const NewPrescriptionModal = (props) => {
         axios.post(apiendpoint, request)
             .then((res) => {
                     console.log(res)
-                    alert("User Saved!");
                 }
             )
 

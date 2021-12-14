@@ -8,6 +8,7 @@ const TreatmentCard = (props) => {
     const animal = props.animal
     const treatmentHistory = props.treatmentHistory
     const newTreatment = props.newTreatment
+    const role = sessionStorage.getItem('role')
 
     const[treatments, setTreatments] = useState([])
 
@@ -41,9 +42,12 @@ const TreatmentCard = (props) => {
         <div className="columns is-centered mb-6">
             <div className="column is-three-quarters">
                 <div class="columns is-multiline card is-vcentered">
-                    <div className="column is-one-quarter has-text-centered">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={newTreatment} >Request Treatment</button>
-                    </div>
+                    {role==="Care Attendant"
+                        ?<div className="column is-one-quarter has-text-centered">
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={newTreatment} >Request Treatment</button>
+                        </div>
+                        :<div className="column is-one-quarter has-text-centered"></div>
+                    }
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Current Treatments</div>
                     </div>

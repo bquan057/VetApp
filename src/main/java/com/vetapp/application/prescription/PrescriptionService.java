@@ -52,8 +52,6 @@ public class PrescriptionService {
         newPrescription.setAnimalid(animalid);
         newPrescription.setUserid(prescription.getUserid());
         newPrescription.setPrescriptionname(prescription.getPrescriptionname());
-        System.out.println(newPrescription.getUserid());
-        System.out.println(newPrescription.getAnimalid());
 
         repository.save(newPrescription);
 

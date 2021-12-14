@@ -7,6 +7,7 @@ const PictureCard = (props) => {
 
     const id = props.animal
     const newPictureModal = props.newPictureModal
+    const role = sessionStorage.getItem('role')
 
     function TreatmentBox({image}){
 
@@ -30,9 +31,12 @@ const PictureCard = (props) => {
         <div className="columns is-centered mb-6">
             <div className="column is-three-quarters">
                 <div class="columns is-multiline card is-vcentered">
-                    <div className="column is-one-quarter has-text-centered">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={newPictureModal} >Add Picture</button>
-                    </div>
+                    {role!="Student"
+                        ?<div className="column is-one-quarter has-text-centered">
+                            <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={newPictureModal} >Add Picture</button>
+                        </div>
+                        :<div className="column is-one-quarter has-text-centered"/>
+                    }
                     <div className="column is-half has-text-centered">
                         <div className="title has-text-primary-dark has-text-weight-bold">Pictures</div>
                     </div>

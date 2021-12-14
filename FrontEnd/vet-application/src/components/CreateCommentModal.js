@@ -13,8 +13,7 @@ const CreateCommentModal = (props) => {
         // get the animal id
         const id = animal.animalid
         
-        // TODO GET FROM SESSION STORAGE
-        const userid = 12345
+        const userid = sessionStorage.getItem('id')
         
         // get comment
         const comment = document.getElementById("comment").value
