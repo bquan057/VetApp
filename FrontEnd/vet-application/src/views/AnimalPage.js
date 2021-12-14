@@ -10,6 +10,8 @@ import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import CreateCommentModal from "../components/CreateCommentModal";
 import NewPictureModal from "../components/NewPictureModal";
 import RequestTreatmentModal from "../components/RequestTreatmentModal";
+import EditAccount from "../components/EditAccount";
+import ChangePasswordModal from "../components/ChangePasswordModal";
 import { useLocation } from "react-router-dom";
 
 
@@ -24,6 +26,15 @@ const AnimalPage = () => {
         
     const location = useLocation();
     const animal = location.state.animal
+
+
+    const changePasswordModal = () => {
+        document.getElementById('ChangePasswordModal').classList.add('is-active');
+    }
+
+    const editAccountModal = () => {
+        document.getElementById('EditAccount').classList.add('is-active');
+    }
    
     const weightModal = () => {
         document.getElementById("WeightModal").classList.add('is-active')
@@ -52,8 +63,10 @@ const AnimalPage = () => {
             <NewPictureModal animal = {animal} picture = {setPic}/>
             <RequestTreatmentModal animal= {animal}/>
             <SideBar/>
+            <ChangePasswordModal/>
+            <EditAccount/>
             <div className="column">
-                <Header/>
+                <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
                 <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 <CommentCard animal= {animal} newCommentModal={newCommentModal}/>

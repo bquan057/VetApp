@@ -10,7 +10,7 @@ import EditAnimalModal from "../components/EditAnimalModal";
 import DeleteAnimalModal from "../components/DeleteAnimalModal";
 import RequestAnimalModal from "../components/RequestAnimalModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
-import EditModal from "../components/EditModal";
+import EditAccount from "../components/EditAccount";
 import animalData from "../data/animalData";
 import axios from "axios";
 
@@ -64,7 +64,7 @@ const ManageAnimalsPage = () => {
     }
 
     const editAccountModal = () => {
-        document.getElementById('EditModal').classList.add('is-active');
+        document.getElementById('EditAccount').classList.add('is-active');
     }
 
     return(
@@ -72,7 +72,7 @@ const ManageAnimalsPage = () => {
             <SideBar/>
             <AddAnimalModal/>
             <ChangePasswordModal/>
-            <EditModal/>
+            <EditAccount/>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
                 <NewAnimalButton addAnimalModal = {addAnimalModal}/>

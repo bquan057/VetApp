@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import logo from "../res/ucvm-logo.jpeg"
 import PasswordModal from "./ChangePasswordModal";
-import Modal from "./EditModal";
+import Modal from "./EditAccount";
 import { useNavigate } from "react-router";
 
 const Header = ({changePassword, editAccount}) => {

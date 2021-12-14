@@ -3,10 +3,30 @@ import React, {useState} from "react";
 
 const NewPictureModal = (props) => {
 
+    const[picture, setPicture] = useState([]);
+
+    var apiEndPoint = ""
+    apiEndPoint = "http://localhost:8080/animals/images";
+    
+
+    function postImage(){
+        console.log(document.getElementById("image_url").value)
+        console.log(props.animal.animalid)
+        axios.post(apiEndPoint, 
+            {
+                // userid: sessionStorage.getItem('id'),
+                animalid: props.animal.animalid,
+                fileurl: document.getElementById("image_url").value
+            }
+
+        ).then((response) => {
+            setPicture(response.data);
+            alert("Picture saved!");
+        });
+    }
+
+
     const id = props.animal
-    // props.picture = document.getElementById("image_url").value
-
-
 
     const modalClose = () => {
         document.getElementById('NewPicture').classList.remove('is-active');
@@ -14,9 +34,9 @@ const NewPictureModal = (props) => {
 
     const handleSave = () => {
         // close modal
-        document.getElementById('NewPicture').classList.remove('is-active');
-        var pictureName = document.getElementById("image_url").value
-        props.picture(pictureName)
+        // document.getElementById('NewPicture').classList.remove('is-active');
+        // var pictureName = document.getElementById("image_url").value
+        // props.picture(pictureName)
         // TODO figure out file input
         // handle file input
         // const fileInput = document.querySelector('#picture-file input[type=file]');
@@ -52,7 +72,7 @@ const NewPictureModal = (props) => {
                     </div>
                     <div className="column has-text-centered">
                         <input id = "image_url" class="input is-small is-primary is-rounded" type="text" placeholder="Enter Image URL"/>
-                        <button className= "button is-centered has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={handleSave} >Save</button>
+                        <button className= "button is-centered has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={()=> {modalClose(); postImage()}} >Save</button>
                     </div>
                 </section>
             </div>

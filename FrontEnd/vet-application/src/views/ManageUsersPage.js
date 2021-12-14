@@ -5,13 +5,14 @@ import SearchBarUser from "../components/SearchBarUser";
 import SearchSelectorUser from "../components/SearchSelectorUser";
 import ChangeAccess from "../components/ChangeAccess";
 import UserInformationBox from "../components/UserInformationBox";
-import EditModal from "../components/EditModal";
+import EditAccount from "../components/EditAccount";
 import ManageUsers from "../components/ManageUsersComponent"
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import AddUserModal from "../components/AddUserModal";
 import DeleteModal from "../components/DeleteUserModal";
 import BlockModal from "../components/BlockUserModal";
 import axios from "axios";
+import EditModal from "../components/EditModal";
 
 const ManageUsersPage = () => {
 
@@ -50,7 +51,7 @@ const ManageUsersPage = () => {
     }
 
     const editAccountModal = () => {
-        document.getElementById('EditModal').classList.add('is-active');
+        document.getElementById('EditAccount').classList.add('is-active');
     }
 
     const addUserModal = () => {
@@ -76,9 +77,9 @@ const ManageUsersPage = () => {
         <div className="columns">
             <SideBar/>
             <ChangePasswordModal/>
-            {/* passes the id to EditModal */}
-            <EditModal id = {id}/>
+            <EditAccount/>
             <AddUserModal/>
+            <EditModal id= {id}/>
             <DeleteModal id = {id}/>
             <BlockModal id = {id}/>
             <div className="column">

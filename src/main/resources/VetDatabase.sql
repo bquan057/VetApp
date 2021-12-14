@@ -80,7 +80,7 @@ CREATE TABLE COMMENT (
 INSERT INTO COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12345, 123, 'Purrs too much'),
-("2021-12-02 8:35:40", 12346, 123, 'Farts smell'),
+("2021-12-02 8:35:40", 12346, 124, 'Farts smell'),
 ("2021-12-03 10:35:00", 12347, 125, 'Needs to eat less'),
 ("2021-12-04 8:14:30", 12348, 126, 'Obese');
 
@@ -106,7 +106,7 @@ CREATE TABLE STUDENT_COMMENT (
 --       FOREIGN KEY (UserId)
 --       REFERENCES USER(UserId)
 --       ON DELETE CASCADE;
-      
+
 INSERT INTO STUDENT_COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12349, 123, 'Purrs too much'),
@@ -116,10 +116,9 @@ VALUES
 
 DROP TABLE IF EXISTS IMAGE;
 CREATE TABLE IMAGE (
-	ImageId					integer not null,
-    ImageType				varchar(30),
-    CreationDate			varchar(30),
-    FileName				varchar(30),
+	ImageId					integer auto_increment not null,
+    CreationDate			DateTime,
+    FileUrl					varchar(1000),
     AnimalId				integer,
     primary key (ImageId)
 );
@@ -130,11 +129,11 @@ CONSTRAINT fk_Image_Animal
       REFERENCES ANIMAL(AnimalId)
       ON DELETE CASCADE;
       
-INSERT INTO IMAGE (ImageId, ImageType, CreationDate, FileName, AnimalId)
+INSERT INTO IMAGE (ImageId, CreationDate, FileUrl, AnimalId)
 VALUES
-(1, 'jpg', '2021-12-01', 'B&Wcat.jpg', '123'),
-(2, 'jpg', '2021-12-05', 'kitty.jpg', '124'),
-(3, 'jpg', '2021-12-07', '123fun.jpg', '123');
+(1, '2021-12-01', 'https://cdn.vox-cdn.com/thumbor/Z6PAPzGfqK5n4Q7oBnUk5aNOL6Q=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22814568/jbareham_210827_ecl1072_summer_streaming_2021_anime.jpg', 123),
+(2,  '2021-12-05', 'https://i.ytimg.com/vi/dWnhkEFRzFQ/maxresdefault.jpg', 124),
+(3, '2021-12-07', 'https://cdn.mos.cms.futurecdn.net/eVyt9jnUrLBSvSwW6pScj9.jpg', 123);
 
 DROP TABLE IF EXISTS PRESCRIPTION;
 CREATE TABLE PRESCRIPTION (
@@ -232,7 +231,7 @@ CREATE TABLE TREATMENT (
     AttendantId				integer,
     AnimalId				integer,
     TreatmentId				integer,
-    Status					varchar(30),
+    IsComplete				boolean,
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
     foreign key (TechnicianId) references USER(UserId) ON DELETE CASCADE, 
     foreign key (AttendantId) references USER(UserId) ON DELETE CASCADE,
@@ -247,9 +246,9 @@ CONSTRAINT fk_Treatment_Animal
       
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, IsComplete)
 VALUES
-("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'complete'),
-("2021-09-01 9:30:00", 12346, 12351, 124, 2, 'complete'),
-("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'complete');
+("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
+("2021-09-01 9:30:00", 12346, 12351, 124, 2, false),
+("2021-12-01 10:45:00", 12348, 12351, 125, 1, false);
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -374,7 +373,7 @@ SELECT * FROM ANIMAL WHERE Availability = "Available";
 SELECT * FROM ONGOING_CARE ORDER BY DueDate;
 
 -- 4. A nested retrieval query. Get the number of treatments of the type 'Eat vitamin C' that haven't been performed yet.
-SELECT COUNT(*) FROM TREATMENT WHERE status = 'requested' AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
+SELECT COUNT(*) FROM TREATMENT WHERE IsComplete = false AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
 -- Get all comments for a specific animal where the user is an admin.
 SELECT * FROM COMMENT WHERE AnimalId = 123 AND UserId in (SELECT UserId FROM USER WHERE Role = "Admin");
 

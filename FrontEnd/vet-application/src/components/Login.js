@@ -6,10 +6,10 @@ import axios from "axios";
 
 const Login = ({forgotPassword}) => {
 
-    let navigate = useNavigate();
-    function handleClick() {
+    // let navigate = useNavigate();
+    // function handleClick() {
         // TO-DO: Navigate to search page. Leave in when testing.
-        navigate('/home');
+        // navigate('/home');
 
         // TO-DO: API call to check login credentials. Add back in when pushing final product.
         // const apiEndpoint = `http://localhost:8080/login`;
@@ -33,6 +33,47 @@ const Login = ({forgotPassword}) => {
         //         }
         //     })
 
+    // };
+
+    let navigate = useNavigate();
+    function handleClick() {
+        // TO-DO: Navigate to search page. Leave in when testing.
+        // navigate('/home');
+
+        // TO-DO: API call to check login credentials. Add back in when pushing final product.
+        const apiEndpoint = 'http://localhost:8080/login';
+
+        var u = document.getElementById('username').value;
+        var p = document.getElementById('password').value;
+
+        const user = {
+            username:u,
+            password:p
+        }
+
+        axios.post(apiEndpoint, user)
+            .then((res) => {
+                const token = res.data;
+
+                if(token === ""){
+                    alert("Failed to log in, try again.")
+                    console.log("hit the null loop")
+                    return; 
+                }
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace('-', '+').replace('_', '/');
+                const userInfo = JSON.parse(window.atob(base64));
+
+                const userId = userInfo.userId
+                const role = userInfo.role
+
+                sessionStorage.setItem('id', userId);
+                sessionStorage.setItem('role', role);
+
+                if (userInfo != null && userInfo != "") {
+                    navigate("/home")
+                }
+            })
     };
 
     return (
