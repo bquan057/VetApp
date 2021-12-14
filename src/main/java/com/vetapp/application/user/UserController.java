@@ -40,6 +40,18 @@ public class UserController {
     }
 
     /*
+       Method to get all blocked users
+     */
+    @CrossOrigin
+    @GetMapping("/user/block")
+    public ResponseEntity<List<User>>getAllBlocked(){
+        List<User> users = userService.getAllUsers();
+        List<User> blockedUsers = userService.getIsBlocked(users);
+        return new ResponseEntity<>(blockedUsers, HttpStatus.ACCEPTED);
+    }
+
+
+    /*
         Method to add a new user
      */
     @CrossOrigin
@@ -62,7 +74,7 @@ public class UserController {
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
     }
     /*
-        Block user
+        Block user/Unblock
     */
     @CrossOrigin
     @PutMapping(value = "/user/block", params = "id")

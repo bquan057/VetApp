@@ -13,6 +13,7 @@ import DeleteModal from "../components/DeleteUserModal";
 import BlockModal from "../components/BlockUserModal";
 import axios from "axios";
 import EditModal from "../components/EditModal";
+import UnblockUserModal from "../components/UnblockUserModal";
 
 const ManageUsersPage = () => {
 
@@ -66,6 +67,10 @@ const ManageUsersPage = () => {
     const blockUserModal = () => {
         document.getElementById('BlockModal').classList.add('is-active');
     }
+
+    const unblockUserModal = () => {
+        document.getElementById('UnblockModal').classList.add('is-active');
+    }
     // const modalCloseAdd = () => {
     //     document.getElementById('DeleteModal').classList.remove('is-active');
     // }
@@ -82,6 +87,7 @@ const ManageUsersPage = () => {
             <EditModal id= {id}/>
             <DeleteModal id = {id}/>
             <BlockModal id = {id}/>
+            <UnblockUserModal/>
             <div className="column">
             
             <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
@@ -91,7 +97,7 @@ const ManageUsersPage = () => {
                                 <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Add User</h1>
                             </label>
                             <div className= "mx-6"></div>
-                            <label class="button is-primary is-light">
+                            <label  onClick = {unblockUserModal} class="button is-primary is-light">
                                 <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Manage Blocked Users</h1>
                             </label>
                     </div>

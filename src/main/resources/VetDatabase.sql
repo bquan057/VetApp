@@ -25,7 +25,7 @@ INSERT INTO ANIMAL (AnimalId, AnimalName, Tattoo, Age, Birthdate, Breed, Sex, Co
 VALUES
 (123, 'Sora', "hellokitty", 1, '2021-12-01', 'Orange Tabby', 'female', 'black', true, 12, 'Cat', 'Available'),
 (124, 'Bruno', "hellodoggy", 2, '2020-07-01', 'italian greyhound', 'female', 'brown', false, 12, 'Dog', 'Available'),
-(125, 'Pengu', "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', true, 12, 'Penguin', 'Available'),
+(125, 'Pengu', "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', false, 12, 'Penguin', 'Available'),
 (126, 'Cat', "hellokittykawaii", 1, '2018-12-01', 'Black cat', 'male', 'black', true, 12, 'Cat', 'Available');
 
 
@@ -46,9 +46,9 @@ CREATE TABLE USER (
 INSERT INTO USER (UserId, Username, Password, Email, FName, LName, ActivationDate, IsActive, Role)
 VALUES
 (12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily','Wang', '2021-12-01', true, 'Admin'),
-(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', true, 'Teaching Technician'),
-(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', true, 'Teaching Technician'),
-(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', true, 'Health Technician'),
+(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', false, 'Teaching Technician'),
+(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', false, 'Teaching Technician'),
+(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', false, 'Health Technician'),
 (12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', 'Yasuo','2019-05-01', true, 'Student'),
 (12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda',' ','2019-05-01', true, 'Student'),
 (12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid',' ','2016-05-01', true, 'Care Attendant');

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {useState} from "react";
 
 const BlockUserModal = ({id}) => {
+    
     const modalClose = () => {
         document.getElementById('BlockModal').classList.remove('is-active');
     }

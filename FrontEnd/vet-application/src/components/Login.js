@@ -66,9 +66,11 @@ const Login = ({forgotPassword}) => {
 
                 const userId = userInfo.userId
                 const role = userInfo.role
+                const password = userInfo.passWord
 
                 sessionStorage.setItem('id', userId);
                 sessionStorage.setItem('role', role);
+                sessionStorage.setItem('password', password);
 
                 if (userInfo != null && userInfo != "") {
                     navigate("/home")

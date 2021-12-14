@@ -102,6 +102,20 @@ public class UserService {
         }
     }
 
+    public List<User> getIsBlocked(List<User> user){
+        for(int i = 0 ; i<user.size(); i++){
+            if(user.get(i).getIsactive() != false) {
+                user.remove(i);
+            }
+        }
+
+//
+//        for(int i = 0 ; i<user.size(); i++){
+//            System.out.println(user.get(i));
+//        }
+        return user;
+    }
+
     public String setIsActive(boolean statusActive, User userFromDB, User user){
 //        if(statusActive == true){
 //            userFromDB.setIsactive(false);
