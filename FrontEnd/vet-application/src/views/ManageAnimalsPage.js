@@ -6,12 +6,8 @@ import SearchBar from "../components/SearchBar";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 import ManageAnimalsCard from "../components/ManageAnimalsCard";
 import AddAnimalModal from "../components/AddAnimalModal";
-import EditAnimalModal from "../components/EditAnimalModal";
-import DeleteAnimalModal from "../components/DeleteAnimalModal";
-import RequestAnimalModal from "../components/RequestAnimalModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import EditModal from "../components/EditModal";
-import animalData from "../data/animalData";
 import axios from "axios";
 
 const ManageAnimalsPage = () => {

@@ -9,6 +9,8 @@ const Header = ({changePassword, editAccount}) => {
     let navigate = useNavigate();
 
     function loginPage() {
+        sessionStorage.removeItem('role')
+        sessionStorage.removeItem('id')
         navigate('/');
     };
      
@@ -17,7 +19,9 @@ const Header = ({changePassword, editAccount}) => {
             <div className="column">
             <nav class="navbar is-primary-dark" role="navigation" aria-label="dropdown navigation">
                 <div className = "column is-four-fifths">
-                <img src={logo} alt="Example1" width="300" height="130"/>
+                <a href="/home">
+                    <img src={logo} alt="Example1" width="300" height="130"/>
+                </a>
                 </div>
                 
                  {/* user */}

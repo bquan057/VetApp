@@ -26,10 +26,9 @@ VALUES
 (125, 'Pengu', "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', true, 12, 'Penguin', 'Available'),
 (126, 'Cat', "hellokittykawaii", 1, '2018-12-01', 'Black cat', 'male', 'black', true, 12, 'Cat', 'Available');
 
-
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
-	UserId					integer	not null,
+	UserId					integer	auto_increment not null,
 	Username				varchar(30),
     Password				varchar(30),
     Email					varchar(30),
@@ -59,6 +58,7 @@ CREATE TABLE COMMENT (
     Comment					varchar(300),
 	primary key (TimeStamp, UserId, AnimalId),
     foreign key (UserId) references USER(UserId)
+    ON DELETE CASCADE
 );
 
 ALTER TABLE COMMENT ADD 
@@ -82,6 +82,7 @@ CREATE TABLE STUDENT_COMMENT (
     Comment					varchar(300),
 	primary key (TimeStamp, UserId, AnimalId),
     foreign key (UserId) references USER(UserId)
+    ON DELETE CASCADE
 );
 
 ALTER TABLE STUDENT_COMMENT ADD 
@@ -99,11 +100,10 @@ VALUES
 
 DROP TABLE IF EXISTS IMAGE;
 CREATE TABLE IMAGE (
-	ImageId					integer not null,
-    ImageType				varchar(30),
-    CreationDate			varchar(30),
-    FileName				varchar(30),
-    AnimalId				integer,
+    ImageId                 integer auto_increment not null,
+    CreationDate            DateTime,
+    FileUrl                 varchar(1000),
+    AnimalId                integer,
     primary key (ImageId)
 );
 
@@ -113,11 +113,11 @@ CONSTRAINT fk_Image_Animal
       REFERENCES ANIMAL(AnimalId)
       ON DELETE CASCADE;
       
-INSERT INTO IMAGE (ImageId, ImageType, CreationDate, FileName, AnimalId)
+INSERT INTO IMAGE (ImageId, CreationDate, FileUrl, AnimalId)
 VALUES
-(1, 'jpg', '2021-12-01', 'B&Wcat.jpg', '123'),
-(2, 'jpg', '2021-12-05', 'kitty.jpg', '124'),
-(3, 'jpg', '2021-12-07', '123fun.jpg', '123');
+(1, '2021-12-01', 'https://cdn.vox-cdn.com/thumbor/Z6PAPzGfqK5n4Q7oBnUk5aNOL6Q=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22814568/jbareham_210827_ecl1072_summer_streaming_2021_anime.jpg', '123'),
+(2,  '2021-12-05', 'https://i.ytimg.com/vi/dWnhkEFRzFQ/maxresdefault.jpg', '124'),
+(3, '2021-12-07', 'https://cdn.mos.cms.futurecdn.net/eVyt9jnUrLBSvSwW6pScj9.jpg', '123');
 
 DROP TABLE IF EXISTS PRESCRIPTION;
 CREATE TABLE PRESCRIPTION (
@@ -126,6 +126,7 @@ CREATE TABLE PRESCRIPTION (
     PrescriptionName		varchar(30),
     primary key (UserId, AnimalId, PrescriptionName),
     foreign key (UserId) references USER(UserId)
+    ON DELETE CASCADE
 );
 
 ALTER TABLE PRESCRIPTION ADD 
@@ -146,13 +147,14 @@ CREATE TABLE DISEASES (
     DiseaseName				varchar(30),
     primary key (DiseaseId)
 );
-
+    
 INSERT INTO DISEASES (DiseaseId, DiseaseName)
 VALUES
 (1, 'Scurvy'),
 (2, 'Cancer'),
 (3, 'Heart Disease'),
 (4, 'Strokes');
+
 
 DROP TABLE IF EXISTS STATUS;
 CREATE TABLE STATUS (
@@ -163,7 +165,7 @@ CREATE TABLE STATUS (
     Description				varchar(30),
     DiseaseId				integer,
     primary key (TimeStamp, UserId, AnimalId),
-    foreign key (UserId) references USER(UserId),
+    foreign key (UserId) references USER(UserId) ON DELETE CASCADE,
     foreign key (DiseaseId) references DISEASES(DiseaseId)
 );
 
@@ -202,11 +204,10 @@ CREATE TABLE TREATMENT (
     AttendantId				integer,
     AnimalId				integer,
     TreatmentId				integer,
-    IsComplete				boolean,
+    Status					varchar(30),
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
-    foreign key (TechnicianId) references USER(UserId),
-    foreign key (AttendantId) references USER(UserId),
-    foreign key (TreatmentId) references TREATMENT_METHODS(TreatmentId)
+    foreign key (TechnicianId) references USER(UserId) ON DELETE CASCADE,
+    foreign key (AttendantId) references USER(UserId) ON DELETE CASCADE
 );
 
 ALTER TABLE TREATMENT ADD 
@@ -215,11 +216,17 @@ CONSTRAINT fk_Treatment_Animal
       REFERENCES ANIMAL(AnimalId)
       ON DELETE CASCADE;
       
-INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, IsComplete)
+ALTER TABLE TREATMENT ADD 
+CONSTRAINT fk_Treatment_Method
+      FOREIGN KEY (TreatmentId)
+      REFERENCES TREATMENT_METHODS(TreatmentId)
+      ON UPDATE RESTRICT;
+      
+INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, Status)
 VALUES
-("2021-12-01 8:15:00", 12347, 12351, 123, 1, true),
-("2021-09-01 9:30:00", 12346, 12351, 124, 2, false),
-("2021-12-01 10:45:00", 12348, 12351, 125, 1, false);
+("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'Complete'),
+("2021-09-01 9:30:00", 12346, 12351, 124, 2, 'Requested'),
+("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'Approved');
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -229,18 +236,18 @@ CREATE TABLE WEIGHT (
     primary key (AnimalId, Date)
 );
 
+ALTER TABLE WEIGHT ADD 
+CONSTRAINT fk_Weight_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
+      
 INSERT INTO WEIGHT (AnimalId, Date, Weight)
 VALUES
 (123, '2021-12-01', 20.0),
 (124, '2021-12-04', 25.0),
 (125, '2021-12-05', 12.0),
 (126, '2020-12-08', 10.0);
-
-ALTER TABLE WEIGHT ADD 
-CONSTRAINT fk_Weight_Animal 
-      FOREIGN KEY (AnimalId)
-      REFERENCES ANIMAL(AnimalId)
-      ON DELETE CASCADE;
       
 DROP TABLE IF EXISTS NOTIFICATION;
 CREATE TABLE NOTIFICATION (
@@ -262,7 +269,7 @@ CREATE TABLE USER_NOTIFICATIONS (
     UserId					integer not null,
     primary key (NotificationId, UserId),
     foreign key (NotificationId) references NOTIFICATION(NotificationId),
-    foreign key (UserId) references USER(UserId)
+    foreign key (UserId) references USER(UserId) ON DELETE CASCADE
 );
 
 INSERT INTO USER_NOTIFICATIONS (NotificationId, UserId)
@@ -278,7 +285,7 @@ CREATE TABLE LAB_REQUESTS (
     TeachingId				integer not null,
     BookingStatus			varchar(30),
     primary key (RequestId),
-    foreign key (TeachingId) references USER(UserId)
+    foreign key (TeachingId) references USER(UserId) ON DELETE CASCADE
 );
 
 ALTER TABLE LAB_REQUESTS ADD 
@@ -314,73 +321,6 @@ VALUES
 (124, 'rabies vaccine', '12-28-21'),
 (125, 'annual check up', '12-29-21'),
 (126, 'annual check up', '12-30-21');
-
-SELECT * FROM ANIMAL;
-SELECT * FROM USER;
-SELECT * FROM COMMENT;
-SELECT * FROM STUDENT_COMMENT;
-SELECT * FROM IMAGE;
-SELECT * FROM PRESCRIPTION;
-SELECT * FROM DISEASES;
-SELECT * FROM STATUS;
-SELECT * FROM TREATMENT_METHODS;
-SELECT * FROM TREATMENT;
-SELECT * FROM WEIGHT;
-SELECT * FROM NOTIFICATION;
-SELECT * FROM USER_NOTIFICATIONS;
-SELECT * FROM LAB_REQUESTS;
-SELECT * FROM ONGOING_CARE;
-
--- 2. A basic retrieval query. Selecting all animals that are available for lab requests.
-SELECT * FROM ANIMAL WHERE Availability = "Available";
-
--- 3. A retrieval query with ordered results. Retrieve all upcoming appointments sorted by ascending order.
-SELECT * FROM ONGOING_CARE ORDER BY DueDate;
-
--- 4. A nested retrieval query. Get the number of treatments of the type 'Eat vitamin C' that haven't been performed yet.
-SELECT COUNT(*) FROM TREATMENT WHERE IsComplete = false AND TreatmentId IN (SELECT TreatmentId FROM TREATMENT_METHODS WHERE TreatmentMethod = "Eat vitamin C");
--- Get all comments for a specific animal where the user is an admin.
-SELECT * FROM COMMENT WHERE AnimalId = 123 AND UserId in (SELECT UserId FROM USER WHERE Role = "Admin");
-
--- 5. A retrieval query using joined tables. Select animal names, ids, and booking statuses where the request booking status is new.
-SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN LAB_REQUESTS AS L WHERE L.BookingStatus = "New";
-
--- 6. An update operation with any necessary triggers.
--- CREATE TRIGGER DISEASE_NOTIFICATION
--- BEFORE UPDATE ON STATUS
--- FOR EACH ROW
--- IF (NEW.DiseaseId IS NOT NULL) THEN	INSERT INTO NOTIFICATION (TimeStamp, Notification) VALUES (CURRENT_TIMESTAMP, "Disease Detected!");
-
--- DELIMITER //
--- CREATE TRIGGER REQUEST_CREATION
--- AFTER UPDATE ON ANIMAL
--- FOR EACH ROW
--- IF (Animal.Availability = "Requested") THEN
--- INSERT INTO LAB_REQUESTS(AnimalId, TeachingId, BookingStatus)
--- VALUES
--- (NEW.AnimalId, 12346, "New");
--- DELIMITER ;
-
--- UPDATE ANIMAL SET Availability = "Requested" WHERE AnimalId = 126;
-
-
--- CREATE TRIGGER REQUEST_CREATION 
--- 	FOR UPDATE
--- 	AS 
--- 	BEGIN
--- 		UPDATE LAB_REQUESTS
---         SET LAB_REQUESTS.AnimalId = ANIMAL.AnimalI,
---         LAB_REQUESTS.TeachingId = USER.UserId,
---         LAB_REQUESTS.BookingStatus = "New"
---         FROM ANIMAL, USER
---         WHERE LAB_REQUESTS.AnimalId = ANIMAL.AnimalId AND LAB_REQUESTS.TeachingId = USER.UserId
---     END
-
-
--- AFTER UPDATE ON ANIMAL
--- FOR EACH ROW
--- AS BEGIN
-
 
 
 
