@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -33,6 +34,23 @@ public class TreatmentController {
 
         return new ResponseEntity<>(treatments, HttpStatus.OK);
     }
+    
+    // Mapping to get animal treatments based on status user/{userid}/treatment
+    @CrossOrigin
+    @GetMapping("user/{userid}/treatment")
+    public ResponseEntity<List<Treatment>> getTreatmentsByUserid(@PathVariable int userid, @RequestParam(required = false) String status){
+
+    	List<Treatment> treatments = new ArrayList<Treatment>();
+    	
+    	if (status == null) {
+    		treatments = service.getByUserid(userid);
+    	}
+    	else {
+    		treatments = service.getByUseridandstatus(userid, status);
+    	}
+
+        return new ResponseEntity<>(treatments, HttpStatus.OK);
+    }
 
     @CrossOrigin
     @PostMapping("animal/{animalid}/treatment")
@@ -43,4 +61,11 @@ public class TreatmentController {
         return new ResponseEntity<>(newTreatment, HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @PutMapping("user/{userid}/treatment")
+    public ResponseEntity<Treatment> updateTreatment(@PathVariable int userid, @RequestBody Treatment treatment){
+    	Treatment updatedTreatment = service.updateTreatment(userid, treatment);
+    	
+    	return new ResponseEntity<>(updatedTreatment, HttpStatus.OK);
+    }
 }

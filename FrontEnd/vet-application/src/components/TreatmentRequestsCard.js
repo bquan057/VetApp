@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import TreatmentRequestsRow from "./TreatmentRequestsRow";
+import { useEffect } from "react/cjs/react.development";
+import axios from "axios";
 
 const TreatmentRequestsCard = () => {
 
+    const id = sessionStorage.getItem('id')
+
     const [components, setComponents] = useState([])
+
+    useEffect (() => {
+        axios.get("http://localhost:8080/user/"+id+"/treatment?status=Requested")
+            .then((res) => setComponents(res.data))
+    
+    }, []);
 
     return (
         <div className = "columns is-centered mb-6">
@@ -41,9 +51,9 @@ const TreatmentRequestsCard = () => {
                     </div>
                 </div>
 
-                {/* {components.map(item=> <TreatmentRequestsRow treatment = {item}/>)} */}
+                {components.map(item=> <TreatmentRequestsRow treatment = {item}/>)}
 
-                <div className="control">
+                {/* <div className="control">
                     <div className = "columns is-centered is-vcentered">
 
                         <div className = "column">
@@ -87,7 +97,7 @@ const TreatmentRequestsCard = () => {
                         </div>  
                     
                     </div>
-                </div>
+                </div> */}
 
                 
             </div>

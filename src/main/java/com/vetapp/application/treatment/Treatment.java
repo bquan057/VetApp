@@ -17,6 +17,25 @@ import java.time.LocalDateTime;
                 "FROM Treatment TR, TreatmentMethod TM, Animal A " +
                 "WHERE TR.treatmentid = TM.treatmentid AND A.animalid = TR.animalid " +
                 "AND A.animalid = :animalid AND TR.status = :status")
+
+@NamedQuery(name = "getTreatmentByUserid",
+query = "SELECT TR.technicianid, TR.animalid, TR.status, TM.treatmentmethod, A.animalname " +
+        "FROM Treatment TR, TreatmentMethod TM, Animal A " +
+        "WHERE TR.treatmentid = TM.treatmentid AND A.animalid = TR.animalid " +
+        "AND TR.attendantid = :attendantid")
+
+@NamedQuery(name = "getTreatmentByUseridandstatus",
+query = "SELECT TR.attendantid, TR.animalid, TR.status, TM.treatmentmethod, A.animalname, TR.timestamp, TR.treatmentid " +
+        "FROM Treatment TR, TreatmentMethod TM, Animal A " +
+        "WHERE TR.treatmentid = TM.treatmentid AND A.animalid = TR.animalid " +
+        "AND TR.technicianid = :technicianid AND TR.status = :status")
+
+@NamedQuery(name = "getTreatment",
+query = "SELECT TR.attendantid, TR.technicianid, TR.animalid, TR.status, TR.timestamp, TR.treatmentid, TM.treatmentmethod, A.animalname " +
+        "FROM Treatment TR, TreatmentMethod TM, Animal A " +
+        "WHERE TR.treatmentid = TM.treatmentid AND A.animalid = TR.animalid " +
+        "AND TR.technicianid = :technicianid AND TR.treatmentid = :treatmentid AND TR.animalid = :animalid AND TR.timestamp = :timestamp")
+
 public class Treatment {
 
     @Id

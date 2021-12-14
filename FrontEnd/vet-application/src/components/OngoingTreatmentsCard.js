@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import OngoingTreatmentRequestsRow from "./OngoingTreatmentRequestsRow";
+import { useEffect } from "react/cjs/react.development";
+import axios from "axios";
 
 const OngoingTreatmentsCard = () => {
 
+    const id = sessionStorage.getItem('id')
+
     const [components, setComponents] = useState([])
+
+    useEffect (() => {
+        axios.get("http://localhost:8080/user/"+id+"/treatment?status=Accepted")
+            .then((res) => setComponents(res.data))
+    
+    }, []);
 
     return (
         <div className = "columns is-centered mb-6">
@@ -41,9 +51,9 @@ const OngoingTreatmentsCard = () => {
                     </div>
                 </div>
 
-                {/* {components.map(item=> <OngoingTreatmentRequestsRow treatment = {item}/>)} */}
+                {components.map(item=> <OngoingTreatmentRequestsRow treatment = {item}/>)}
 
-                <div className="control">
+                {/* <div className="control">
                     <div className = "columns is-centered is-vcentered">
 
                         <div className = "column">
@@ -81,7 +91,7 @@ const OngoingTreatmentsCard = () => {
                         </div>  
                     
                     </div>
-                </div>
+                </div> */}
 
                 
             </div>
