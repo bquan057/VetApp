@@ -7,6 +7,7 @@ import EditModal from "../components/EditModal";
 import MyTreatmentRequestsCard from "../components/MyTreatmentRequestsCard";
 import TreatmentRequestsCard from "../components/TreatmentRequestsCard";
 import OngoingTreatmentsCard from "../components/OngoingTreatmentsCard";
+import OnGoingCare from "../components/OnGoingCare";
 
 
 const HomePage= () => {
@@ -43,7 +44,7 @@ const HomePage= () => {
             <EditModal/>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>
-                
+                <OnGoingCare/>
                 {attendantTreatmentRequestCards()}
                 {technicianTreatmentRequestCards()}
                 
