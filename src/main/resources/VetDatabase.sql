@@ -318,7 +318,9 @@ CONSTRAINT fk_OngoingCare_Animal
       
 INSERT INTO ONGOING_CARE (AnimalId, Care, DueDate)
 VALUES
-(123, 'vaccine', '12-12-21'),
-(124, 'rabies vaccine', '12-28-21'),
-(125, 'annual check up', '12-29-21'),
-(126, 'annual check up', '12-30-21');
+(123, 'vaccine', '2021-12-15'),
+(124, 'rabies vaccine', '2021-12-19'),
+(125, 'annual check up', '2021-12-20'),
+(126, 'annual check up', '2021-12-25');
+
+SELECT O.animalid, O.Care, O.DueDate, A.AnimalName FROM Ongoing_care as O, Animal as A WHERE O.animalid = A.animalid AND O.duedate < '12-29-21' ORDER BY O.duedate

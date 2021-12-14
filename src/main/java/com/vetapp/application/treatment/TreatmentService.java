@@ -102,11 +102,6 @@ public class TreatmentService {
         newTreatment.setStatus("requested");
         newTreatment.setTreatmentid(treatmentId);
 
-
-
-;
-
-
         repository.save(newTreatment);
         return newTreatment;
     }
