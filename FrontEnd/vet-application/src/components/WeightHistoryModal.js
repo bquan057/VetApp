@@ -42,6 +42,11 @@ const WeightHistoryModal = (props) => {
             weight:document.querySelector('#newWeight').value
         }
 
+        if(newWeight.weight <= 0){
+            alert("Weight cannot be 0 or negative")
+            return
+        }
+
         const apiendpoint ="http://localhost:8080/animal/" + id + "/weight"
         axios.post(apiendpoint, newWeight)
             .then((res) => {
@@ -71,10 +76,7 @@ const WeightHistoryModal = (props) => {
                             </th>
                         </tfoot>
                         <tbody>
-                            {
-
-                                weights.map((weight) => (<Row weight ={weight}/>))
-                            }
+                            {weights.map((weight) => (<Row weight ={weight}/>))}
                         </tbody>
                     </table>
                 </div>
