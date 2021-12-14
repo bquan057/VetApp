@@ -1,13 +1,24 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
-const DeleteAnimalModal = ({animal}) => {
+const DeleteAnimalModal = (props) => {
 
+    const[selectedAnimal, setSelectedAnimal] = useState(props.selectedAnimal)
+    
     const modalClose = () => {
-        document.getElementById('DeleteAnimalModal').classList.remove('is-active');
+        document.getElementById('DeleteAnimalModal'+selectedAnimal.animalid).classList.remove('is-active');
+    }
+
+    const deleteAnimal = () => {
+
+        axios.delete("http://localhost:8080/animal/"+selectedAnimal.animalid)
+            .then(setSelectedAnimal([]), props.setAnimal([]))
+
+        modalClose()
     }
 
     return (
-        <div class="modal" id="DeleteAnimalModal">
+        <div class="modal" id={"DeleteAnimalModal"+selectedAnimal.animalid}>
             <div class="modal-background"></div>
             <div class="modal-content">
                 <div class="modal-card-body">
@@ -22,7 +33,7 @@ const DeleteAnimalModal = ({animal}) => {
                                     <h1 class="has-text-weight-bold has-text-primary-dark">Name:</h1>
                                 </div>
                                 <div className="column">
-                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.name}></input>
+                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={selectedAnimal.animalname}></input>
                                 </div>
                             </div>
                             <div class="columns is-vcentered">
@@ -30,12 +41,12 @@ const DeleteAnimalModal = ({animal}) => {
                                     <h1 class="has-text-weight-bold has-text-primary-dark">Id:</h1>
                                 </div>
                                 <div className="column">
-                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={animal.id}></input>
+                                    <input class="input is-primary is-rounded has-text-centered" type="text" placeholder={selectedAnimal.animalid}></input>
                                 </div>
                             </div>
                             <div class="columns is-vcentered">
                                 <div className="column is-vcentered has-text-centered is-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={deleteAnimal}>
                                         <span class="icon is-small">
                                             <i class="fas fa-check-circle"></i>
                                         </span>
@@ -43,7 +54,7 @@ const DeleteAnimalModal = ({animal}) => {
                                     </button>
                                 </div>
                                 <div className="column is-vcentered has-text-centered is-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2">
+                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={modalClose}>
                                         <span class="icon is-small">
                                             <i class="fas fa-ban"></i>
                                         </span>

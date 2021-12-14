@@ -17,28 +17,23 @@ public class RequestController {
     RequestService service;
 
     /*
-        Mapping to get requests by teahcer id
-        teach id is extracted from url
+        mapping to get request by status or by teacher id
+        requested  or teacher id  is in http request param
      */
     @CrossOrigin
-    @GetMapping("request/{teachId}")
-    public ResponseEntity<List<Request>> getRequestByTeacherId(@PathVariable int teachId){
-        List<Request> requests = repository.findByteacherid(teachId);
+    @GetMapping("request/search")
+    public ResponseEntity<List<Request>> getRequests(@RequestParam(required = false) Integer teachingid, @RequestParam(required = false) String bookingstatus) {
 
+    	List<Request> requests = null;
+    	
+    	if (teachingid != null) {
+    		requests = service.findByTeachingid(teachingid);
+    	}
+    	else if (bookingstatus != null) {
+    		requests = service.findByBookingstatus(bookingstatus);
+    	}
         return new ResponseEntity<>(requests, HttpStatus.ACCEPTED);
-    }
-
-    /*
-        mapping to get request by status
-        requested status is in http request body
-     */
-    @CrossOrigin
-    @GetMapping("requests/{status}")
-    public ResponseEntity<List<Request>> getRequestByStatus(@PathVariable String status){
-
-        List<Request> requests = service.getRequestbyStatus(status);
-
-        return new ResponseEntity<>(requests, HttpStatus.ACCEPTED);
+        
     }
 
     /*

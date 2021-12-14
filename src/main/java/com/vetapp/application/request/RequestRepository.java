@@ -10,9 +10,10 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request, Integer> {
 
     // definitiion to get rquest by teacherid
-    List<Request> findByteacherid(int teacherid);
+    List<Request> findByTeachingid(int teachingid);
 
     // defintion for method to get by status
-    @Query(value = "SELECT * FROM REQUEST WHERE status = ? ", nativeQuery = true)
-    List<Request> findBystatus(String status);
+//    @Query(value = "SELECT * FROM REQUEST WHERE status= ? ", nativeQuery = true)
+    List<Request> findByBookingstatus(String bookingstatus);
+
 }

@@ -12,10 +12,9 @@ const MyRequest = () => {
     const[components, setComponents] = useState([]);
 
     useEffect(() => {
-        const user = getUser()
-        const userid = user.userId
+        const id = sessionStorage.getItem('id')
 
-        axios.get("http://localhost:8080/request/"+userid)
+        axios.get("http://localhost:8080/request/search?teachingid="+id)
             .then((res) => {
                 setComponents(res.data)
             }

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import SideBar from "../components/SideBar"
 import Header from "../components/Header"
 import SearchBar from "../components/SearchBar";
@@ -12,21 +12,19 @@ const MakeRequest= () => {
 
     const[components, setComponents] = useState([]);
 
-    const addComponent = () => {
-        axios.get("http://localhost:8080/animal/available")
-            .then((res) => {
-                setComponents(res.data)
-            }
-        )
-    }
+    useEffect(() => {
+        axios.get("http://localhost:8080/animal/search?availability=Available")
+        .then((res) => {
+            setComponents(res.data)
+        }
+    )
+    }, []);
 
     return(
         <div className="columns">
             <SideBar/>
             <div className="column">
                 <Header/>
-                <SearchBar addComponent = {addComponent}/>
-                <SearchSelectorAnimal/>  
                 <div>
                     {components.map(item => <MakeRequestCard animal={item}/>)}
                 </div>

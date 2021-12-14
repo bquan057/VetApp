@@ -17,13 +17,13 @@ public class RequestService {
     public Request updateRequestStatus(Request request){
 
         int requestId = request.getRequestid();
-        String requestStatus = request.getStatus();
+        String requestStatus = request.getBookingstatus();
 
         // get the request
         Request requestToUpdate = repository.findById(requestId).get();
 
         // update request status
-        requestToUpdate.setStatus(requestStatus);
+        requestToUpdate.setBookingstatus(requestStatus);
 
         // store in db
         repository.save(requestToUpdate);
@@ -35,15 +35,20 @@ public class RequestService {
         Adds a new request to the DB and sets the status to new
      */
     public Request addRequest(Request request){
-        request.setStatus("new");
+        request.setBookingstatus("New");
         Request newRequest = repository.save(request);
         return newRequest;
     }
 
 
-    public List<Request> getRequestbyStatus(String status){
-        List<Request> requests = repository.findBystatus(status);
+    public List<Request> findByBookingstatus(String bookingstatus){
+        List<Request> requests = repository.findByBookingstatus(bookingstatus);
         return requests;
+    }
+    
+    public List<Request> findByTeachingid(int teachingid) {
+    	List<Request> requests = repository.findByTeachingid(teachingid);
+    	return requests;
     }
 
 }

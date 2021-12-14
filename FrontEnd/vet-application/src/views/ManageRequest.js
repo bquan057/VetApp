@@ -13,27 +13,20 @@ const ManageRequest = () => {
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
-        const user = getUser()
-        const role = user.role
 
-        if(role === 'ROLE_TECHNICIAN'){
-            axios.get("http://localhost:8080/requests/approved_by_admin")
+        const role = sessionStorage.getItem('role')
+
+        if(role === 'Health Technician'){
+            axios.get("http://localhost:8080/request/search?bookingstatus=Approved_By_Admin")
                 .then((res) => {
                 console.log(res)
                 setRequests(res.data)
                 }
             )
 
-            const id = requests.animalid
-
-            const updateToAnimal = {
-                animalid:id,
-                status:"booked"
-            }
-            axios.put("http://localhost:8080/animal", updateToAnimal)
         }else{
 
-            axios.get("http://localhost:8080/requests/new")
+            axios.get("http://localhost:8080/request/search?bookingstatus=New")
                 .then((res) => {
                     console.log(res)
                     setRequests(res.data)

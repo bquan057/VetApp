@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import EditAnimalModal from "./EditAnimalModal";
+import DeleteAnimalModal from "./DeleteAnimalModal";
+import EditModal from "./EditModal";
 
-// const ManageAnimalsCard = ({animal, editAnimalModal, deleteAnimalModal, requestAnimalModal}) =>{
 const ManageAnimalsCard = (props) =>{
 
-    const[animal] = useState(props.animal);
+    const[animal, setAnimal] = useState(props.animal);
 
-    function Card (att) {
+    const Card = (att) => {
         let label = att.att
         label = label.toUpperCase()
         return(
@@ -20,12 +22,22 @@ const ManageAnimalsCard = (props) =>{
         )
     }
 
-    var editmodalid = props.animal.id + "EditAnimalModal"
-    var deletemodalid = props.animal.id + "DeleteAnimalModal"
-    var requestmodalid = props.animal.id + "RequestAnimalModal"
+    const editModalDisplay = () => {
+
+        document.getElementById("EditAnimalModal"+animal.animalid).classList.add("is-active")
+    }
+
+    const deleteModalDisplay = () => {
+
+        document.getElementById("DeleteAnimalModal"+animal.animalid).classList.add("is-active")
+    }
 
     return (
-        <div className="columns is-centered mb-6">
+        <div>
+            <EditAnimalModal selectedAnimal={props.animal} setAnimal={setAnimal} />
+            <DeleteAnimalModal selectedAnimal={props.animal} setAnimal={setAnimal}/>
+
+            <div className="columns is-centered mb-6">
             <div className="column is-two-thirds">
                 <div class="columns card">
                     <div className="column has-text-centered">
@@ -34,7 +46,7 @@ const ManageAnimalsCard = (props) =>{
                         </div>
                         <div class="my-6">
                             <div>
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick="editAnimalModal">
+                                <button id="EditAnimalButton" class= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={editModalDisplay}>
                                     <span class="icon is-small">
                                         <i class="fas fa-edit"></i>
                                     </span>
@@ -42,19 +54,11 @@ const ManageAnimalsCard = (props) =>{
                                 </button>
                             </div>
                             <div>
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2 " onClick="deleteAnimalModal">
+                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2 " onClick={deleteModalDisplay}>
                                     <span class="icon is-small">
                                         <i class="fas fa-trash"></i>
                                     </span>
                                     <h3 class="has-text-weight-bold">Delete Animal</h3>
-                                </button>
-                            </div>
-                            <div>
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick="requestAnimalModal">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-bookmark"></i>
-                                    </span>
-                                    <h3 class="has-text-weight-bold">Request Animal</h3>
                                 </button>
                             </div>
                         </div>
@@ -67,7 +71,10 @@ const ManageAnimalsCard = (props) =>{
                 </div>
             </div>
         </div>
+        </div>
+        
     )
+    
 };
 
 export default ManageAnimalsCard;

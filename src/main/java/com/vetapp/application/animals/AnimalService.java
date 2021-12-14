@@ -26,7 +26,19 @@ public class AnimalService {
 	public List<Animal> findBySpecies(String species) {
 		return repository.findBySpecies(species);
 	}
+	
+	public List<Animal> findByAvailability(String availability) {
+		return repository.findByAvailability(availability);
+	}
+	
+	public Animal save(Animal updatedAnimal) {
+		return repository.save(updatedAnimal);
+	}
     
+	public void deleteById(int animalid) {
+		repository.deleteById(animalid);
+		return;
+	}
 //    /*
 //        get all animals of a specified status
 //     */

@@ -2,45 +2,25 @@ package com.vetapp.application.request;
 
 import javax.persistence.*;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name="LAB_REQUEST")
+@Table(name="Lab_requests")
 public class Request {
 
     @Id@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Getter @Setter
+    @Column(name="Requestid")
     private int requestid;
-    private int animalid;
-    private int teacherid;
-    private String status;
+    
+    @Column(name="Animalid")
+	@Getter @Setter int animalid;
+    
+    @Column(name="Teachingid")
+	@Getter @Setter int teachingid;
+    
+    @Column(name="Bookingstatus")
+	@Getter @Setter String bookingstatus;
 
-    public int getRequestid() {
-        return requestid;
-    }
-
-    public void setRequestid(int requestid) {
-        this.requestid = requestid;
-    }
-
-    public int getAnimalid() {
-        return animalid;
-    }
-
-    public void setAnimalid(int animalid) {
-        this.animalid = animalid;
-    }
-
-    public int getTeacherid() {
-        return teacherid;
-    }
-
-    public void setTeacherid(int teacherid) {
-        this.teacherid = teacherid;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
