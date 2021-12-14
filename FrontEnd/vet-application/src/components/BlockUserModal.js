@@ -1,32 +1,35 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, {useState} from "react";
 
-const DeleteModal = ({id}) => {
+const BlockUserModal = ({id}) => {
+    
     const modalClose = () => {
-        document.getElementById('DeleteModal').classList.remove('is-active');
-    }
-
-    const[callDelete, setDelete] = useState([]);
-
-    var apiEndPoint = ""
-    apiEndPoint = "http://localhost:8080/user/" + id;
-
-    function deleteUser() {
-        axios
-        .delete(apiEndPoint)
-        .then((response) => {
-            setDelete(response.data);
-            alert("User Deleted!");
-            // setPost(null)
-      });
+        document.getElementById('BlockModal').classList.remove('is-active');
     }
     
+    const[block, setBlock] = useState([])
+    var apiEndpoint = ""
+    console.log(id)
+
+    apiEndpoint = "http://localhost:8080/user/block?id=" + id;
+
+    function blockUser(){
+        axios.put(apiEndpoint, {
+            isactive: false
+        }).then((response) => {
+            setBlock(response.data);
+            alert("User Blocked!");
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     return ( 
-        <div className = 'modal' id = 'DeleteModal'>
+        <div className = 'modal' id = 'BlockModal'>
         <div className="modal-background" />
         <div className="modal-card">
             <header className="modal-card-head">
-            <p className="modal-card-title">Delete User</p>
+            <p className="modal-card-title">Block User</p>
             <button
                 onClick={modalClose}
                 className="delete"
@@ -39,7 +42,7 @@ const DeleteModal = ({id}) => {
                 <div className="control">
                     <div className = "columns is-centered has-text-centered">
                         <div className = "column">
-                            <label className = "checkbox has-text-primary-dark">Are you sure you would like to delete this user? </label>
+                            <label className = "checkbox has-text-primary-dark">Are you sure you would like to block this user from access? </label>
                         </div>                                             
                     </div>
                 </div>
@@ -47,7 +50,7 @@ const DeleteModal = ({id}) => {
                     <div className = "columns is-centered">
                         <div className = "columns">
                             <div className = "column">
-                            <button onClick = {()=> {modalClose(); deleteUser()}} className = "button is-success">
+                            <button onClick = {()=> {modalClose(); blockUser()}} className = "button is-success">
                                 <span Class = "icon is-small">
                                     <i className = "fas fa-check"></i>
                                 </span>
@@ -83,4 +86,4 @@ const DeleteModal = ({id}) => {
      );
 }
  
-export default DeleteModal;
+export default BlockUserModal;

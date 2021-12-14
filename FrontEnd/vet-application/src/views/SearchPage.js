@@ -6,8 +6,9 @@ import "bulma/css/bulma.css";
 import SearchSelectorAnimal from "../components/SearchSelectorAnimal";
 import AnimalSearchCard from "../components/AnimalSearchCard";
 import ChangePasswordModal from "../components/ChangePasswordModal";
-import EditModal from "../components/EditModal";
 import TreatmentModal from "../components/TreatmentModal";
+import EditAccount from "../components/EditAccount";
+
 import axios from "axios";
 
 const SearchPage= () => {
@@ -21,7 +22,7 @@ const SearchPage= () => {
     }
 
     const editAccountModal = () => {
-        document.getElementById('EditModal').classList.add('is-active');
+        document.getElementById('EditAccount').classList.add('is-active');
     }
 
     
@@ -58,7 +59,7 @@ const SearchPage= () => {
         <div className="columns">
             <SideBar/>
             <ChangePasswordModal/>
-            <EditModal/>
+            <EditAccount/>
             <TreatmentModal/>
             <div className="column">
                 <Header changePassword = {changePasswordModal} editAccount = {editAccountModal}/>

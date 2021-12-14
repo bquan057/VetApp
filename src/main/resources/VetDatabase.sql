@@ -1,3 +1,5 @@
+
+   
 DROP DATABASE IF EXISTS VETDATA;
 CREATE DATABASE VETDATA;
 USE VETDATA;
@@ -23,18 +25,22 @@ INSERT INTO ANIMAL (AnimalId, AnimalName, Tattoo, Age, Birthdate, Breed, Sex, Co
 VALUES
 (123, 'Sora', "hellokitty", 1, '2021-12-01', 'Orange Tabby', 'female', 'black', true, 12, 'Cat', 'Available'),
 (124, 'Bruno', "hellodoggy", 2, '2020-07-01', 'italian greyhound', 'female', 'brown', false, 12, 'Dog', 'Available'),
-(125, 'Pengu', "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', true, 12, 'Penguin', 'Available'),
+(125, 'Pengu', "hellopenguin", 3, '2019-12-01', 'black pengu', 'male', 'black', false, 12, 'Penguin', 'Available'),
 (126, 'Cat', "hellokittykawaii", 1, '2018-12-01', 'Black cat', 'male', 'black', true, 12, 'Cat', 'Available');
 
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
+<<<<<<< HEAD
 	UserId					integer	auto_increment not null,
+=======
+	UserId					integer auto_increment not null,
+>>>>>>> emily
 	Username				varchar(30),
     Password				varchar(30),
     Email					varchar(30),
     FName					varchar(30),
     LName					varchar(30),
-    ActivationDate			varchar(30),
+    ActivationDate			DateTime,
     IsActive				boolean,
     Role					varchar(30),
 	primary key (UserId)
@@ -43,9 +49,9 @@ CREATE TABLE USER (
 INSERT INTO USER (UserId, Username, Password, Email, FName, LName, ActivationDate, IsActive, Role)
 VALUES
 (12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily','Wang', '2021-12-01', true, 'Admin'),
-(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', true, 'Teaching Technician'),
-(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', true, 'Teaching Technician'),
-(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', true, 'Health Technician'),
+(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', false, 'Teaching Technician'),
+(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', false, 'Teaching Technician'),
+(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', false, 'Health Technician'),
 (12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', 'Yasuo','2019-05-01', true, 'Student'),
 (12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda',' ','2019-05-01', true, 'Student'),
 (12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid',' ','2016-05-01', true, 'Care Attendant');
@@ -70,7 +76,7 @@ CONSTRAINT fk_Comment_Animal
 INSERT INTO COMMENT (TimeStamp, UserId, AnimalId, Comment)
 VALUES
 ("2021-12-01 8:15:00", 12345, 123, 'Purrs too much'),
-("2021-12-02 8:35:40", 12346, 123, 'Farts smell'),
+("2021-12-02 8:35:40", 12346, 124, 'Farts smell'),
 ("2021-12-03 10:35:00", 12347, 125, 'Needs to eat less'),
 ("2021-12-04 8:14:30", 12348, 126, 'Obese');
 
@@ -115,9 +121,9 @@ CONSTRAINT fk_Image_Animal
       
 INSERT INTO IMAGE (ImageId, CreationDate, FileUrl, AnimalId)
 VALUES
-(1, '2021-12-01', 'https://cdn.vox-cdn.com/thumbor/Z6PAPzGfqK5n4Q7oBnUk5aNOL6Q=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22814568/jbareham_210827_ecl1072_summer_streaming_2021_anime.jpg', '123'),
-(2,  '2021-12-05', 'https://i.ytimg.com/vi/dWnhkEFRzFQ/maxresdefault.jpg', '124'),
-(3, '2021-12-07', 'https://cdn.mos.cms.futurecdn.net/eVyt9jnUrLBSvSwW6pScj9.jpg', '123');
+(1, '2021-12-01', 'https://cdn.vox-cdn.com/thumbor/Z6PAPzGfqK5n4Q7oBnUk5aNOL6Q=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22814568/jbareham_210827_ecl1072_summer_streaming_2021_anime.jpg', 123),
+(2,  '2021-12-05', 'https://i.ytimg.com/vi/dWnhkEFRzFQ/maxresdefault.jpg', 124),
+(3, '2021-12-07', 'https://cdn.mos.cms.futurecdn.net/eVyt9jnUrLBSvSwW6pScj9.jpg', 123);
 
 DROP TABLE IF EXISTS PRESCRIPTION;
 CREATE TABLE PRESCRIPTION (
@@ -205,10 +211,11 @@ CREATE TABLE TREATMENT (
     AttendantId				integer,
     AnimalId				integer,
     TreatmentId				integer,
-    Status					varchar(30),
+    IsComplete				boolean,
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
-    foreign key (TechnicianId) references USER(UserId) ON DELETE CASCADE,
-    foreign key (AttendantId) references USER(UserId) ON DELETE CASCADE
+    foreign key (TechnicianId) references USER(UserId) ON DELETE CASCADE, 
+    foreign key (AttendantId) references USER(UserId) ON DELETE CASCADE,
+    foreign key (TreatmentId) references TREATMENT_METHODS(TreatmentId)
 );
 
 ALTER TABLE TREATMENT ADD 
@@ -249,6 +256,12 @@ VALUES
 (124, '2021-12-04', 25.0),
 (125, '2021-12-05', 12.0),
 (126, '2020-12-08', 10.0);
+
+ALTER TABLE WEIGHT ADD 
+CONSTRAINT fk_Weight_Animal 
+      FOREIGN KEY (AnimalId)
+      REFERENCES ANIMAL(AnimalId)
+      ON DELETE CASCADE;
       
 DROP TABLE IF EXISTS NOTIFICATION;
 CREATE TABLE NOTIFICATION (
@@ -272,6 +285,12 @@ CREATE TABLE USER_NOTIFICATIONS (
     foreign key (NotificationId) references NOTIFICATION(NotificationId),
     foreign key (UserId) references USER(UserId) ON DELETE CASCADE
 );
+
+-- ALTER TABLE STATUS ADD 
+-- CONSTRAINT fk_Notifications_User
+--       FOREIGN KEY (UserId)
+--       REFERENCES USER(UserId)
+--       ON UPDATE NO ACTION;
 
 INSERT INTO USER_NOTIFICATIONS (NotificationId, UserId)
 VALUES

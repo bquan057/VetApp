@@ -2,24 +2,24 @@ import axios from "axios";
 import React, {useState, useEffect} from "react"
 import UserInformationBox from "./UserInformationBox";
 
-const EditModal = ({id}) => {
+const EditAccount = () => {
 
     const modalClose = () => {
-        document.getElementById('EditModal').classList.remove('is-active');
+        document.getElementById('EditAccount').classList.remove('is-active');
     }
     const[edit, setEdits] = useState([]);
 
         var apiEndpoint = ""
 
-        apiEndpoint = "http://localhost:8080/user/edit?id=" + id;
+        apiEndpoint = "http://localhost:8080/user/edit?id=" + sessionStorage.getItem('id');
 
         function updateUser(){
             axios
                 .put(apiEndpoint, {
-                    fname: document.getElementById("first_name").value,
-                    lname: document.getElementById("last_name").value,
-                    username: document.getElementById("username").value,
-                    email: document.getElementById("email").value
+                    fname: document.getElementById("acc_first_name").value,
+                    lname: document.getElementById("acc_last_name").value,
+                    username: document.getElementById("acc_username").value,
+                    email: document.getElementById("acc_email").value
                     }
                 ).then((response)=>{setEdits(response.data);
                     alert("User Saved!");
@@ -30,11 +30,11 @@ const EditModal = ({id}) => {
 
     
     return ( 
-        <div className = 'modal' id = 'EditModal'>
+        <div className = 'modal' id = 'EditAccount'>
         <div className="modal-background" />
         <div className="modal-card">
             <header className="modal-card-head">
-            <p className="modal-card-title">Edit Existing User</p>
+            <p className="modal-card-title">Edit My Account</p>
             <button
                 onClick={modalClose}
                 className="delete"
@@ -50,7 +50,7 @@ const EditModal = ({id}) => {
                             <label className = "checkbox has-text-primary-dark">First Name: </label>
                         </div>                        
                         <div className = "column">
-                            <input id = "first_name" class="input is-small is-primary is-rounded" type="text" placeholder="First Name"/>
+                            <input id = "acc_first_name" class="input is-small is-primary is-rounded" type="text" placeholder="First Name"/>
                         </div>                       
                     </div>
                 </div>
@@ -61,7 +61,7 @@ const EditModal = ({id}) => {
                             <label className = "checkbox has-text-primary-dark">Last Name: </label>
                         </div>                        
                         <div className = "column">
-                            <input id = "last_name" class="input is-small is-primary is-rounded" type="text" placeholder="Last Name"  />
+                            <input id = "acc_last_name" class="input is-small is-primary is-rounded" type="text" placeholder="Last Name"  />
                         </div>                       
                     </div>
                 </div>
@@ -72,7 +72,7 @@ const EditModal = ({id}) => {
                             <label className = "checkbox has-text-primary-dark">Username: </label>
                         </div>                        
                         <div className = "column">
-                            <input id = "username" class="input is-small is-primary is-rounded" type="text" placeholder="Username" />
+                            <input id = "acc_username" class="input is-small is-primary is-rounded" type="text" placeholder="Username" />
                         </div>                       
                     </div>
                 </div>
@@ -83,7 +83,7 @@ const EditModal = ({id}) => {
                             <label className = "checkbox has-text-primary-dark">Email: </label>
                         </div>                        
                         <div className = "column">
-                            <input id = "email" class="input is-small is-primary is-rounded" type="text" placeholder="Address" />
+                            <input id = "acc_email" class="input is-small is-primary is-rounded" type="text" placeholder="Address" />
                         </div>                       
                     </div>
                 </div>
@@ -100,5 +100,5 @@ const EditModal = ({id}) => {
     );
 }
  
-export default EditModal;
+export default EditAccount;
 

@@ -19,12 +19,12 @@ public class NotificationController {
 		return new ResponseEntity<>(notificationRepository.findByUseridContaining(userid), HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/user/{userid}/notifications")
-	public ResponseEntity<Notification> addNotification(@PathVariable String userid, @RequestBody Notification newNotification) {
-		newNotification.setUserid(userid);
-		Notification notification = notificationRepository.save(newNotification);
-		return new ResponseEntity<>(notification, HttpStatus.ACCEPTED);
-	}
+//	@PostMapping("/user/{userid}/notifications")
+//	public ResponseEntity<Notification> addNotification(@PathVariable String userid, @RequestBody Notification newNotification) {
+//		newNotification.setUserid(userid);
+//		Notification notification = notificationRepository.save(newNotification);
+//		return new ResponseEntity<>(notification, HttpStatus.ACCEPTED);
+//	}
 	
 	@DeleteMapping("user/notifications/{notificationid}")
     public ResponseEntity<String> deleteNotification(@PathVariable int notificationid){

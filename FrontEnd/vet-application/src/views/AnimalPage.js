@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import AnimalCard from "../components/AnimalCard";
@@ -10,6 +10,8 @@ import TreatmentHistoryModal from "../components/TreatmentHistoryModal";
 import CreateCommentModal from "../components/CreateCommentModal";
 import NewPictureModal from "../components/NewPictureModal";
 import RequestTreatmentModal from "../components/RequestTreatmentModal";
+import EditAccount from "../components/EditAccount";
+import ChangePasswordModal from "../components/ChangePasswordModal";
 import { useLocation } from "react-router-dom";
 import PrescriptionCard from "../components/PrescriptionCard";
 import NewPrescriptionModal from "../components/NewPrescriptionModal";
@@ -18,11 +20,26 @@ import UpdateStatusModal from "../components/UpdateStatusModal";
 
 
 const AnimalPage = () => {
+
+
+    const [pic, setPic] = useState([]);
+
+    const setThePic = (pic) => {
+        setPic(pic);
+    }
         
     const location = useLocation();
     const animal = location.state.animal
 
     const role = sessionStorage.getItem('role')
+
+    const changePasswordModal = () => {
+        document.getElementById('ChangePasswordModal').classList.add('is-active');
+    }
+
+    const editAccountModal = () => {
+        document.getElementById('EditAccount').classList.add('is-active');
+    }
    
     const weightModal = () => {
         document.getElementById("WeightModal").classList.add('is-active')
@@ -57,13 +74,15 @@ const AnimalPage = () => {
             <WeightHistoryModal animal={animal}/>
             <TreatmentHistoryModal animal={animal}/>
             <CreateCommentModal animal= {animal}/>
-            <NewPictureModal animal = {animal}/>
+            <NewPictureModal animal = {animal} picture = {setPic}/>
             <RequestTreatmentModal animal= {animal}/>
             <NewPrescriptionModal animal = {animal}/>
             <UpdateStatusModal animal = {animal}/>
             <SideBar/>
+            <ChangePasswordModal/>
+            <EditAccount/>
             <div className="column">
-                <Header/>
+                <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <AnimalCard animal = {animal} weightModal = {weightModal}/>
                 <StatusCard animal={animal} updateStatusModal={updateStatusModal}/>
                 <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
@@ -73,6 +92,8 @@ const AnimalPage = () => {
                 }
                 <PrescriptionCard animal={animal} newPrescriptionModal = {newPrescriptionModal}/>
                 <PictureCard animal={animal} newPictureModal = {newPictureModal}/>
+                <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
+                <PictureCard animal={animal} newPictureModal = {newPictureModal} handlePic = {pic}/>
                 
             </div>
         </div>

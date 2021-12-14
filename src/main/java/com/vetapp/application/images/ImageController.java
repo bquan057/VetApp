@@ -15,34 +15,35 @@ import java.util.Optional;
 public class ImageController {
 
     @Autowired
-    ImageRepository repository;
+    ImageService service;
 
     // Mapping to get images for specified animal
-    @GetMapping("api/animals/{animalid}/images")
-    public ResponseEntity<List<Image>> getAllImages(@PathVariable String animalid){
-        List<Image> images = repository.findAllByAnimalidContaining(animalid);
-        return new ResponseEntity<>(images, HttpStatus.OK);
+    @CrossOrigin
+    @GetMapping("animals/{animalid}/images")
+    public ResponseEntity<List<Image>> getAllImages(@PathVariable int animalid){
+        List<Image> images = service.getImagesByAnimalId(animalid);
+        return new ResponseEntity<>(images, HttpStatus.ACCEPTED);
     }
 
     // Mapping to add images for a specified animal
-    @PostMapping("/api/animals/{animalid}/images")
-    public ResponseEntity<Image> addImage(@PathVariable String animalid, @RequestBody Image newImage){
-        newImage.setAnimalid(animalid); // attach animal id to new image
-        Image image = repository.save(newImage);
-        return new ResponseEntity<>(image, HttpStatus.OK);
+    @CrossOrigin
+    @PostMapping("animals/images")
+    public ResponseEntity<Image> addImage(@RequestBody Image newImage){
+        Image image = service.setImage(newImage);
+        return new ResponseEntity<>(image, HttpStatus.ACCEPTED);
     }
 
-    // Mapping to delete image
-    @DeleteMapping("/api/animals/images/{imageid}")
-    public ResponseEntity<String> deleteImage(@PathVariable long imageid){
-        Optional<Image> image = repository.findById(imageid);
-
-        // image exists
-        if(image.isPresent()){
-            repository.delete(image.get());
-            return new ResponseEntity<>("Image deleted", HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+//    // Mapping to delete image
+//    @DeleteMapping("animals/images/{imageid}")
+//    public ResponseEntity<String> deleteImage(@PathVariable long imageid){
+//        Optional<Image> image = repository.findById(imageid);
+//
+//        // image exists
+//        if(image.isPresent()){
+//            repository.delete(image.get());
+//            return new ResponseEntity<>("Image deleted", HttpStatus.OK);
+//        }
+//
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//    }
 }

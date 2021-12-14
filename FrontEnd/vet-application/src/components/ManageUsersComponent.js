@@ -10,25 +10,20 @@ import AddModal from "../components/AddUserModal";
 
 
 
-const ManageUsersComponent = ({user, addModal, editModal, deleteModal}) => {
+const ManageUsersComponent = ({user, addModal, editModal, deleteModal, handleId, blockModal}) => {
 
 
     return(      
             <div className = "columns is-centered">
                 <div className = "column is-one-third has-text-centered">
-                    <ChangeAccess/>
+                    {/* <ChangeAccess/> */}
                     <div className = "my-3"></div>
                     <div>
-                        <button onClick = {addModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded">Add User</button>
+                        {/* <button onClick = {addModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded">Add User</button> */}
                     </div>
-                    <div className = "my-3"></div>
-                    <div>
-                        <button onClick = {deleteModal} className= "button has-text-weight-bold has-text-primary-dark is-rounded">Delete User</button>
-                    </div>
-
                 </div>
                 <div className = "column is-half">
-                    <UserInformationBox userInfo = {user} handleClick={editModal}/>
+                    <UserInformationBox userInfo = {user} handleClick={editModal} handleDelete = {deleteModal} handleBlock = {blockModal} handleId = {handleId}/>
                 </div>
         </div>
     )

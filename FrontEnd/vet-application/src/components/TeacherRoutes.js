@@ -5,7 +5,6 @@ const useAuth = () => {
     const role =sessionStorage.getItem('role')
 
     const user = {loggedIn: false}
-    
     if (role == "Teaching Technician") {
         user.loggedIn = true
     } else {

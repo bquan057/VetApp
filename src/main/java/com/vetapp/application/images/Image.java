@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Class to represent an image of an animal
@@ -15,22 +13,38 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "IMAGE")
 public class Image {
-    
 
-    @Getter
-    @GeneratedValue
-    @Id
-    private long imageid; // member to be primary key of the table
-    @Getter@Setter
+    @Column(name ="Imageid")
+    @Setter @Getter
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int imageid; // member to be primary key of the table
+
+    @Column(name = "Animalid")
     private String animalid;
-    @Getter@Setter
-    private String imagename;
 
-    public Image() {
-        // initialize all members
-        this.imageid = 0;
-        this.animalid = "";
-        this.imagename = "";
+    public String getAnimalid(){
+        return animalid;
     }
+
+    public void setAnimalid(String animalid){
+        this.animalid = animalid;
+    }
+
+    @Column(name = "Fileurl")
+    private String fileurl;
+
+    public String getFileurl() {
+        return fileurl;
+    }
+
+    public void setFileurl(String fileurl) {
+        this.fileurl = fileurl;
+    }
+
+    @Column(name="Creationdate", updatable = false)
+    @Getter @Setter
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date creationdate = new Date();
+
 }
 

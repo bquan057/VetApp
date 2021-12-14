@@ -3,25 +3,21 @@ import { useNavigate} from "react-router-dom";
 // import '../Customization/LoginCard.css'
 import Modal from "./EditModal";
 
-const UserInformationBox = ({handleClick, userInfo}) => {
+const UserInformationBox = ({user, addModal, editModal, deleteModal, blockModal, handleId}) => {
 
     return (
-        // <div>
-        // <div className="column is-two-fifth">
         <div className = "columns has-text-centered">
              <div class="card column has-text-centered">
                 <div>
                 <h2 className = "title is-4 has-text-primary-dark ml-5">User Information</h2>
                 
-               
-
                 <div className="control">
                     <div className = "columns is-centered">
                         <div className = "column is-one-third">
                             <label className = "checkbox has-text-primary-dark">First Name: </label>
                         </div> 
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder={userInfo.name} disabled />
+                            <input class="input is-small is-primary is-rounded" type="text" placeholder={user.fname} disabled />
                         </div>   
                     </div>
                 </div>
@@ -32,7 +28,7 @@ const UserInformationBox = ({handleClick, userInfo}) => {
                             <label className = "checkbox has-text-primary-dark">Last Name: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="Wang" disabled />
+                            <input class="input is-small is-primary is-rounded" type="text" placeholder={user.lname} disabled />
                         </div>                       
                     </div>
                 </div>
@@ -40,21 +36,20 @@ const UserInformationBox = ({handleClick, userInfo}) => {
                 <div className="control">
                     <div className = "columns is-centered">
                         <div className = "column is-one-third">
-                            <label className = "checkbox has-text-primary-dark">Phone Number: </label>
+                            <label className = "checkbox has-text-primary-dark">Email Address: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="403-690-2966" disabled />
+                            <input class="input is-small is-primary is-rounded" type="text" placeholder={user.email} disabled />
                         </div>                       
                     </div>
                 </div>
-
                 <div className="control">
                     <div className = "columns is-centered">
                         <div className = "column is-one-third">
-                            <label className = "checkbox has-text-primary-dark">Address: </label>
+                            <label className = "checkbox has-text-primary-dark">Username: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="123 AppleWood Drive" disabled />
+                            <input class="input is-small is-primary is-rounded" type="text" placeholder={user.username} disabled />
                         </div>                       
                     </div>
                 </div>
@@ -65,22 +60,27 @@ const UserInformationBox = ({handleClick, userInfo}) => {
                             <label className = "checkbox has-text-primary-dark">Position: </label>
                         </div>                        
                         <div className = "column">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="Student" disabled />
+                            <input class="input is-small is-primary is-rounded" type="text" placeholder={user.role} disabled />
                         </div>                       
                     </div>
                 </div>
                 <div className = "my-2">
                 </div>  
+                <div className = "columns is-centered">
+                     {/* <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button> */}
+                     <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button>
+                     <button onClick = {() => {deleteModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Delete User</button>
+                     <button onClick = {()=> {blockModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Block User</button>
+                     <div className = "my-5"></div>
                 <div>
-                     <button onClick = {handleClick} className= "button has-text-weight-bold has-text-primary-dark is-rounded" >Edit User</button>
-                </div>
+            </div>
              </div>
             </div>
             
         {/* <button onClick = {handleClick} className = "button mx-6 is-primary is-light is-centered">Submit</button> */}
         
         </div>
-        // </div>
+        </div>
         // </div>
 
     );

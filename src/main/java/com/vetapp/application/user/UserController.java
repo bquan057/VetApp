@@ -1,5 +1,6 @@
 package com.vetapp.application.user;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -39,6 +40,18 @@ public class UserController {
     }
 
     /*
+       Method to get all blocked users
+     */
+    @CrossOrigin
+    @GetMapping("/user/block")
+    public ResponseEntity<List<User>>getAllBlocked(){
+        List<User> users = userService.getAllUsers();
+        List<User> blockedUsers = userService.getIsBlocked(users);
+        return new ResponseEntity<>(blockedUsers, HttpStatus.ACCEPTED);
+    }
+
+
+    /*
         Method to add a new user
      */
     @CrossOrigin
@@ -49,10 +62,10 @@ public class UserController {
     }
 
     /*
-        Method to update a user
+        Method to edit a user
      */
     @CrossOrigin
-    @PutMapping (value = "/user/update", params = "id")
+    @PutMapping (value = "/user/edit", params = "id")
     public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam int id){
         //get the user using the id
         User userFromDB = userService.getUserById(id);
@@ -61,18 +74,18 @@ public class UserController {
         return new ResponseEntity<>(userFromDB, HttpStatus.ACCEPTED);
     }
     /*
-        Block user
+        Block user/Unblock
     */
     @CrossOrigin
     @PutMapping(value = "/user/block", params = "id")
-    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam int id) {
+    public ResponseEntity<User> blockUser(@RequestBody User user, @RequestParam int id) {
         //get user from database
         User userFromDB = userService.getUserById(id);
         //check if status is active
-        boolean statusActive = userService.checkIsActive(userFromDB);
+//        boolean statusActive = userService.checkIsActive(user);
         //set the status
-        String userActiveStatus = userService.setIsActive(statusActive, userFromDB);
-        return new ResponseEntity<>(userActiveStatus, HttpStatus.OK);
+        User updateUser = userService.setIsActive(userFromDB, user);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
 
     /*
@@ -103,10 +116,35 @@ public class UserController {
     /*
         Method to search for a user based on type of user button clicked, returns all users containing nam enterede
      */
-    @GetMapping(value= "/user/search/{name}")
+//    @GetMapping(value= "/user/search/{name}")
+//    @ResponseBody
+//    public ResponseEntity<List<User>> searchUser(@PathVariable String name){
+//        List<User> users = userService.getByName(name);
+//        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
+//    }
+
+    @CrossOrigin
+    @GetMapping("/user/search")
     @ResponseBody
-    public ResponseEntity<List<User>> searchUser(@PathVariable String name){
-        List<User> users = userService.getByName(name);
-        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
+    public ResponseEntity<List<User>> searchUser(@RequestParam(required = false) String student, @RequestParam(required = false) String staff, @RequestParam(required = false) String management){
+        List<User> user = null;
+        if (student != null) {
+            user = userService.getByName(student, "Student");
+        }
+        else if (staff != null) {
+            user = userService.getByName(staff, "Staff");
+        }
+        else if (management != null) {
+            user = userService.getByName(management, "Admin");
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/user/edit")
+    @ResponseBody
+    public ResponseEntity<User> getUserById(@RequestBody User user, @RequestParam String email){
+       User users = userService.getUserFromDB(user);
+       return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

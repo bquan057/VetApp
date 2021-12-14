@@ -9,17 +9,17 @@ function MyButton() {
     return <button onClick={handleClick}>Submit</button>;
   };
 
-const SearchBarUser = () => {
+const SearchBarUser = ({addComponents}) => {
 
     return (
         <div className="columns is-centered">
             <div className="column is-two-thirds">
                 <div className="columns">
                 <div className="column  is-four-fifths">
-                    <input id="input" class="input is-info is-primary is-rounded" type="text" placeholder="Search"></input>
+                    <input id="search_bar_user" class="input is-info is-primary is-rounded" type="text" placeholder="Search"></input>
                 </div>
                 <div className="column has-text-centered">
-                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded">Search</button>
+                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick = {addComponents}>Search</button>
                 </div>
                 </div>
             </div>
