@@ -71,12 +71,30 @@ const ManageUsersPage = () => {
     const unblockUserModal = () => {
         document.getElementById('UnblockModal').classList.add('is-active');
     }
-    // const modalCloseAdd = () => {
-    //     document.getElementById('DeleteModal').classList.remove('is-active');
-    // }
-    // const modalClose = () => {
-    //     document.getElementById('DeleteModal').classList.remove('is-active');
-    // }
+
+
+    const buttonShow= () =>{
+        const role = sessionStorage.getItem('role')
+
+        if(role == "Admin"){
+            return <div className = "columns is-centered">
+            <label onClick = {()=> {addUserModal(); something()}} class="button is-primary is-light">
+                <h1 className="has-text-weight-bold has-text-primary-dark ml-2"> Add New User </h1>
+            </label>
+            <div className= "mx-6"></div>
+            <label  onClick = {unblockUserModal} class="button is-primary is-light">
+                <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Manage Blocked Users</h1>
+            </label>
+            
+        </div>
+        }else{
+            return
+        }
+
+    }
+
+
+
 
     return(
         <div className="columns">
@@ -92,15 +110,16 @@ const ManageUsersPage = () => {
             
             <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <div>
-                    <div className = "columns is-centered">
-                            <label onClick = {()=> {addUserModal(); something()}} class="button is-primary is-light">
+                    {/* <div className = "columns is-centered"> */}
+                            {/* <label onClick = {()=> {addUserModal(); something()}} class="button is-primary is-light">
                                 <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Add User</h1>
                             </label>
                             <div className= "mx-6"></div>
                             <label  onClick = {unblockUserModal} class="button is-primary is-light">
                                 <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Manage Blocked Users</h1>
-                            </label>
-                    </div>
+                            </label> */}
+                            {buttonShow()}
+                    {/* </div> */}
                     <SearchBarUser addComponents ={addComponents}/>
                     <SearchSelectorUser/>    
                     <div className = "columns is-centered">
