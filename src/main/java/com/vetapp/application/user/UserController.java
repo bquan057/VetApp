@@ -78,14 +78,14 @@ public class UserController {
     */
     @CrossOrigin
     @PutMapping(value = "/user/block", params = "id")
-    public ResponseEntity<String> blockUser(@RequestBody User user, @RequestParam int id) {
+    public ResponseEntity<User> blockUser(@RequestBody User user, @RequestParam int id) {
         //get user from database
         User userFromDB = userService.getUserById(id);
         //check if status is active
-        boolean statusActive = userService.checkIsActive(userFromDB);
+//        boolean statusActive = userService.checkIsActive(user);
         //set the status
-        String userActiveStatus = userService.setIsActive(statusActive, userFromDB, user);
-        return new ResponseEntity<>(userActiveStatus, HttpStatus.OK);
+        User updateUser = userService.setIsActive(userFromDB, user);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
 
     /*

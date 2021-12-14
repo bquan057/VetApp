@@ -93,8 +93,8 @@ public class UserService {
         return "Cannot delete user";
     }
 
-    public boolean checkIsActive(User userFromDB){
-        if(userFromDB.getIsactive() == true) {
+    public boolean checkIsActive(User user){
+        if(user.getIsactive() == true) {
             return true;
         }
         else{
@@ -116,7 +116,7 @@ public class UserService {
         return user;
     }
 
-    public String setIsActive(boolean statusActive, User userFromDB, User user){
+    public User setIsActive(User userFromDB, User user){
 //        if(statusActive == true){
 //            userFromDB.setIsactive(false);
 //            repository.save(userFromDB);
@@ -125,9 +125,10 @@ public class UserService {
 //        return "User cannot be blocked";
 
         userFromDB.setIsactive(user.getIsactive());
+        repository.save(userFromDB);
         System.out.println("user:" + user.getIsactive());
         System.out.println("userFromDB:" + userFromDB.getIsactive());
-        return "User has been blocked";
+        return userFromDB;
     }
 
     public List<User> getAllUsers(){
