@@ -42,7 +42,7 @@ const ManageAnimalsCard = (props) =>{
                 <div class="columns card">
                     <div className="column has-text-centered">
                         <div class="my-5">
-                            <img src="sora.jpg" alt="Sora"></img>
+                            <img src="AnimalAvatar.png" alt="Sora"></img>
                         </div>
                         <div class="my-6">
                             <div>

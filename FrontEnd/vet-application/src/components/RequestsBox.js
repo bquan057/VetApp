@@ -20,12 +20,6 @@ const RequestsBox = (props) => {
             axios.put("http://localhost:8080/request", requestToCancel)
                 .then((res)=> setRequest(res.data));
 
-            const id = request.animalid
-
-            const updateToAnimal = {
-                availability: "Available"
-            }
-            axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
         }
 
     } 

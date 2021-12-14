@@ -3,6 +3,9 @@ package com.vetapp.application.request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vetapp.application.animals.Animal;
+import com.vetapp.application.animals.AnimalService;
+
 import java.util.List;
 
 @Service
@@ -10,6 +13,9 @@ public class RequestService {
 
     @Autowired
     RequestRepository repository;
+    
+    @Autowired
+    AnimalService animalService;
 
     /*
         Method to update request status based on request id
@@ -27,6 +33,23 @@ public class RequestService {
 
         // store in db
         repository.save(requestToUpdate);
+        
+        if (requestStatus.equals("Cancelled")) {
+        	int animalid = request.getAnimalid();
+        	String status = "Available";
+        	Animal updatedAnimal = animalService.updateAnimalStatus(animalid, status);
+        }	
+        else if (requestStatus.equals("Approved_By_Technician")) {
+        	int animalid = request.getAnimalid();
+        	String status = "Booked";
+        	Animal updatedAnimal = animalService.updateAnimalStatus(animalid, status);
+        }	
+        else if (requestStatus.equals("Rejected")){
+        	int animalid = request.getAnimalid();
+        	String status = "Available";
+        	Animal updatedAnimal = animalService.updateAnimalStatus(animalid, status);
+        }
+		        
 
         return requestToUpdate;
     }

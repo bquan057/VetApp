@@ -27,16 +27,7 @@ const ManageRequestsBox = (props) => {
 
         axios.put("http://localhost:8080/request", newRequest)
             .then((res)=> setRequest(res.data));
-
-
-        if (role == 'Health Technician') {
-            const id = request.animalid
-
-            const updateToAnimal = {
-                availability: "Booked"
-            }
-            axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
-        }
+        
 
     } 
 
@@ -51,13 +42,6 @@ const ManageRequestsBox = (props) => {
 
         axios.put("http://localhost:8080/request", newRequest)
             .then((res)=> setRequest(res.data));
-
-        const id = request.animalid
-
-        const updateToAnimal = {
-            availability: "Available"
-        }
-        axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
 
     } 
 
