@@ -13,6 +13,7 @@ const MakeRequestCard = (props) =>{
 
         axios.put("http://localhost:8080/animal/"+animal.animalid, updateToAnimal)
             .then((res) => setAnimal(res.data))
+            .catch((err) => alert(err))
 
         const id = sessionStorage.getItem('id')
 
@@ -22,6 +23,7 @@ const MakeRequestCard = (props) =>{
         }
 
         axios.post("http://localhost:8080/request", newRequest)
+            .catch((err) => alert(err))
         
     }
 

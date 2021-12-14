@@ -13,6 +13,7 @@ const DeleteAnimalModal = (props) => {
 
         axios.delete("http://localhost:8080/animal/"+selectedAnimal.animalid)
             .then(setSelectedAnimal([]), props.setAnimal([]))
+            .catch((err) => alert(err))
 
         modalClose()
     }
@@ -24,7 +25,7 @@ const DeleteAnimalModal = (props) => {
                 <div class="modal-card-body">
                     <div className="columns is-vcentered">
                         <div className="column">
-                            <img src="sora.jpg" alt="Sora"></img>
+                            <img src="AnimalAvatar.png" alt="Sora"></img>
                         </div>
                         <div className="column">
                             <h1 className="has-text-centered has-text-weight-bold has-text-primary-dark mb-5">Are you sure you want to delete this animal?</h1>

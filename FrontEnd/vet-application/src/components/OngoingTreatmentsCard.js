@@ -12,6 +12,7 @@ const OngoingTreatmentsCard = () => {
     useEffect (() => {
         axios.get("http://localhost:8080/user/"+id+"/treatment?status=Accepted")
             .then((res) => setComponents(res.data))
+            .catch((err) => alert(err))
     
     }, []);
 
@@ -52,47 +53,6 @@ const OngoingTreatmentsCard = () => {
                 </div>
 
                 {components.map(item=> <OngoingTreatmentRequestsRow treatment = {item}/>)}
-
-                {/* <div className="control">
-                    <div className = "columns is-centered is-vcentered">
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-                        
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-                        
-                        <div className = "column">
-                            <div className = "columns">
-                                <div className = "column">
-                                    <button className= "button has-text-weight-bold is-primary has-text-white is-rounded">
-                                        <span class="icon is-small">
-                                            <i class="fas fa-flag-checkered"></i>
-                                        </span>
-                                        <h1>Complete</h1>
-                                    </button> 
-                                </div>
-
-                            </div>
-                        </div>  
-                    
-                    </div>
-                </div> */}
-
                 
             </div>
         </div>

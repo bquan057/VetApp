@@ -53,7 +53,8 @@ const EditAnimalModal = (props) => {
 
         axios.put("http://localhost:8080/animal/"+selectedAnimal.animalid, updatedAnimal)
             .then((res)=> {props.setAnimal(res.data)
-                 setSelectedAnimal(res.data)});
+                 setSelectedAnimal(res.data)})
+            .catch((err) => alert(err));
 
         modalClose()
     }

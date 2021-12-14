@@ -12,6 +12,7 @@ const MyTreatmentRequestsCard = () => {
     useEffect (() => {
         axios.get("http://localhost:8080/user/"+id+"/treatment")
             .then((res) => setComponents(res.data))
+            .catch((err) => alert(err))
     
     }, []);
 
@@ -49,36 +50,8 @@ const MyTreatmentRequestsCard = () => {
                 </div>
 
                 {components.map(item=> <MyTreatmentRequestsRow treatment = {item}/>)}
-
-                {/* <div className="control">
-                    <div className = "columns is-centered is-vcentered">
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-                        
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-
-                        <div className = "column">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" disabled/>
-                        </div> 
-                        
-                    
-                    </div>
-                </div> */}
-
                 
-        </div>
+            </div>
         </div>
         )
 };

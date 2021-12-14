@@ -37,6 +37,7 @@ const AddAnimalModal = () => {
 
         axios.post("http://localhost:8080/animal", newAnimal)
             .then(modalClose())
+            .catch((err) => alert(err))
 
         window.location.reload(true)
 

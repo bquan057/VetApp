@@ -16,8 +16,8 @@ const MakeRequest= () => {
         axios.get("http://localhost:8080/animal/search?availability=Available")
         .then((res) => {
             setComponents(res.data)
-        }
-    )
+        })
+        .catch((err) => alert(err))
     }, []);
 
     return(

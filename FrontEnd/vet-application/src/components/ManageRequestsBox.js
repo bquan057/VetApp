@@ -27,8 +27,8 @@ const ManageRequestsBox = (props) => {
         }
 
         axios.put("http://localhost:8080/request", newRequest)
-            .then((res)=> setRequest(res.data));
-        
+            .then((res)=> setRequest(res.data))
+            .catch((err) => alert(err));
 
     } 
 
@@ -43,7 +43,8 @@ const ManageRequestsBox = (props) => {
         }
 
         axios.put("http://localhost:8080/request", newRequest)
-            .then((res)=> setRequest(res.data));
+            .then((res)=> setRequest(res.data))
+            .catch((err) => alert(err));
 
     } 
 

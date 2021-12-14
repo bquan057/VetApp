@@ -45,9 +45,9 @@ CREATE TABLE USER (
 INSERT INTO USER (UserId, Username, Password, Email, FName, LName, ActivationDate, IsActive, Role)
 VALUES
 (12345, 'emilybunny100', 'sora123', 'emily.wang3@ucalgary.ca', 'Emily','Wang', '2021-12-01', true, 'Admin'),
-(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', false, 'Teaching Technician'),
-(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', false, 'Teaching Technician'),
-(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', false, 'Health Technician'),
+(12346, 'brandonbunny100', 'brandon123', 'brandon.quan@ucalgary.ca', 'Brandon', 'Quan','2021-01-01', true, 'Teaching Technician'),
+(12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', true, 'Teaching Technician'),
+(12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', true, 'Health Technician'),
 (12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', 'Yasuo','2019-05-01', true, 'Student'),
 (12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda',' ','2019-05-01', true, 'Student'),
 (12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid',' ','2016-05-01', true, 'Care Attendant');
@@ -228,9 +228,9 @@ CONSTRAINT fk_Treatment_Method
       
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, Status)
 VALUES
-("2021-12-01 8:15:00", 12348, 12351, 123, 1, 'Complete'),
-("2021-09-01 9:30:00", 12348, 12351, 124, 2, 'Requested'),
-("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'Accepted');
+("2021-12-01 8:15:00", 12348, 12351, 123, 1, 'Complete');
+-- ("2021-09-01 9:30:00", 12348, 12351, 124, 2, 'Requested'),
+-- ("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'Accepted');
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (

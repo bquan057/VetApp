@@ -17,8 +17,8 @@ const MyRequest = () => {
         axios.get("http://localhost:8080/request/search?teachingid="+id)
             .then((res) => {
                 setComponents(res.data)
-            }
-        )
+            })
+            .catch((err) => alert(err))
     }, []);
     
     return (      

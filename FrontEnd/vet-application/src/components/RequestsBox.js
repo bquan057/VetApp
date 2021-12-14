@@ -21,8 +21,11 @@ const RequestsBox = (props) => {
     
             axios.put("http://localhost:8080/request", requestToCancel)
                 .then((res)=> {setRequest(res.data)
-                console.log(res.data)});
-
+                })
+                .catch((err) => alert(err));
+        }
+        else {
+            alert("Cannot cancel a lab request if it has been approved by a technician.")
         }
 
     } 

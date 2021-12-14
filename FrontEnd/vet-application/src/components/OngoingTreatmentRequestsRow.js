@@ -20,6 +20,7 @@ const OngoingTreatmentRequestsRow = (props) => {
 
         axios.put("http://localhost:8080/user/" + technicianid + "/treatment", treatmentToReject)
             .then((res) => setTreatment(res.data))
+            .catch((err) => alert(err))
 
     }
 

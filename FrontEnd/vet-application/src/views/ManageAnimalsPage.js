@@ -36,8 +36,8 @@ const ManageAnimalsPage = () => {
         axios.get(apiEndpoint)
             .then((res) => {
                 setAnimals(res.data)
-            }
-        )
+            })
+            .catch((err) => alert(err))
     }
 
     const addAnimalModal = () => {

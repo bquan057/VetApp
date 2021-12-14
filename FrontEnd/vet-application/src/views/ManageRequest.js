@@ -21,8 +21,8 @@ const ManageRequest = () => {
                 .then((res) => {
                 console.log(res)
                 setRequests(res.data)
-                }
-            )
+                })
+                .catch((err) => alert(err))
 
         }else{
 
@@ -30,8 +30,8 @@ const ManageRequest = () => {
                 .then((res) => {
                     console.log(res)
                     setRequests(res.data)
-                }
-            )
+                })
+                .catch((err) => alert(err))
         }
 
 
