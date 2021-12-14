@@ -1,14 +1,26 @@
-import React from "react";
-import animalData from "../data/animalData";
-import treatmentData from "../data/treatmentData";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 
 const TreatmentCard = (props) => {
 
-    const id = props.animal
+    const animal = props.animal
     const treatmentHistory = props.treatmentHistory
     const newTreatment = props.newTreatment
+
+    const[treatments, setTreatments] = useState([])
+
+    useEffect(() => {
+
+        let id = animal.animalid
+        const apiendpoint ="http://localhost:8080/animal/" + id +"/treatment?status=notComplete"
+        axios.get(apiendpoint)
+            .then((res) => {
+                    setTreatments(res.data)
+                }
+            )
+    }, []);
 
     function TreatmentBox({treatment}){
 
@@ -16,12 +28,9 @@ const TreatmentCard = (props) => {
             <div className="column is-one-quarter mx-1 mb-2">
                 <div className="tile is-child is-12 notification is-primary">
                     <div className="column ">
-                        <label className="label has-text-weight-bold">Method: {treatment.method} </label>
-                        <label className="label has-text-weight-bold">Requested by: {treatment.attName} </label>
-                        <label className="label has-text-weight-bold">Request Date: {treatment.timeStamp}</label>
-                    </div>
-                    <div className="column has-text-centered">
-                        <button className= "ml-2 button is-small has-text-weight-bold has-text-primary-dark is-rounded my-2" >Complete</button>
+                        <label className="label has-text-weight-bold">Method: {treatment.treatmentmethod} </label>
+                        <label className="label has-text-weight-bold">Attendent ID: {treatment.attendantid} </label>
+                        <label className="label has-text-weight-bold">Request Date: {treatment.timestamp}</label>
                     </div>
                   </div>
             </div>
@@ -43,8 +52,7 @@ const TreatmentCard = (props) => {
                     </div>
                     <div className="column">
                         <div className="columns is-multiline is-centered py-3">
-                        {treatmentData.filter(treatment => treatment.animalid==id && treatment.isComplete=="false").map(filteredTreament =>(<TreatmentBox treatment = {filteredTreament}/>
-                            ))}
+                            {treatments.map(treatment =>(<TreatmentBox treatment = {treatment}/>))}
                         </div>
                     </div>                    
                 </div>

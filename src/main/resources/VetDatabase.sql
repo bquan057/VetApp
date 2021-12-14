@@ -188,7 +188,7 @@ CREATE TABLE TREATMENT (
 
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, Status)
 VALUES
-("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'complete'),
+("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'requested'),
 ("2021-09-01 9:30:00", 12346, 12351, 124, 2, 'complete'),
 ("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'complete');
 
@@ -336,6 +336,4 @@ SELECT A.AnimalName, A.AnimalId, L.BookingStatus FROM ANIMAL AS A NATURAL JOIN L
 -- FOR EACH ROW
 -- AS BEGIN
 
-SELECT S.timestamp, S.location, S.description, D.diseasename FROM STATUS as S, DISEASES as D 
-WHERE S.diseaseid = D.diseaseid
-ORDER BY S.timestamp  desc
+SELECT * FROM TREATMENT as TR, TREATMENT_METHODS as TM, Animal as A WHERE TR.treatmentid = TM.treatmentid AND A.animalid = TR.animalid AND A.animalid = 123 AND Tr.status != 'complete'

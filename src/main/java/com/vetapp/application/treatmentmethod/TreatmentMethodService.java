@@ -14,4 +14,14 @@ public class TreatmentMethodService {
     public List<TreatmentMethod> getAllTreatments() {
         return repository.findAll();
     }
+
+    /*
+        Get treatment id by name
+     */
+    public int getTreatmentIdByName(String tName){
+
+        TreatmentMethod method = repository.findBytreatmentmethod(tName);
+
+        return method.getTreatmentid();
+    }
 }

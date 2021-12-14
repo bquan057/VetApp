@@ -1,23 +1,38 @@
 import { useEffect, useState } from "react"
-import treatmentData from "../data/treatmentData"
+import axios from "axios";
 
 
 const TreatmentHistoryModal = (props) => {
 
-    const id = props.animal
+    
+
     const modalClose = () => {
         document.getElementById('TreatmentHistory').classList.remove('is-active');
         document.querySelector('#newWeight').value = ''
     }
 
+    const [treatments, setTreatments] = useState([])
+
+    useEffect(() => {
+
+        let id = props.animal.animalid
+        const apiendpoint ="http://localhost:8080/animal/" + id +"/treatment?status=complete"
+        axios.get(apiendpoint)
+            .then((res) => {
+                    setTreatments(res.data)
+                }
+            )
+    }, []);
+
+
     const Row = ({treatment}) => {
         
         return(
             <tr>
-                <th className="has-text-primary">{treatment.timeStamp}</th>
-                <th className="has-text-primary">{treatment.attName}</th>
-                <th className="has-text-primary">{treatment.techName}</th>
-                <td className="has-text-primary">{treatment.method}</td>
+                <th className="has-text-primary">{treatment.timestamp}</th>
+                <th className="has-text-primary">{treatment.attendantid}</th>
+                <th className="has-text-primary">{treatment.technicianid}</th>
+                <td className="has-text-primary">{treatment.treatmentmethod}</td>
             </tr>
         )
     }
@@ -32,8 +47,8 @@ const TreatmentHistoryModal = (props) => {
                     <table className="table">
                         <thead>
                             <th className="is-size-6 has-text-primary-dark has-text-weight-bold">Date</th>
-                            <th className="is-size-6 has-text-primary-dark has-text-weight-bold has-text-centered">Requested By</th>
-                            <th className="is-size-6 has-text-primary-dark has-text-weight-bold has-text-centered">Performed By</th>
+                            <th className="is-size-6 has-text-primary-dark has-text-weight-bold has-text-centered">Attendant ID</th>
+                            <th className="is-size-6 has-text-primary-dark has-text-weight-bold has-text-centered">Technician ID</th>
                             <th className="is-size-6 has-text-primary-dark has-text-weight-bold has-text-centered">Method</th>
                         </thead>
                         <tfoot >
@@ -43,11 +58,7 @@ const TreatmentHistoryModal = (props) => {
                             <th className="is-size-6 has-text-primary-dark has-text-weight-bold has-text-centered">Method</th>
                         </tfoot>
                         <tbody>
-                            {
-
-                                treatmentData.filter(treatment => treatment.animalid==id && treatment.isComplete == 'true').map(filteredTreament =>(<Row treatment= {filteredTreament}/>
-                            ))}
-
+                            {treatments.map(treatment=>(<Row treatment= {treatment}/>))}
                         </tbody>
                     </table>
                 </div>

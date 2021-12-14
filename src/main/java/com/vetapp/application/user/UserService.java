@@ -123,6 +123,15 @@ public class UserService {
         return nameFound;
     }
 
+    /*
+        get user by first and last name
+     */
+    public User getByFNameAndLName(String fName, String lName){
+        System.out.println(fName);
+        System.out.println(lName);
+        return repository.findByfnameAndlname(fName, lName);
+    }
+
     public String setPassword(User userFromDB, User user){
         try{
             userFromDB.setPassword(user.getPassword());
