@@ -35,6 +35,16 @@ public class AnimalService {
 		return repository.save(updatedAnimal);
 	}
     
+	public Animal updateAnimalStatus(int animalid, String status) {
+		
+		Animal animal = repository.findByAnimalid(animalid).get(0);
+		animal.setAvailability(status);
+		repository.save(animal);
+		
+		return animal;
+		
+	}
+	
 	public void deleteById(int animalid) {
 		repository.deleteById(animalid);
 		return;

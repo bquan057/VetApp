@@ -13,4 +13,7 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Long> {
     // method to get treatment by animalid
     @Query(value = "SELECT * FROM TREATMENT WHERE animalid = ? AND status = ?", nativeQuery = true)
     List<Treatment> findByanimalidandstatus(int animalid, String status );
+    
+   
+    
 }

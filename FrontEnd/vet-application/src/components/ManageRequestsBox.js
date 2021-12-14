@@ -19,6 +19,7 @@ const ManageRequestsBox = (props) => {
         }
 
         const newRequest = {
+            animalname: request.animalname,
             requestid: request.requestid,
             animalid: request.animalid, 
             teachingid: request.teachingid,
@@ -27,22 +28,14 @@ const ManageRequestsBox = (props) => {
 
         axios.put("http://localhost:8080/request", newRequest)
             .then((res)=> setRequest(res.data));
-
-
-        if (role == 'Health Technician') {
-            const id = request.animalid
-
-            const updateToAnimal = {
-                availability: "Booked"
-            }
-            axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
-        }
+        
 
     } 
 
     const rejectRequest = () =>{
 
         const newRequest = {
+            animalname: request.animalname,
             requestid: request.requestid,
             animalid: request.animalid, 
             teachingid: request.teachingid,
@@ -51,13 +44,6 @@ const ManageRequestsBox = (props) => {
 
         axios.put("http://localhost:8080/request", newRequest)
             .then((res)=> setRequest(res.data));
-
-        const id = request.animalid
-
-        const updateToAnimal = {
-            availability: "Available"
-        }
-        axios.put("http://localhost:8080/animal/" + id, updateToAnimal)
 
     } 
 
@@ -71,110 +57,65 @@ const ManageRequestsBox = (props) => {
                 
                 <div className="control">
                     <div className = "columns is-centered">
-                        <div className = "column is-one-third">
-                            <div className = "columns">
-                                {/* <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4"> Name </label>
-                                </div> */}
-                                <div className = "column is-one-half">
+
+                                <div className = "column">
+                                    <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4">Animal Name</label>
+                                </div>
+                                
+                                <div className = "column">
                                     <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4">ID</label>
                                 </div>
-                            </div>
-                        </div> 
-                        <div className = "column is-one-third">
-                        <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4">Status</label>
-                        </div>
-                        <div className = "column is-one-third">
-                        <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4">Requests</label>
-                        </div>      
+                                
+                            
+                            
+                                <div className = "column">
+                                <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4">Status</label>
+                                </div>
+                                
+                                <div className = "column">
+                                <label className = "checkbox has-text-primary-dark has-text-weight-bold is-size-4">Approve/Reject</label>
+                                </div>
+
                     </div>
                 </div>
 
                 <div className="control">
-                    <div className = "columns is-centered is-vcentered">
-                        <div className = "column is-one-third">
-                            <div className = "columns">
-                                {/* <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark">Animal 1 </label>
-                                </div> */}
-                                <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark">{request.animalid}</label>
-                                </div>
-                            </div>
-                        </div> 
-                        <div className = "column is-one-third">
-                            <input class="input is-small is-primary is-rounded has-text-centered" type="text" placeholder={request.bookingstatus} disabled  />
+                    <div className = "columns is-vcentered is-centered">
+
+                        <div className = "column">   
+                            <label className = "checkbox has-text-primary-dark">{request.animalname}</label>
                         </div>
-                        <div className = "column is-one-third">
+
+                        <div className = "column">   
+                            <label className = "checkbox has-text-primary-dark">{request.animalid}</label>
+                        </div> 
+
+                        <div className = "column">
+                            <input id={"RequestStatus"+props.request.requestid} class="input is-small has-text-centered is-primary is-rounded" type="text" placeholder={request.bookingstatus} disabled  />
+                        </div>
+
+                        <div className = "column">
                             <div className = "columns">
-                                <div className = "column is-one-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" onClick={approveRequest} >Approve</button> 
+                            <div className = "column">
+                                <button className= "button has-text-weight-bold is-success has-text-white is-rounded" onClick={approveRequest}>
+                                        <span class="icon is-small">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                    </button> 
                                 </div>
-                                <div className = "column is-one-half">
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded"onClick={rejectRequest} >Deny</button> 
+
+                                <div className = "column">
+                                    <button className= "button has-text-weight-bold is-danger has-text-white is-rounded" onClick={rejectRequest}>
+                                        <span class="icon is-small">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                    </button> 
                                 </div>
                             </div>
-                        </div>  
+                        </div>   
+
                     </div>
                 </div>
-
-                {/* <div className="control">
-                    <div className = "columns is-centered">
-                        <div className = "column is-one-third">
-                            <div className = "columns">
-                                <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark">Animal 1 </label>
-                                </div>
-                                <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark">Animal ID1</label>
-                                </div>
-                            </div>
-                        </div> 
-                        <div className = "column is-one-third">
-                                <input class="input is-small is-primary is-rounded" type="text" placeholder="New" disabled  />
-                        </div>
-                        <div className = "column is-one-third">
-                            <div className = "columns">
-                                <div className = "column is-one-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" >Approve</button> 
-                                </div>
-                                <div className = "column is-one-half">
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" >Deny</button> 
-                                </div>
-                            </div>
-                        </div>
-
-
-                </div>
-                </div>
-                <div className="control">
-                    <div className = "columns is-centered">
-                        <div className = "column is-one-third">
-                            <div className = "columns">
-                                <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark">Animal 1 </label>
-                                </div>
-                                <div className = "column is-one-half">
-                                    <label className = "checkbox has-text-primary-dark">Animal ID1</label>
-                                </div>
-                            </div>
-                        </div> 
-                        <div className = "column is-one-third">
-                            <input class="input is-small is-primary is-rounded" type="text" placeholder="New" disabled  />
-                        </div>
-                        <div className = "column is-one-third">
-                            <div className = "columns">
-                                <div className = "column is-one-half">
-                                    <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" >Approve</button> 
-                                </div>
-                                <div className = "column is-one-half">
-                                <button className= "button has-text-weight-bold has-text-primary-dark is-rounded" >Deny</button> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div> */}
             </div>
         </div>
         </div>

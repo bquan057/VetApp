@@ -30,11 +30,7 @@ VALUES
 
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
-<<<<<<< HEAD
 	UserId					integer	auto_increment not null,
-=======
-	UserId					integer auto_increment not null,
->>>>>>> emily
 	Username				varchar(30),
     Password				varchar(30),
     Email					varchar(30),
@@ -232,9 +228,9 @@ CONSTRAINT fk_Treatment_Method
       
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, Status)
 VALUES
-("2021-12-01 8:15:00", 12347, 12351, 123, 1, 'Complete'),
-("2021-09-01 9:30:00", 12346, 12351, 124, 2, 'Requested'),
-("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'Approved');
+("2021-12-01 8:15:00", 12348, 12351, 123, 1, 'Complete'),
+("2021-09-01 9:30:00", 12348, 12351, 124, 2, 'Requested'),
+("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'Accepted');
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (
@@ -314,12 +310,12 @@ CONSTRAINT fk_LabRequests_Animal
       REFERENCES ANIMAL(AnimalId)
       ON DELETE CASCADE;
       
-INSERT INTO LAB_REQUESTS (RequestId, AnimalId, TeachingId, BookingStatus)
-VALUES
-(450, 123, 12346, "New"),
-(451, 124, 12347, "New"),
-(452, 125, 12346, "Approved_By_Admin"),
-(453, 126, 12347, "Approved_By_Technician");
+-- INSERT INTO LAB_REQUESTS (RequestId, AnimalId, TeachingId, BookingStatus)
+-- VALUES
+-- (450, 123, 12346, "New"),
+-- (451, 124, 12347, "New"),
+-- (452, 125, 12346, "Approved_By_Admin"),
+-- (453, 126, 12347, "Approved_By_Technician");
 
 DROP TABLE IF EXISTS ONGOING_CARE;
 CREATE TABLE ONGOING_CARE (
@@ -341,5 +337,3 @@ VALUES
 (124, 'rabies vaccine', '2021-12-19'),
 (125, 'annual check up', '2021-12-20'),
 (126, 'annual check up', '2021-12-25');
-
-SELECT O.animalid, O.Care, O.DueDate, A.AnimalName FROM Ongoing_care as O, Animal as A WHERE O.animalid = A.animalid AND O.duedate < '12-29-21' ORDER BY O.duedate
