@@ -34,13 +34,13 @@ const SearchPage= () => {
         setAnimals([])
 
         if (document.getElementById("search_by_id_manage_animals").checked) {
-            apiEndpoint = "http://localhost:8080/animal/search?animalid=" + document.getElementById("searchbar_manage_animals").value
+            apiEndpoint = "http://localhost:8080/animal/search?animalid=" + document.getElementById("searchbar").value
         }
         else if (document.getElementById("search_by_name_manage_animals").checked) {
-            apiEndpoint = "http://localhost:8080/animal/search?animalname=" + document.getElementById("searchbar_manage_animals").value
+            apiEndpoint = "http://localhost:8080/animal/search?animalname=" + document.getElementById("searchbar").value
         }
         else if (document.getElementById("search_by_species_manage_animals").checked) {
-            apiEndpoint = "http://localhost:8080/animal/search?species=" + document.getElementById("searchbar_manage_animals").value
+            apiEndpoint = "http://localhost:8080/animal/search?species=" + document.getElementById("searchbar").value
         }
         else {
             apiEndpoint = "http://localhost:8080/animal"

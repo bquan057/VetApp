@@ -1,12 +1,9 @@
 import React from "react"
 import SideBar from "../components/SideBar"
 import Header from "../components/Header"
-import SearchBar from "../components/SearchBar";
 import EditAccount from "../components/EditAccount";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import "bulma/css/bulma.css";
-import ChangePasswordModal from "../components/ChangePasswordModal";
-import EditModal from "../components/EditModal";
 import MyTreatmentRequestsCard from "../components/MyTreatmentRequestsCard";
 import TreatmentRequestsCard from "../components/TreatmentRequestsCard";
 import OngoingTreatmentsCard from "../components/OngoingTreatmentsCard";
@@ -38,7 +35,6 @@ const HomePage= () => {
                         <OngoingTreatmentsCard/>
                     </div>
         }
-        document.getElementById('EditAccount').classList.add('is-active');
     }
 
     return(

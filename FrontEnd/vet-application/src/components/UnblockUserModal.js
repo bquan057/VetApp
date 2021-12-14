@@ -29,7 +29,7 @@ const UnblockUserModal = () => {
                 isactive: true
             }).then((response) => {
                 setUnblockUser(response.data);
-                // alert("User unblocked!");
+                alert("User unblocked!");
             });
         }
 

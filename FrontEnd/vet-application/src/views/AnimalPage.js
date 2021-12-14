@@ -92,8 +92,6 @@ const AnimalPage = () => {
                 }
                 <PrescriptionCard animal={animal} newPrescriptionModal = {newPrescriptionModal}/>
                 <PictureCard animal={animal} newPictureModal = {newPictureModal}/>
-                <CommentCard animal= {animal} newCommentModal={newCommentModal}/>
-                <PictureCard animal={animal} newPictureModal = {newPictureModal} handlePic = {pic}/>
                 
             </div>
         </div>

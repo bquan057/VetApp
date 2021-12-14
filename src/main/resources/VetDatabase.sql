@@ -207,7 +207,7 @@ CREATE TABLE TREATMENT (
     AttendantId				integer,
     AnimalId				integer,
     TreatmentId				integer,
-    IsComplete				boolean,
+    Status					varchar(30),
     primary key (TimeStamp, TechnicianId, AnimalId, TreatmentId),
     foreign key (TechnicianId) references USER(UserId) ON DELETE CASCADE, 
     foreign key (AttendantId) references USER(UserId) ON DELETE CASCADE,
@@ -252,12 +252,6 @@ VALUES
 (124, '2021-12-04', 25.0),
 (125, '2021-12-05', 12.0),
 (126, '2020-12-08', 10.0);
-
-ALTER TABLE WEIGHT ADD 
-CONSTRAINT fk_Weight_Animal 
-      FOREIGN KEY (AnimalId)
-      REFERENCES ANIMAL(AnimalId)
-      ON DELETE CASCADE;
       
 DROP TABLE IF EXISTS NOTIFICATION;
 CREATE TABLE NOTIFICATION (

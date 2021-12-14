@@ -99,7 +99,7 @@ public class TreatmentService {
         newTreatment.setAttendantid(treatment.getAttendantid());
         newTreatment.setAnimalid(animalid);
         newTreatment.setTreatmentmethod(treatment.getTreatmentmethod());
-        newTreatment.setStatus("requested");
+        newTreatment.setStatus("Requested");
         newTreatment.setTreatmentid(treatmentId);
 
         repository.save(newTreatment);

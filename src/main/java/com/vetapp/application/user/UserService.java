@@ -31,7 +31,7 @@ public class UserService {
         // query db
         User user = repository.findByusername(uname);
         // credientials dont match in db
-        if(user == null || !user.getPassword().equals(pword)){
+        if(user == null || !user.getPassword().equals(pword) || user.getIsactive() == false){
             return null;
         }
         // create jwt from uname and pword
@@ -103,26 +103,19 @@ public class UserService {
     }
 
     public List<User> getIsBlocked(List<User> user){
+    	
+    	List<User> blockedUsers = new ArrayList<User>();
+    	
         for(int i = 0 ; i<user.size(); i++){
-            if(user.get(i).getIsactive() != false) {
-                user.remove(i);
+            if(user.get(i).getIsactive() == false) {
+                blockedUsers.add(user.get(i));
             }
         }
 
-//
-//        for(int i = 0 ; i<user.size(); i++){
-//            System.out.println(user.get(i));
-//        }
-        return user;
+        return blockedUsers;
     }
 
     public User setIsActive(User userFromDB, User user){
-//        if(statusActive == true){
-//            userFromDB.setIsactive(false);
-//            repository.save(userFromDB);
-//            return "User has been blocked";
-//        }
-//        return "User cannot be blocked";
 
         userFromDB.setIsactive(user.getIsactive());
         repository.save(userFromDB);

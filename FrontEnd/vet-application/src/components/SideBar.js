@@ -58,6 +58,7 @@ const SideBar = () => {
             return <div className="buttons">
             <button className= "button mt-3 mx-3 has-text-weight-bold has-text-primary-dark is-rounded is-fullwidth" onClick= {animalPage}>Manage Animals</button>
             <button className= "button mt-3 mx-3 has-text-weight-bold has-text-primary-dark is-rounded is-fullwidth" onClick= {searchPatient}>Search Patient</button>
+            <button className= "button mt-3 mx-3 has-text-weight-bold has-text-primary-dark is-rounded is-fullwidth" onClick= {manageRequests}>Manage Requests</button>
         </div>
         }
 
