@@ -31,13 +31,12 @@ const  SearchSelectorUser = () =>{
         </div>
         }
         else if (role == "Teaching Technician") {
-            return <div className="columns is-centered">
-            <div className="column is-two-thirds">
-                <div className="field is-grouped">
-                    <div className="column has-text-left">
-                        <button className= "button has-text-weight-bold has-text-primary-dark is-rounded">Student</button>
-                    </div>
-                </div>
+            return <div className="columns">
+            <div className="column has-text-left">
+                <label class="button is-rounded">
+                    <input type="radio" name="search_select" id="search_by_student"/>
+                    <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Student</h1>
+                </label>
             </div>
         </div>
         }
