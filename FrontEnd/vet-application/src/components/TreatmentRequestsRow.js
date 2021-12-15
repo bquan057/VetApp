@@ -22,6 +22,8 @@ const TreatmentRequestsRow = (props) => {
         axios.put("http://localhost:8080/user/" + technicianid + "/treatment", treatmentToAccept)
             .then((res) => setTreatment(res.data))
             .catch((err) => alert(err))
+
+        window.location.reload(true)
         
     }
 
@@ -42,6 +44,7 @@ const TreatmentRequestsRow = (props) => {
             .then((res) => setTreatment(res.data))
             .catch((err) => alert(err))
         
+        window.location.reload(true)
     }
 
     return (

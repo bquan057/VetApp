@@ -1,5 +1,3 @@
-
-   
 DROP DATABASE IF EXISTS VETDATA;
 CREATE DATABASE VETDATA;
 USE VETDATA;
@@ -229,8 +227,6 @@ CONSTRAINT fk_Treatment_Method
 INSERT INTO TREATMENT (TimeStamp, TechnicianId, AttendantId, AnimalId, TreatmentId, Status)
 VALUES
 ("2021-12-01 8:15:00", 12348, 12351, 123, 1, 'Complete');
--- ("2021-09-01 9:30:00", 12348, 12351, 124, 2, 'Requested'),
--- ("2021-12-01 10:45:00", 12348, 12351, 125, 1, 'Accepted');
 
 DROP TABLE IF EXISTS WEIGHT;
 CREATE TABLE WEIGHT (

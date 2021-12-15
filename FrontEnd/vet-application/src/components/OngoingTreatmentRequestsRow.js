@@ -22,6 +22,8 @@ const OngoingTreatmentRequestsRow = (props) => {
             .then((res) => setTreatment(res.data))
             .catch((err) => alert(err))
 
+            window.location.reload(true)
+
     }
 
     return (
