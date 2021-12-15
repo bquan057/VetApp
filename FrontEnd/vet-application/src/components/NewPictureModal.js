@@ -22,6 +22,7 @@ const NewPictureModal = (props) => {
         ).then((response) => {
             setPicture(response.data);
             alert("Picture saved!");
+            window.location.reload(true)
         });
     }
 

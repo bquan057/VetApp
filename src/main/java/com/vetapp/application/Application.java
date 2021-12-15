@@ -18,8 +18,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = {UserRepository.class, RequestRepository.class, AnimalRepository.class, AlertRepository.class,
-			CommentRepository.class, ImageRepository.class, NotificationRepository.class, PrescriptionRepository.class, StatusRepository.class,
+@EnableJpaRepositories(basePackageClasses = {UserRepository.class, RequestRepository.class, AnimalRepository.class,
+			CommentRepository.class, ImageRepository.class,PrescriptionRepository.class, StatusRepository.class,
 			TreatmentRepository.class, WeightRepository.class, TreatmentMethodRepository.class, DiseaseRepository.class, StatusRepository.class,
 			StudentCommentRepository.class})
 public class Application {

@@ -45,6 +45,7 @@ const RequestTreatmentModal = (props) => {
                         alert("Technician Not Found")
                     }else{
                         alert("Treatment Requested")
+                        window.location.reload(true)
                     }
                     
                 }

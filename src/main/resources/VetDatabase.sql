@@ -47,8 +47,8 @@ VALUES
 (12347, 'rohbunny100', 'roh123', 'roh.ram3@ucalgary.ca', 'Roh','Ram' ,'2021-05-01', true, 'Teaching Technician'),
 (12348, 'sorabunny100', 'sora123', 'sora.wang3@ucalgary.ca', 'Sora','Wang' ,'2020-05-01', true, 'Health Technician'),
 (12349, 'cringebunny100', 'cringe123', 'cringe3@ucalgary.ca', 'Cringe', 'Yasuo','2019-05-01', true, 'Student'),
-(12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda',' ','2019-05-01', true, 'Student'),
-(12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid',' ','2016-05-01', true, 'Care Attendant');
+(12350, 'yaldabunny100', 'yalda123', 'yalda3@ucalgary.ca', 'Yalda', 'Afshar','2019-05-01', true, 'Student'),
+(12351, 'majidbunny100', 'majid123', 'majid@ucalgary.ca', 'Majid', 'Bahrehvar','2016-05-01', true, 'Care Attendant');
 
 DROP TABLE IF EXISTS COMMENT;
 CREATE TABLE COMMENT (
