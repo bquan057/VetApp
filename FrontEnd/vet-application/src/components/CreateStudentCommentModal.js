@@ -1,52 +1,52 @@
 import axios from "axios";
 
 
-const NewPrescriptionModal = (props) => {
+const CreateStudentCommentModal = (props) => {
 
     const animal = props.animal
 
     const modalClose = () => {
-        document.getElementById('NewPrescription').classList.remove('is-active');
+        document.getElementById('NewSComment').classList.remove('is-active');
     }
 
     const onSave = () => {
         // get the animal id
         const id = animal.animalid
         
-        const uid = sessionStorage.getItem('id')
+        const userid = sessionStorage.getItem('id')
         
         // get comment
-        const prescription = document.getElementById("prescription").value
+        const comment = document.getElementById("scomment").value
         // create request
 
         const request = {
-            prescriptionname: prescription,
-            userid:uid
+            comment: comment,
+            userid:userid
         }
 
        
-        const apiendpoint ="http://localhost:8080/animal/" + id +"/prescription"
+        const apiendpoint ="http://localhost:8080/animal/" + id +"/studentcomment"
         axios.post(apiendpoint, request)
             .then((res) => {
-                    console.log(res)
-                    alert("Prescription Created")
-                    window.location.reload(true)
+                console.log(res)
+                alert("Comment Created")
+                window.location.reload(true)
                 }
             )
 
         // clear field
-        document.getElementById("prescription").value = ""
-        document.getElementById('NewPrescription').classList.remove('is-active');
+        document.getElementById("scomment").value = ""
+        document.getElementById('NewSComment').classList.remove('is-active');
     }
 
     return(
-        <div className="modal" id="NewPrescription">
+        <div className="modal" id="NewSComment">
             <div className="modal-background" onClick={modalClose}></div>
             <div className="modal-card has-background-white py-5 px-6" >
                 <div className="columns is-multiline is-v-centered">
                     <div className="column">
-                        <label className="label has-text-weight-bold has-text-primary-dark  ">Prescription: </label>
-                        <input  id="prescription"  className="textarea is-primary" placeholder="Prescription"/>
+                        <label className="label has-text-weight-bold has-text-primary-dark  ">Comment: </label>
+                        <textarea  id="scomment"  className="textarea is-primary" placeholder="Comment"></textarea>
                     </div>
                     <div className="column is-full has-text-centered">
                     <button className= "button has-text-weight-bold has-text-primary-dark is-rounded my-2" onClick={onSave}>Save</button>
@@ -58,4 +58,4 @@ const NewPrescriptionModal = (props) => {
 
 }
 
-export default NewPrescriptionModal;
+export default CreateStudentCommentModal;
