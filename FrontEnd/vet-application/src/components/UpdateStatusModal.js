@@ -55,14 +55,16 @@ const UpdateStatusModal = (props) => {
         let apiendpoint = "http://localhost:8080/animal/" + id + "/status"
 
         // make the request
-        axios.post(apiendpoint, request).then((res) => 
-            console.log(res.data),
-            alert("Status updated")
+        axios.post(apiendpoint, request).then((res) => {
+                console.log(res.data)
+                alert("Status updated")
+                window.location.reload(true)
+            }
         )
         document.getElementById('location').value = ""
         document.getElementById('description').value = ""
-        document.getElementById('StatusModal').classList.remove('is-active');
-
+        document.getElementById('StatusModal').classList.remove('is-active')
+        
     }
 
 

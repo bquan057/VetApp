@@ -30,6 +30,7 @@ const CreateStudentCommentModal = (props) => {
             .then((res) => {
                 console.log(res)
                 alert("Comment Created")
+                window.location.reload(true)
                 }
             )
 

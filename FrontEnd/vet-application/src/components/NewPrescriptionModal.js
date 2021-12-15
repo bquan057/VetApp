@@ -30,6 +30,7 @@ const NewPrescriptionModal = (props) => {
             .then((res) => {
                     console.log(res)
                     alert("Prescription Created")
+                    window.location.reload(true)
                 }
             )
 
