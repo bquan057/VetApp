@@ -21,20 +21,13 @@
 //
 //    public List<StudentComment> getComments(int animalid, int userid){
 //        List<StudentComment> commentsFromDB = repository.findAll();
+//        List<StudentComment> comments = new ArrayList<>();
 //
 //        for(int i = 0; i<commentsFromDB.size(); i++){
-//            if(commentsFromDB.get(i).getUserid() != userid){
-//                commentsFromDB.remove(i);
+//            if(commentsFromDB.get(i).getUserid() == userid && commentsFromDB.get(i).getAnimalid() == animalid){
+//                comments.add(commentsFromDB.get(i));
 //            }
 //        }
-//
-//        for(int i = 0; i<commentsFromDB.size(); i++){
-//            if(commentsFromDB.get(i).getAnimalid() != animalid){
-//                commentsFromDB.remove(i);
-//            }
-//        }
-//
-//        return commentsFromDB;
+//        return comments;
 //    }
-//
 //}

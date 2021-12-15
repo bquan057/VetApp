@@ -30,6 +30,7 @@ const UnblockUserModal = () => {
             }).then((response) => {
                 setUnblockUser(response.data);
                 alert("User unblocked!");
+                window.location.reload(true)
             });
         }
 

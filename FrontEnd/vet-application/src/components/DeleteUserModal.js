@@ -17,8 +17,9 @@ const DeleteModal = ({id}) => {
         .then((response) => {
             setDelete(response.data);
             alert("User Deleted!");
-            // setPost(null)
+            window.location.reload(true)
       });
+      
     }
     
     return ( 

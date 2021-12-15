@@ -45,27 +45,7 @@ const Header = ({changePassword, editAccount}) => {
                     </a>
                     </div>
                 </div>
-                {/* bell */}
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link is-primary-dark">
-                    <span class="icon is-small mr-1">
-                        <i class="far fa-bell has-text-primary-dark fas fa-2x" aria-hidden="true"></i>
-                    </span>
-                    </a>
-                    <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        notification 1
-                    </a>
-                    <hr class="navbar-divider"/>
-                    <a class="navbar-item">
-                        notification 2
-                    </a>
-                    <hr class="navbar-divider"/>
-                    <a class="navbar-item">
-                        notification 3
-                    </a>
-                </div>
-               </div>
+
             </nav>
             </div>
     </div>

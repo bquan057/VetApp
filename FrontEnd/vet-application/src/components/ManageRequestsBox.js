@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import getUser from "../components/GetUser";
-// import '../Customization/LoginCard.css'
 
 const ManageRequestsBox = (props) => {
     const [request, setRequest] = useState(props.request)

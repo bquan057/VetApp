@@ -23,6 +23,7 @@ const EditModal = ({id}) => {
                     }
                 ).then((response)=>{setEdits(response.data);
                     alert("User Saved!");
+                    window.location.reload(true)
                 }).catch((err) => {
                 console.log(err);
               });

@@ -84,54 +84,37 @@ const ManageUsersPage = () => {
             <div className= "mx-6"></div>
             <label  onClick = {unblockUserModal} class="button is-primary is-light">
                 <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Manage Blocked Users</h1>
-            </label>
-            
+            </label>   
         </div>
         }else{
             return
         }
-
     }
-
-
-
 
     return(
         <div className="columns">
             <SideBar/>
             <ChangePasswordModal/>
             <EditAccount/>
-            <AddUserModal/>
+            <AddUserModal/>n
             <EditModal id= {id}/>
             <DeleteModal id = {id}/>
             <BlockModal id = {id}/>
             <UnblockUserModal/>
             <div className="column">
-            
             <Header changePassword = {changePasswordModal} editAccount = {editAccountModal} />
                 <div>
-                    {/* <div className = "columns is-centered"> */}
-                            {/* <label onClick = {()=> {addUserModal(); something()}} class="button is-primary is-light">
-                                <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Add User</h1>
-                            </label>
-                            <div className= "mx-6"></div>
-                            <label  onClick = {unblockUserModal} class="button is-primary is-light">
-                                <h1 className="has-text-weight-bold has-text-primary-dark ml-2">Manage Blocked Users</h1>
-                            </label> */}
-                            {buttonShow()}
-                    {/* </div> */}
+                     {buttonShow()}
                     <SearchBarUser addComponents ={addComponents}/>
                     <SearchSelectorUser/>    
                     <div className = "columns is-centered">
                         <div className = "column is-two-thirds">
                         {components.map((item) => (<UserInformationBox user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))}
-                    {/* {components.map((item) => (<ManageUsers user={item} blockModal = {blockUserModal} addModal = {addUserModal} editModal = {editUserModal} deleteModal = {deleteUserModal} handleId = {something}/>))} */}
                     </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div>   
     )
 };
 

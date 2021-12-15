@@ -19,6 +19,7 @@ const BlockUserModal = ({id}) => {
         }).then((response) => {
             setBlock(response.data);
             alert("User Blocked!");
+            window.location.reload(true)
         }).catch((err) => {
             console.log(err);
         });
@@ -70,15 +71,8 @@ const BlockUserModal = ({id}) => {
                         </div>                                             
                     </div>
                 </div>
-
             </section>
-
-
             <footer className="modal-card-foot">
-            {/* <button onClick = {modalClose} className="button is-success">Save changes</button>
-            <button onClick={modalClose} className="button">
-                Cancel
-            </button> */}
             </footer>
         </div>
         </div> 

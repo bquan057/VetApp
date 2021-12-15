@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { useNavigate} from "react-router-dom";
-// import '../Customization/LoginCard.css'
 import Modal from "./EditModal";
 
 const UserInformationBox = ({user, addModal, editModal, deleteModal, blockModal, handleId}) => {
@@ -67,7 +66,6 @@ const UserInformationBox = ({user, addModal, editModal, deleteModal, blockModal,
                 <div className = "my-2">
                 </div>  
                 <div className = "columns is-centered">
-                     {/* <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button> */}
                      <button onClick = {()=> {editModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3">Edit User</button>
                      <button onClick = {() => {deleteModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Delete User</button>
                      <button onClick = {()=> {blockModal(); handleId(user.userid)}} className= "button has-text-weight-bold has-text-primary-dark is-rounded mx-3" >Block User</button>
@@ -76,13 +74,8 @@ const UserInformationBox = ({user, addModal, editModal, deleteModal, blockModal,
             </div>
              </div>
             </div>
-            
-        {/* <button onClick = {handleClick} className = "button mx-6 is-primary is-light is-centered">Submit</button> */}
-        
         </div>
         </div>
-        // </div>
-
     );
 }
  
