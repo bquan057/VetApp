@@ -17,6 +17,8 @@ import PrescriptionCard from "../components/PrescriptionCard";
 import NewPrescriptionModal from "../components/NewPrescriptionModal";
 import StatusCard from "../components/StatusCard";
 import UpdateStatusModal from "../components/UpdateStatusModal";
+import StudentCommentCard from "../components/StudentCommentCard";
+import CreateStudentCommentModal from "../components/CreateStudentCommentModal";
 
 
 const AnimalPage = () => {
@@ -53,6 +55,10 @@ const AnimalPage = () => {
         document.getElementById("NewComment").classList.add('is-active')
     }
 
+    const newSCommentModal = () => {
+        document.getElementById("NewSComment").classList.add('is-active')
+    }
+
     const newPictureModal = () => {
         document.getElementById("NewPicture").classList.add('is-active')
     }
@@ -74,6 +80,7 @@ const AnimalPage = () => {
             <WeightHistoryModal animal={animal}/>
             <TreatmentHistoryModal animal={animal}/>
             <CreateCommentModal animal= {animal}/>
+            <CreateStudentCommentModal animal={animal}/>
             <NewPictureModal animal = {animal} picture = {setPic}/>
             <RequestTreatmentModal animal= {animal}/>
             <NewPrescriptionModal animal = {animal}/>
@@ -88,7 +95,11 @@ const AnimalPage = () => {
                 <TreatmentCard animal={animal} treatmentHistory={treatementHistory} newTreatment = {newTreatmentModal}/>
                 {role!="Student" 
                     ?<CommentCard animal= {animal} newCommentModal={newCommentModal}/>
-                    : <div/>
+                    :<StudentCommentCard animal= {animal} newSCommentModal={newSCommentModal}/>
+                }
+                {role==="Teaching Technician"
+                    ?<StudentCommentCard animal= {animal} newSCommentModal={newSCommentModal}/>
+                    :<div/>
                 }
                 <PrescriptionCard animal={animal} newPrescriptionModal = {newPrescriptionModal}/>
                 <PictureCard animal={animal} newPictureModal = {newPictureModal}/>
