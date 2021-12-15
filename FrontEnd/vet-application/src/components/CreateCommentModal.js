@@ -29,6 +29,7 @@ const CreateCommentModal = (props) => {
         axios.post(apiendpoint, request)
             .then((res) => {
                 console.log(res)
+                alert("Comment Created")
                 }
             )
 

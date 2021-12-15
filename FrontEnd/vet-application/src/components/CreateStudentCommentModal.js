@@ -29,11 +29,12 @@ const CreateStudentCommentModal = (props) => {
         axios.post(apiendpoint, request)
             .then((res) => {
                 console.log(res)
+                alert("Comment Created")
                 }
             )
 
         // clear field
-        document.getElementById("comment").value = ""
+        document.getElementById("scomment").value = ""
         document.getElementById('NewSComment').classList.remove('is-active');
     }
 

@@ -29,6 +29,7 @@ const NewPrescriptionModal = (props) => {
         axios.post(apiendpoint, request)
             .then((res) => {
                     console.log(res)
+                    alert("Prescription Created")
                 }
             )
 
