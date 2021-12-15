@@ -20,7 +20,7 @@ const AnimalSearchCard = (props) => {
 
                 <div className="card-image column is-narrow has-text-left">
                     <figure className="image is-96x96 ">
-                        <img src={animal.imgPath} alt={animal.name}/>
+                        <img src="AnimalAvatar.png" alt={animal.name}/>
                     </figure>
                 </div>
                 <div className="class-content column">

@@ -41,10 +41,12 @@ const RequestTreatmentModal = (props) => {
         axios.post(apiendpoint, request)
             .then((res) => {
                     console.log(res.data)
-
                     if(res.data === ""){
                         alert("Technician Not Found")
+                    }else{
+                        alert("Treatment Requested")
                     }
+                    
                 }
             )
        

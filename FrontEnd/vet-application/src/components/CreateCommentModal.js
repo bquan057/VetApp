@@ -28,7 +28,9 @@ const CreateCommentModal = (props) => {
         const apiendpoint ="http://localhost:8080/animal/" + id +"/comment"
         axios.post(apiendpoint, request)
             .then((res) => {
-                console.log(res)
+                    console.log(res)
+                    alert("Comment Created")
+                    window.location.reload(true)
                 }
             )
 
