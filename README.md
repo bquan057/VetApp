@@ -1,4 +1,4 @@
-#VetApp
+# VetApp
 
 This project was created by a group of three. Brandon Quan, Rohinesh Ram, and Emily Wang.
 
@@ -10,7 +10,7 @@ Authentication was done using Auth0 and JWT Tokens.
 
 The dummy database was created using MySQL.
 
-To Run:
+# To Run:
 - navigate to ```final-project-uofeng607-057-1\src\main\resources\application.properties```
 - Add your credentials:
   ```
